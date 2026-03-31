@@ -279,11 +279,11 @@ const Home = () => {
                 navigate with selecting the right curriculum, stream, course, industry and job.
               </p>
             </div>
-            <div className="action-box-cta">
+            {/* <div className="action-box-cta">
               <button className="btn-register" onClick={() => setCounselModal(true)}>
                 Register for Counselling
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
