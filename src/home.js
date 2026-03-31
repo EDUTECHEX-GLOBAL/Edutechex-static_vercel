@@ -45,7 +45,7 @@ import teacher2   from './assets/teacher2.jpeg';
 import teacher3   from './assets/teacher3.jpg';
 import teacher4   from './assets/teacher4.jpg';
 
-// ── University slider groups (4 logos per slide) ──
+// ── University slider groups ──
 const UNI_SLIDES = [
   [cambridge, oxford, wharton, ethz],
   [columbia,  caltech, princeton, harvard],
@@ -124,7 +124,6 @@ const MENTORS = [
   { img: teacher1, name: 'Aditya',   subject: 'JEE & AP Physics' },
 ];
 
-// ────────────────────────────────────────────────
 const Home = () => {
   const [videoModal,   setVideoModal]   = useState(false);
   const [counselModal, setCounselModal] = useState(false);
@@ -133,16 +132,10 @@ const Home = () => {
   const [errors,       setErrors]       = useState({});
   const [submitted,    setSubmitted]    = useState(false);
   const [carouselIdx,  setCarouselIdx]  = useState(0);
-  const [flipIdx,      setFlipIdx]      = useState(0);
   const [uniSlide,     setUniSlide]     = useState(0);
 
   useEffect(() => {
     const t = setInterval(() => setCarouselIdx(i => (i + 1) % CAROUSEL_REVIEWS.length), 4000);
-    return () => clearInterval(t);
-  }, []);
-
-  useEffect(() => {
-    const t = setInterval(() => setFlipIdx(i => (i + 1) % FLIP_CARDS.length), 3500);
     return () => clearInterval(t);
   }, []);
 
@@ -191,14 +184,14 @@ const Home = () => {
       <section className="hero">
         <div className="hero-left">
           <h1 className="hero-title">
-            Limitless navigated learning<br />
-            at your{' '}
+            Limitless navigated learning at your
             <span className="highlight">
               fingertips
-              <svg className="underline-svg" viewBox="0 0 220 10"
-                preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,6 Q30,1 60,6 Q90,11 120,6 Q150,1 180,6 Q200,9 220,6"
-                  stroke="#f5a623" strokeWidth="3" fill="none" strokeLinecap="round"/>
+              <svg className="underline-svg" width="250px" height="62.1px" viewBox="0 0 366 62.1" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m322.5 25.3c0 1.4 2.9 0.8 3.1 1.6 0.8 1.1-1.1 1.3-0.6 2.4 13.3 0.9 26.9 1.7 40.2 4-2.5 0.7-4.9 1.6-7.3 1.1-4-0.9-8.2-1-12.2-1.2-8.5-0.5-16.9-1.9-25.5-1.7h-3.1c2.6 0.6 4.8 0.4 5.7 2.2-7.3 0.4-14.1-0.8-21.2-1.1-0.2 0.6-0.5 1.2-0.8 1.8 21.3 0.7 42.5 1.6 64.3 4.6-4.2 1.6-7.7 1-10.8 0.8-6.8-0.5-13.5-1.3-20.3-1.9-0.9-0.1-2.3-0.1-2.9 0.2-2.2 1.6-4.3 0.6-7 0.4 1.4-1 2.5 0.5 3.9-0.8-5.6-1-10.7 0.6-15.9 0s-10.5-0.6-16.6-0.8c2 1.6 4.6 1.3 6.2 1.4 4.9 0 9.9 0.8 14.8 0.7 5.3-0.1 10.4 0.5 15.5 0.9 3.2 0.3 6.7-0.1 9.9-0.4 1.1-0.1 0.5 0.3 0.6 0.6 0.5 0.9 2.2 0.8 3.6 0.8 5.1-0.1 10.1 0.6 14.8 1.5 0.8 0.1 1.5 0 1.7 0.7 0 0.7-0.8 0.6-1.5 0.8-3.9 1.2-7.4-0.2-11.1-0.2-2 0-4.3-1.5-6 0.5-0.3 0.4-1.4 0.1-2.2-0.1-4.5-0.8-9.1-0.5-13.8-1.5-2.3-0.5-5.6 0.1-8.4 0.5-4 0.5-8-0.7-12.1-0.9-3.4-0.2-7.1-0.5-10.5-0.7-7.1-0.3-14.2-1.2-22.3-0.4 4.9 1.1 9.4 1.2 13.8 1.2 9.7 0 19.2 2.3 28.9 1.6 7.3 3.2 15.9 1.5 23.8 2.9 4.9 0.8 10.1 0.8 15.2 1.2 0.5 0 0.8 0.3 1.1 0.9-20-2.1-40.2-1.4-60.8-3 4.9 2.1 10.8-0.3 15.3 2.7-8 1.9-15.8-0.9-23.5-0.1 2.8 1.4 7.1 1.1 9.3 3.3 0.5 0.5 0.2 1.1-1.2 1.3 2.3 1 3.4-2.1 5.7-0.4 0.2-0.6 0.2-1 0.3-1.5 0.8-0.3 2 0.8 1.5 1.5-0.2 0.1 0 0.3 0 0.5 18.7 0.4 37.3 1.7 56.2 3.6-1.7 1.1-2.8 1.2-4.2 1.1-7.1-0.5-14.1-0.9-21.2-1.4-3.1-0.2-6.3-0.4-9.4-0.4-7.6-0.2-15-0.7-22.4-1-9-0.4-17.9-0.1-26.9-0.1-1.2 0-2.9-0.4-3.9 1 14.8 0.3 29.7 0.6 44.4 1.1 14.8 0.6 29.9 1.3 44.2 4.2-4.3 1-8.8 0.9-13 0.5-5.3-0.5-10.5-1.1-15.8-1.2-11.4-0.3-22.9-0.9-34.3-1.2-17.6-0.4-35.4-0.3-53.1-0.4-10.8-0.1-21.7-0.2-32.5 0-17.8 0.4-35.7 0.2-53.5 0.5-13.1 0.3-26.3 0.1-39.4 0.5-11.1 0.3-22.4 0.6-33.6 1-13.1 0.6-26.1 0.2-39.3 0.4-3.9 0.1-7.6 0.2-11.8-0.2 0.9-1.2 2.3-1.3 3.9-1.3 8.4 0.2 16.6-0.4 24.9-0.9 3.9-0.2 7.9-0.4 11.9 0.2 2.5 0.4 5.3-0.3 8-0.4 7.3-0.4 14.7-0.7 22-0.9 11.9-0.5 23.7-1.2 35.6-0.8 7.7 0.2 15.3-0.6 22.9-0.1 2.3 0.2 4.3-0.5 6.5-1h-17.6c-9.6 0-19-0.1-28.6 0-8 0.1-16.1 0.3-24 0.8-2.6 0.2-5.4 0.1-8.2 0.1-10.1 0.3-20.1 0.6-30.2 0.5-5.4 0-10.7-0.1-15.9 0.6-2.3 0.3-4-1.3-6.5-0.6 0.2 0.4 0.5 0.9 0.6 1.5-1.9 0-4 0.4-4.9-0.1-4.2-2.2-9.4-1.5-14.1-2.3-1.7-0.3-3.7-0.1-4.3-1.5-0.5-1.3 1.9-1.5 2.6-2.6-4.2-1.4-4.6-5-8.5-7.2-1.5 0.2-0.9 2.8-4.2 1.3 0.3 2.4 4.5 3.9 2.8 6.4-2.3 0.3-3.2-0.8-4.2-1.7-2.5-4-5.1-8.4-5.1-12.7 0.2-6.8 0.2-13.8 3.6-20.4 0.3-0.5 0.3-1 0.8-1.4 0.9-0.9 1.2-2.4 3.6-2.1 2.2 0.2 2.5 1.5 2.6 2.6 0.2 1.4 1.5 1.8 3.2 2.5 0.9-1.4 0.5-2.9 2.6-3.7 0.2-0.1 0.3-0.4 0.3-0.4-3.1-2.2 1.2-2.2 2.3-3.3-3.1-1.8-4-4.3-3.7-7-1.5-0.3-3.1-0.4-4.5 0-1.7 0.6-2.2-0.5-2.9-1 0.6-0.5 0.8-1.1 2.2-1.3 7.6-0.9 15.2-1.7 22.9-2 20-0.7 39.9-0.9 59.9-1 11.9-0.1 23.8 0.4 35.6 1.1 3.6 0.2 7.1-0.9 10.7-0.5 7.9 0.9 15.8 0.3 23.8 0.5 7.3 0.1 14.4-0.6 21.7-0.1 12.2 0.9 24.4 0.3 36.7 0.6 9.4 0.3 18.9 0.4 28.2 1 11.9 0.7 23.8 1.3 35.6 2 11.1 0.6 22.4 0.5 33.3 2 7.1 1 14.4 1.1 21.3 2.4 4 0.7 8.2 1.6 12.4 1.9 2.2 0.2 0.9 1 1.5 1.5-4-0.8-8-0.8-12.1-1.4-4.3-0.7-8.5-1-12.8 0.4-2.9 1-6.3 0.2-9.3-0.1-10.2-1.1-20.6-1.6-30.8-2.4-12.1-0.9-24.3-1.4-36.4-2.1-9.9-0.6-20-0.5-29.9-1-11.4-0.6-22.7 0-34.2-0.5-6.3-0.3-12.3-0.3-18.5-0.4-4.2-0.1-8.4 1.3-12.8 0.3 0.6 0.2 1.2 0.7 1.9 0.7 10.5 0 20.9 1.9 31.6 1.7 6.5-0.1 13.1 0.2 19.8 0.8 3.2 0.3 6.3-0.4 9.7-0.1 7.6 0.7 15.5 0.5 23 0.8 12.4 0.5 24.7 0.4 37.1 1.1 13.3 0.7 26.8 2.1 39.9 4.1 6.2 0.9 12.7 1.5 19.2 1.7 0.6 0 1.1 0.1 1.5 0.5-4.6 0.1-9.3 0-13.9-0.5-0.6 1.1 1.4 0.9 1.5 1.9-9.7 1.6-19.6-1.4-29.4-0.1 2.2 1.4 5.1 1 7.4 1 7.3 0.1 14.1 1.3 21.2 1.9 2.8 0.3 5.9 0 8.5 0.8 1.5 0.5 4.6-1.1 4.9 1.3 4-0.7 7.3 1.5 11.1 1.2 4-0.3 7.7 0.6 11.6 1.1 0.8 0.1 2.2 0.3 2.3 1.1 0.2 1-1.1 1.2-2 1.5-3.4 1-6.7-0.4-10.1-0.4-0.9 0-2-0.2-2.9-0.2-9.4 0.1-18.8-1.3-28.3-1.8-6-0.4-12.1-0.9-18.1-1.3 0 0.2 0 0.4-0.2 0.6 6.1 0.5 12.1 1.4 18.3 0.7z"
+                  fill="#f5a623"
+                />
               </svg>
             </span>
           </h1>
@@ -254,10 +247,10 @@ const Home = () => {
       <section className="career-cards-section">
         <div className="career-card">
           <img src={banner1} alt="Navigate Your Careers" className="career-card-img"/>
-          <div className="career-card-content">
+          <div className="career-card-content navigate-content">
             <h3>Navigate Your Careers with EDUTECHEX</h3>
             <p>Careers aligned with Passion</p>
-            <button className="read-more-btn">Read More</button>
+            <button className="read-more-btn read-more-btn--dark">Read More</button>
           </div>
         </div>
         <div className="career-card">
@@ -298,22 +291,66 @@ const Home = () => {
       {/* ══ REVIEWS / TESTIMONIALS ══ */}
       <section className="reviews-section">
         <div className="reviews-container">
+
+          {/* ════════════════════════════════════════════
+              LEFT BIG COLUMN (Angular col-xl-7 order-2)
+              Inner sub-grid:
+              Row 1 → [flip card col-md-7] [mentor panel col-md-5]
+              Row 2 → [dot spacer col-7]   [carousel card col-md-5]
+          ════════════════════════════════════════════ */}
           <div className="reviews-left">
-            <div className="flip-card-wrapper">
-              {FLIP_CARDS.map((fc, i) => (
-                <div key={fc.name} className={`review-card flip-card ${i === flipIdx ? 'active' : ''}`}>
-                  <div className="avatar-wrap">
-                    <img src={fc.img} alt={fc.name} className="avatar-img"/>
-                  </div>
-                  <blockquote className="review-quote">
-                    <span className="q-icon">&#8220;</span>{fc.quote}<span className="q-icon">&#8221;</span>
-                  </blockquote>
-                  <h6 className="review-name">{fc.name}</h6>
-                  <p className="review-grade">{fc.grade}</p>
-                  <span className="uni-badge">{fc.uni}</span>
-                </div>
-              ))}
+
+            {/* Circle SVG — absolute top-left corner of flip card */}
+            <div className="circle-decoration-svg">
+              <svg width="211" height="211" viewBox="0 0 211 211" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M210.030,105.011 C210.030,163.014 163.010,210.029 105.012,210.029
+                     C47.013,210.029 -0.005,163.014 -0.005,105.011
+                     C-0.005,47.015 47.013,-0.004 105.012,-0.004
+                     C163.010,-0.004 210.030,47.015 210.030,105.011 Z"
+                />
+              </svg>
             </div>
+
+            {/* ── ROW 1, COL 1 — 3D Flip Card ── */}
+            <div className="custom-card-wrapper">
+              <div className="custom-card">
+                {/* FRONT */}
+                <div className="face front-face">
+                  <div className="review-card">
+                    <div className="avatar-wrap">
+                      <img src={FLIP_CARDS[0].img} alt={FLIP_CARDS[0].name} className="avatar-img"/>
+                    </div>
+                    <blockquote className="review-quote">
+                      <span className="q-icon">"</span>
+                      {FLIP_CARDS[0].quote}
+                      <span className="q-icon">"</span>
+                    </blockquote>
+                    <h6 className="review-name">{FLIP_CARDS[0].name}</h6>
+                    <p className="review-grade">{FLIP_CARDS[0].grade}</p>
+                    <span className="uni-badge">{FLIP_CARDS[0].uni}</span>
+                  </div>
+                </div>
+                {/* BACK */}
+                <div className="face back-face">
+                  <div className="review-card">
+                    <div className="avatar-wrap">
+                      <img src={FLIP_CARDS[1].img} alt={FLIP_CARDS[1].name} className="avatar-img"/>
+                    </div>
+                    <blockquote className="review-quote">
+                      <span className="q-icon">"</span>
+                      {FLIP_CARDS[1].quote}
+                      <span className="q-icon">"</span>
+                    </blockquote>
+                    <h6 className="review-name">{FLIP_CARDS[1].name}</h6>
+                    <p className="review-grade">{FLIP_CARDS[1].grade}</p>
+                    <span className="uni-badge">{FLIP_CARDS[1].uni}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── ROW 1, COL 2 — Mentor Panel ── */}
             <div className="mentor-panel">
               <div className="mentor-badge">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="#f59e0b">
@@ -331,36 +368,100 @@ const Home = () => {
                 </div>
               ))}
             </div>
-          </div>
 
-          <div className="reviews-middle">
-            <div className="review-card carousel-card">
-              <div className="avatar-wrap">
-                <img src={current.img} alt={current.name} className="avatar-img"/>
-              </div>
-              <blockquote className="review-quote">
-                <span className="q-icon">&#8220;</span>{current.quote}<span className="q-icon">&#8221;</span>
-              </blockquote>
-              <h6 className="review-name">{current.name}</h6>
-              <p className="review-grade">{current.grade}</p>
-              <span className="uni-badge">{current.uni}</span>
-              <div className="carousel-dots">
-                {CAROUSEL_REVIEWS.map((_, i) => (
-                  <button key={i} className={`dot ${i === carouselIdx ? 'dot--active' : ''}`}
-                    onClick={() => setCarouselIdx(i)} aria-label={`Review ${i + 1}`}/>
-                ))}
-              </div>
-              <button className="carousel-next-btn"
-                onClick={() => setCarouselIdx(i => (i + 1) % CAROUSEL_REVIEWS.length)}
-                aria-label="Next review">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                  <path d="M9 18l6-6-6-6" stroke="white" strokeWidth="2.5"
-                    fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* ── ROW 2, COL 1 — Dot pattern spacer (holds dot SVG decoration) ── */}
+            <div className="dot-pattern-spacer">
+              <div className="dots-pattern-svg">
+                <svg enableBackground="new 0 0 160.7 159.8" viewBox="0 0 160.7 159.8"
+                  xmlns="http://www.w3.org/2000/svg" width="160" height="180">
+                  <path d="m153.2 114.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <path d="m116.4 114.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m134.8 114.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m135.1 96.9c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m153.5 96.9c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <path d="m98.3 96.9c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <ellipse cx="116.7" cy="99.1" rx="2.1" ry="2.2"/>
+                  <path d="m153.2 149.8c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.3 0.9-2.2 2.1-2.2z"/>
+                  <path d="m135.1 132.2c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2 0-1.3 0.9-2.2 2.1-2.2z"/>
+                  <path d="m153.5 132.2c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.3 0.9-2.2 2.1-2.2z"/>
+                  <path d="m80.2 79.3c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2z"/>
+                  <path d="m117 79.3c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m98.6 79.3c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m135.4 79.3c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m153.8 79.3c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m80.6 61.7c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <ellipse cx="98.9" cy="63.9" rx="2.1" ry="2.2"/>
+                  <path d="m117.3 61.7c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <ellipse cx="62.2" cy="63.9" rx="2.1" ry="2.2"/>
+                  <ellipse cx="154.1" cy="63.9" rx="2.1" ry="2.2"/>
+                  <path d="m135.7 61.7c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m154.4 44.1c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m80.9 44.1c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <path d="m44.1 44.1c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <path d="m99.2 44.1c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2z"/>
+                  <ellipse cx="117.6" cy="46.3" rx="2.1" ry="2.2"/>
+                  <path d="m136 44.1c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m62.5 44.1c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <path d="m154.7 26.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <path d="m62.8 26.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <ellipse cx="136.3" cy="28.6" rx="2.1" ry="2.2"/>
+                  <path d="m99.6 26.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <path d="m117.9 26.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2z"/>
+                  <path d="m81.2 26.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2-0.1-1.2 0.9-2.2 2.1-2.2z"/>
+                  <path d="m26 26.5c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2c-1.2 0-2.1-1-2.1-2.2s0.9-2.2 2.1-2.2z"/>
+                  <ellipse cx="44.4" cy="28.6" rx="2.1" ry="2.2"/>
+                  <path d="m136.6 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2 0.1 1.2-0.9 2.2-2.1 2.2z"/>
+                  <path d="m155 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2 0.1 1.2-0.9 2.2-2.1 2.2z"/>
+                  <path d="m26.3 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2s-0.9 2.2-2.1 2.2z"/>
+                  <path d="m81.5 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2s-0.9 2.2-2.1 2.2z"/>
+                  <path d="m63.1 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2s-0.9 2.2-2.1 2.2z"/>
+                  <path d="m44.7 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2s-0.9 2.2-2.1 2.2z"/>
+                  <path d="m118.2 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2 0.1 1.2-0.9 2.2-2.1 2.2z"/>
+                  <path d="m7.9 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2 0.1 1.2-0.9 2.2-2.1 2.2z"/>
+                  <path d="m99.9 13.2c-1.2 0-2.1-1-2.1-2.2s1-2.2 2.1-2.2c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2z"/>
                 </svg>
-              </button>
+              </div>
             </div>
-          </div>
 
+            {/* ── ROW 2, COL 2 — Carousel Review Card ── */}
+            <div className="reviews-middle">
+              <div className="review-card carousel-card">
+                <div className="avatar-wrap">
+                  <img src={current.img} alt={current.name} className="avatar-img"/>
+                </div>
+                <blockquote className="review-quote">
+                  <span className="q-icon">"</span>{current.quote}<span className="q-icon">"</span>
+                </blockquote>
+                <h6 className="review-name">{current.name}</h6>
+                <p className="review-grade">{current.grade}</p>
+                <span className="uni-badge">{current.uni}</span>
+                <div className="carousel-dots">
+                  {CAROUSEL_REVIEWS.map((_, i) => (
+                    <button
+                      key={i}
+                      className={`dot ${i === carouselIdx ? 'active' : ''}`}
+                      onClick={() => setCarouselIdx(i)}
+                    />
+                  ))}
+                </div>
+                <button
+                  className="carousel-next-btn"
+                  onClick={() => setCarouselIdx(i => (i + 1) % CAROUSEL_REVIEWS.length)}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                    <path d="M9 18l6-6-6-6" stroke="white" strokeWidth="2.5" fill="none"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+          {/* END reviews-left */}
+
+          {/* ════════════════════════════════════════════
+              RIGHT BIG COLUMN (Angular col-xl-5 order-1)
+              Heading + description + button
+          ════════════════════════════════════════════ */}
           <div className="reviews-right">
             <h2 className="reviews-heading">Some valuable feedback from our students</h2>
             <p className="reviews-desc">
@@ -371,18 +472,19 @@ const Home = () => {
             </p>
             <button className="btn-testimonials">View All Testimonials</button>
           </div>
+
         </div>
       </section>
+      {/* ══ REVIEWS END ══ */}
 
       {/* ══ STUDENT DESTINATIONS ══ */}
       <section className="destinations-section">
         <div className="destinations-container">
           <h2 className="destinations-heading">Our Student Destinations</h2>
           <div className="uni-slider-wrapper">
-            <button className="uni-nav-btn" onClick={prevUni} aria-label="Previous slide">
+            <button className="uni-nav-btn" onClick={prevUni}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M15 18l-6-6 6-6" stroke="white" strokeWidth="2.5"
-                  strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M15 18l-6-6 6-6" stroke="white" strokeWidth="2.5"/>
               </svg>
             </button>
             <div className="uni-slides-track">
@@ -396,17 +498,16 @@ const Home = () => {
                 </div>
               ))}
             </div>
-            <button className="uni-nav-btn" onClick={nextUni} aria-label="Next slide">
+            <button className="uni-nav-btn" onClick={nextUni}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18l6-6-6-6" stroke="white" strokeWidth="2.5"
-                  strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9 18l6-6-6-6" stroke="white" strokeWidth="2.5"/>
               </svg>
             </button>
           </div>
           <div className="uni-dots">
             {UNI_SLIDES.map((_, i) => (
-              <button key={i} className={`dot ${i === uniSlide ? 'dot--active' : ''}`}
-                onClick={() => setUniSlide(i)} aria-label={`Slide ${i + 1}`}/>
+              <button key={i} className={`dot ${i === uniSlide ? 'active' : ''}`}
+                onClick={() => setUniSlide(i)}/>
             ))}
           </div>
         </div>
@@ -416,12 +517,10 @@ const Home = () => {
       <section className="powered-section">
         <div className="powered-container">
           <span className="powered-label">Powered By :</span>
-          <a href="https://aws.amazon.com/education/edstart/" target="_blank" rel="noopener noreferrer"
-            className="powered-logo-link">
+          <a href="https://aws.amazon.com/education/edstart/" target="_blank" rel="noopener noreferrer" className="powered-logo-link">
             <img src={awsLogo} alt="AWS EdStart Member" className="powered-logo powered-logo--aws"/>
           </a>
-          <a href="https://www.nvidia.com/en-in/startups/" target="_blank" rel="noopener noreferrer"
-            className="powered-logo-link">
+          <a href="https://www.nvidia.com/en-in/startups/" target="_blank" rel="noopener noreferrer" className="powered-logo-link">
             <img src={nvidiaLogo} alt="NVIDIA Inception Program" className="powered-logo powered-logo--nvidia"/>
           </a>
         </div>
@@ -432,8 +531,6 @@ const Home = () => {
         <div className="footer-bg-overlay" />
         <div className="footer-inner">
           <div className="footer-grid">
-
-            {/* Widget 1 — Logo + Description + Socials */}
             <div className="footer-widget footer-widget--brand">
               <a href="/" className="footer-logo-link">
                 <img src={edutechLogo} alt="EDUTECHEX" className="footer-logo" />
@@ -443,54 +540,13 @@ const Home = () => {
                 and are extremely passionate about global and domestic education.
               </p>
               <ul className="footer-socials">
-                <li>
-                  <a href="https://www.facebook.com/edutechexlearning/" target="_blank" rel="noopener noreferrer"
-                    className="footer-social-btn footer-social-btn--fb" aria-label="Facebook">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/edutechexglobal/" target="_blank" rel="noopener noreferrer"
-                    className="footer-social-btn footer-social-btn--ig" aria-label="Instagram">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/EduTechEx1" target="_blank" rel="noopener noreferrer"
-                    className="footer-social-btn footer-social-btn--tw" aria-label="Twitter">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/company/edutechex-global/mycompany/" target="_blank" rel="noopener noreferrer"
-                    className="footer-social-btn footer-social-btn--li" aria-label="LinkedIn">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                      <circle cx="4" cy="4" r="2"/>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.youtube.com/channel/UCoygtJAtV4Kk5ahlK9VZ_Sw" target="_blank" rel="noopener noreferrer"
-                    className="footer-social-btn footer-social-btn--yt" aria-label="YouTube">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.97A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
-                      <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
-                    </svg>
-                  </a>
-                </li>
+                <li><a href="https://www.facebook.com/edutechexlearning/" target="_blank" rel="noopener noreferrer" className="footer-social-btn footer-social-btn--fb">fb</a></li>
+                <li><a href="https://www.instagram.com/edutechexglobal/" target="_blank" rel="noopener noreferrer" className="footer-social-btn footer-social-btn--ig">ig</a></li>
+                <li><a href="https://twitter.com/EduTechEx1" target="_blank" rel="noopener noreferrer" className="footer-social-btn footer-social-btn--tw">tw</a></li>
+                <li><a href="https://www.linkedin.com/company/edutechex-global/mycompany/" target="_blank" rel="noopener noreferrer" className="footer-social-btn footer-social-btn--li">in</a></li>
+                <li><a href="https://www.youtube.com/channel/UCoygtJAtV4Kk5ahlK9VZ_Sw" target="_blank" rel="noopener noreferrer" className="footer-social-btn footer-social-btn--yt">yt</a></li>
               </ul>
             </div>
-
-            {/* Widget 2 — Nav columns */}
             {FOOTER_ITEMS.map(section => (
               <div key={section.heading} className="footer-widget footer-widget--nav">
                 <h5 className="footer-nav-heading">{section.heading}</h5>
@@ -503,42 +559,25 @@ const Home = () => {
                 </ul>
               </div>
             ))}
-
-            {/* Widget 3 — Contact */}
             <div className="footer-widget footer-widget--contact">
               <h5 className="footer-nav-heading">Contact</h5>
-              <p className="footer-contact-row">
-                Contact No:
-                <a href="tel:7330611818" className="footer-contact-value">7330611818</a>
-              </p>
-              <p className="footer-contact-row">
-                Email:
-                <a href="mailto:office@edutechex.com" className="footer-contact-value">
-                  office@edutechex.com
-                </a>
-              </p>
+              <p className="footer-contact-row">Contact No: <a href="tel:7330611818" className="footer-contact-value">7330611818</a></p>
+              <p className="footer-contact-row">Email: <a href="mailto:office@edutechex.com" className="footer-contact-value">office@edutechex.com</a></p>
             </div>
-
-          </div>{/* /footer-grid */}
-
+          </div>
           <hr className="footer-divider" />
-
-          {/* Bottom bar */}
           <div className="footer-bottom">
-            <span className="footer-copyright">
-              <a href="/" className="footer-copyright-link">©2023 EDUTECHEX</a>. All rights reserved.
-            </span>
+            <span className="footer-copyright"><a href="/" className="footer-copyright-link">©2023 EDUTECHEX</a>. All rights reserved.</span>
             <ul className="footer-legal-links">
               <li><a href="/cancellation-policy" className="footer-legal-link">Cancellation Policy</a></li>
-              <li><a href="/privacy-policy"       className="footer-legal-link">Privacy policy</a></li>
+              <li><a href="/privacy-policy" className="footer-legal-link">Privacy policy</a></li>
               <li><a href="/terms-and-conditions" className="footer-legal-link">Terms and Conditions</a></li>
             </ul>
           </div>
-
-        </div>{/* /footer-inner */}
+        </div>
       </footer>
 
-      {/* ══ VIDEO MODAL ══ */}
+      {/* ══ MODALS ══ */}
       {videoModal && (
         <div className="modal-overlay" onClick={() => setVideoModal(false)}>
           <div className="modal-box" onClick={e => e.stopPropagation()}>
@@ -548,7 +587,6 @@ const Home = () => {
         </div>
       )}
 
-      {/* ══ COUNSELLING MODAL ══ */}
       {counselModal && (
         <div className="modal-overlay" onClick={() => setCounselModal(false)}>
           <div className="modal-box counsel-modal" onClick={e => e.stopPropagation()}>
@@ -557,16 +595,15 @@ const Home = () => {
               <button className="modal-close" onClick={() => setCounselModal(false)}>✕</button>
             </div>
             <div className="counsel-body">
-              {[
-                { field:'name',  type:'text',  placeholder:'Name' },
-                { field:'email', type:'email', placeholder:'Email address' },
-                { field:'phone', type:'text',  placeholder:'Phone' },
-                { field:'city',  type:'text',  placeholder:'City' },
-              ].map(({ field, type, placeholder }) => (
+              {['name', 'email', 'phone', 'city'].map(field => (
                 <div className="form-group" key={field}>
-                  <input type={type} placeholder={placeholder} value={form[field]}
+                  <input
+                    type={field === 'email' ? 'email' : 'text'}
+                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                    value={form[field]}
                     onChange={handleInput(field)}
-                    className={`form-input ${submitted && errors[field] ? 'input-error' : ''}`}/>
+                    className={`form-input ${submitted && errors[field] ? 'input-error' : ''}`}
+                  />
                   {submitted && errors[field] && <span className="error-text">{errors[field]}</span>}
                 </div>
               ))}
@@ -576,7 +613,6 @@ const Home = () => {
         </div>
       )}
 
-      {/* ══ SUCCESS MODAL ══ */}
       {successModal && (
         <div className="modal-overlay" onClick={() => setSuccessModal(false)}>
           <div className="modal-box success-modal" onClick={e => e.stopPropagation()}>
@@ -587,17 +623,9 @@ const Home = () => {
       )}
 
       {/* ══ WHATSAPP FLOAT ══ */}
-      <a href="https://api.whatsapp.com/send?phone=917330611818" className="whatsapp-float"
-        target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+      <a href="https://api.whatsapp.com/send?phone=917330611818" className="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 32 32" width="28" height="28" fill="white">
-          <path d="M16 2C8.28 2 2 8.28 2 16c0 2.46.66 4.76 1.8 6.76L2 30l7.46-1.76A13.93
-            13.93 0 0016 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.4a11.38 11.38 0
-            01-5.8-1.58l-.42-.24-4.42 1.04 1.06-4.3-.28-.44A11.4 11.4 0 1116
-            27.4zm6.28-8.54c-.34-.17-2.02-1-2.34-1.1-.32-.12-.56-.18-.8.18-.24.34-.9
-            1.1-1.1 1.34-.2.22-.4.24-.74.08-.34-.18-1.44-.54-2.74-1.7-1.02-.9-1.7-2-1.9-2.34-.2-.34-.02-.52.14-.68.16-.14.34-.38.52-.56.18-.18.22-.32.34-.54.12-.22.06-.42-.02-.58-.08-.18-.8-1.94-1.1-2.64-.28-.7-.58-.6-.8-.6h-.68c-.22
-            0-.58.08-.88.42-.3.34-1.14 1.1-1.14 2.68s1.16 3.1 1.32 3.32c.18.22 2.28 3.5
-            5.54 4.9.78.34 1.38.54 1.86.68.78.24 1.48.2 2.04.12.62-.1 1.92-.78
-            2.18-1.54.28-.76.28-1.4.2-1.54-.08-.14-.3-.22-.64-.38z"/>
+          <path d="M16 2C8.28 2 2 8.28 2 16c0 2.46.66 4.76 1.8 6.76L2 30l7.46-1.76A13.93 13.93 0 0016 30c7.72 0 14-6.28 14-14S23.72 2 16 2z"/>
         </svg>
       </a>
     </div>
