@@ -5,56 +5,211 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
 .home-wrapper { min-height: 100vh; background: #fff; overflow-x: hidden; }
 
 /* ══════════════════════════ HERO ══════════════════════════ */
-.hero { display: flex; align-items: stretch; min-height: 500px; background: #fff; overflow: hidden; position: relative; }
-
-.hero-left {
-  flex: 0 0 52%; max-width: 52%;
-  padding: 64px 48px 64px 52px;
-  display: flex; flex-direction: column; justify-content: center;
-  position: relative; z-index: 2;
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
-.hero-title { font-size: 42px; font-weight: 800; line-height: 1.25; color: #1e9e8f; margin-bottom: 20px; letter-spacing: -0.3px; }
+/* LEFT TEXT CONTENT */
+.hero-left {
+  width: 52%;
+  max-width: 700px;
+  padding: 0px 0px 64px 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
 
-.highlight { color: #313D9C; position: relative; display: inline-block; font-weight: 800; }
-.underline-svg { position: absolute; bottom: -8px; left: 0; width: 100%; height: 10px; display: block; }
+.hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: #2AB2A6;
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
 
-.hero-desc { font-size: 14.5px; color: #666; line-height: 1.75; max-width: 480px; margin-bottom: 24px; }
+/* ══════════════════════════════════════════════════════════
+   "fingertips" highlight + yellow SVG underline
+   ══════════════════════════════════════════════════════════ */
+.highlight {
+  color: #313D9C;
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  padding-bottom: 4px;
+  isolation: isolate;
+}
 
-.hero-tags { display: flex; align-items: center; gap: 20px; margin-bottom: 36px; flex-wrap: wrap; }
-.hero-tag  { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; color: #444; }
-.check-icon { width: 20px; height: 20px; flex-shrink: 0; }
+.highlight-text {
+  position: relative;
+  z-index: 2;
+  color: #313D9C;
+}
 
-.hero-actions { display: flex; align-items: center; gap: 24px; }
+.underline-svg-wrap {
+  position: absolute;
+  bottom: 13px;
+  left: 48%;
+  transform: translateX(-44%);
+  width: 115%;
+  height: 40px;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+
+.underline-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-desc {
+  font-size: 14.5px;
+  color: #666;
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+
+.hero-tags {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.hero-tag {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #555;
+}
+.check-icon {
+  display: none;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 
 .btn-get-started {
-  padding: 12px 30px; background: #e8f0fe; border: none; border-radius: 8px;
-  font-size: 14.5px; font-weight: 600; color: #313D9C; cursor: pointer;
-  font-family: 'Poppins', sans-serif; transition: background 0.2s, transform 0.15s; white-space: nowrap;
+  padding: 12px 30px;
+  background: #e8f0fe;
+  border: none;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #313D9C;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
 }
-.btn-get-started:hover { background: #c7d7fc; transform: translateY(-2px); }
+.btn-get-started:hover {
+  background: #c7d7fc;
+  transform: translateY(-2px);
+}
 
-.btn-play { display: flex; align-items: center; gap: 13px; background: none; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; padding: 0; }
+.btn-play {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+}
 .play-circle {
-  width: 46px; height: 46px; border-radius: 50%; background: #313D9C;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(49,61,156,0.38); transition: transform 0.2s, box-shadow 0.2s;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #313D9C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(49,61,156,0.38);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.btn-play:hover .play-circle { transform: scale(1.1); box-shadow: 0 6px 20px rgba(49,61,156,0.5); }
-.btn-play span { font-size: 14.5px; font-weight: 600; color: #333; white-space: nowrap; }
+.btn-play:hover .play-circle {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(49,61,156,0.5);
+}
+.btn-play span {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
 
-.hero-right { flex: 0 0 48%; max-width: 48%; position: relative; overflow: hidden; min-height: 460px; }
-.hero-right::before {
-  content: ''; position: absolute; left: 0; top: 0; width: 180px; height: 100%;
-  background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0.65) 50%, transparent 100%);
-  z-index: 2; pointer-events: none;
+/* HERO RIGHT — video panel */
+.hero-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 47%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
 }
-.hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Fade gradient on left edge of video */
+.hero-right::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0.7) 45%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-video {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  display: block;
+}
 
 /* ══════════════════════════ STATS ══════════════════════════ */
-.stats-section { display: flex; gap: 12px; padding: 32px 40px 44px; flex-wrap: nowrap; width: 100%; }
-.stat-card { display: flex; align-items: center; gap: 18px; padding: 24px 28px; border-radius: 12px; flex: 1; color: #fff; transition: transform 0.2s, box-shadow 0.2s; min-width: 0; }
-.stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); }
+.stats-section {
+  display: flex;
+  gap: 12px;
+  padding: 32px 52px 44px;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 28px;
+  border-radius: 12px;
+  flex: 1;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-width: 0;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
 .stat-card.blue   { background: linear-gradient(135deg,#42b8f5 0%,#1a85c8 100%); }
 .stat-card.teal   { background: linear-gradient(135deg,#2ed8c8 0%,#14a896 100%); }
 .stat-card.purple { background: linear-gradient(135deg,#6674d4 0%,#3b4cca 100%); }
@@ -65,77 +220,155 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
 .stat-info p  { font-size: 12.5px; font-weight: 500; opacity: 0.93; line-height: 1.4; }
 
 /* ══════════════════════════ CAREER CARDS ══════════════════════════ */
-.career-cards-section { display: flex; gap: 24px; padding: 50px 52px; max-width: 1400px; margin: 0 auto; }
-.career-card { flex: 1; position: relative; border-radius: 16px; overflow: hidden; height: 360px; box-shadow: 0 8px 24px rgba(0,0,0,0.14); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
-.career-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
-.career-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; z-index: 0; }
-.career-card-content { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 32px 36px; background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 75%); }
-/* Navigate card — text is dark blue like Angular */
+.career-cards-section {
+  display: flex;
+  gap: 24px;
+  padding: 0 52px 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.career-card {
+  flex: 1;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 360px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.career-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+}
+.career-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  z-index: 0;
+}
+.career-card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 36px;
+  background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 75%);
+}
 .navigate-content h3 { color: #313D9C !important; text-shadow: none !important; }
 .navigate-content p  { color: #313D9C !important; text-shadow: none !important; }
 .career-card-content h3 { font-size: 24px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 10px; max-width: 55%; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .career-card-content p  { font-size: 15px; color: rgba(255,255,255,0.92); margin-bottom: 22px; max-width: 55%; line-height: 1.5; text-shadow: 0 1px 6px rgba(0,0,0,0.25); }
-.read-more-btn { background: #313D9C; border: none; padding: 11px 28px; border-radius: 8px; color: #fff; cursor: pointer; font-size: 14px; font-weight: 700; font-family: 'Poppins', sans-serif; transition: background 0.25s, color 0.25s, transform 0.2s; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
-.read-more-btn:hover { background: #2AB2A6; color: #fff; transform: translateX(4px); }
-/* Light variant for Mapping card */
+.read-more-btn {
+  background: #313D9C;
+  border: none;
+  padding: 11px 28px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.read-more-btn:hover {
+  background: #2AB2A6;
+  color: #fff;
+  transform: translateX(4px);
+}
 .read-more-btn--dark { background: #fff; color: #1e293b; }
 .read-more-btn--dark:hover { background: #313D9C; color: #fff; }
 
 /* ══════════════════════════ ACTION BOX ══════════════════════════ */
-.action-box-section { padding: 20px 52px 48px; max-width: 1400px; margin: 0 auto; }
-.action-box { background-color: #313D9C; border-radius: 16px; padding: 48px 56px; position: relative; overflow: hidden; }
-.action-deco { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.08); pointer-events: none; }
+.action-box-section {
+  padding: 20px 52px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.action-box {
+  background-color: #313D9C;
+  border-radius: 16px;
+  padding: 48px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.action-deco {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  pointer-events: none;
+}
 .action-deco--tl { width: 200px; height: 200px; top: -70px; left: -70px; }
 .action-deco--br { width: 140px; height: 140px; bottom: -50px; right: 180px; background: rgba(255,255,255,0.05); }
-.action-box-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+.action-box-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
 .action-box-text { flex: 1; }
 .action-box-text h3 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 14px; }
 .action-box-text p  { font-size: 14.5px; color: rgba(255,255,255,0.85); line-height: 1.75; max-width: 580px; }
 .action-box-cta { flex-shrink: 0; }
-.btn-register { background: transparent; border: 2px solid #f5c518; color: #f5c518; padding: 13px 28px; border-radius: 8px; font-size: 14.5px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; white-space: nowrap; transition: background 0.2s, color 0.2s, transform 0.15s; }
-.btn-register:hover { background: #f5c518; color: #313D9C; transform: translateY(-2px); }
+.btn-register {
+  background: transparent;
+  border: 2px solid #f5c518;
+  color: #f5c518;
+  padding: 13px 28px;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-register:hover {
+  background: #f5c518;
+  color: #313D9C;
+  transform: translateY(-2px);
+}
 
-/* ══════════════════════════════════════════════════════════════════════
-   REVIEWS SECTION
-══════════════════════════════════════════════════════════════════════ */
-
+/* ══════════════════════════ REVIEWS SECTION ══════════════════════════ */
 .reviews-section {
   background: #f1f3f5;
-  padding: 70px 52px;
+  padding: 70px 0;
   overflow: visible;
 }
 
-/* ── Outer 2-column grid ── */
 .reviews-container {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 0 52px;
   display: grid;
   grid-template-columns: 1.45fr 1fr;
   gap: 52px;
   align-items: start;
 }
 
-/* ══════════════════════════════════════
-   LEFT COLUMN — inner sub-grid
-══════════════════════════════════════ */
 .reviews-left {
   position: relative;
   display: grid;
   grid-template-columns: 1.45fr 1fr;
   grid-template-rows: auto auto;
-  /* FIX 1: reduced gap so mentor panel and carousel card are closer together,
-     matching the Angular layout where they sit tightly in the same column */
   gap: 12px 24px;
   align-items: start;
 }
 
-/* ── FIX 2: Circle decoration — smaller size and deeper blue-purple colour
-   matching Angular screenshot (medium circle, partially visible top-left) ── */
 .circle-decoration-svg {
   position: absolute;
   top: -30px;
   left: -30px;
-  width: 130px;        /* was 200px — Angular circle is clearly smaller */
+  width: 130px;
   height: 130px;
   z-index: 0;
   pointer-events: none;
@@ -146,13 +379,11 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   height: 130px;
 }
 
-/* FIX 3: Circle colour — deeper blue-purple matching Angular (#7271b8 range) */
 .circle-decoration-svg svg path {
-  fill: #7271b8;       /* was #7b88d4 — Angular is a deeper, less-grey purple */
-  opacity: 0.85;       /* was 0.6 — Angular circle is more opaque/solid */
+  fill: #7271b8;
+  opacity: 0.85;
 }
 
-/* ── ROW 1, COL 1 — Flip Card wrapper ── */
 .custom-card-wrapper {
   grid-row: 1;
   grid-column: 1;
@@ -162,7 +393,6 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   min-height: 400px;
 }
 
-/* ── ROW 1, COL 2 — Mentor panel ── */
 .mentor-panel {
   grid-row: 1;
   grid-column: 2;
@@ -175,17 +405,13 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   margin-top: 48px;
 }
 
-/* ── ROW 2, COL 1 — Dot pattern spacer ── */
 .dot-pattern-spacer {
   grid-row: 2;
   grid-column: 1;
   position: relative;
-  /* FIX 4: reduce min-height so the gap between row1 and row2 is smaller */
   min-height: 40px;
 }
 
-/* ── FIX 5: Dot pattern SVG — repositioned to match Angular
-   (dots appear at right-centre between the two column rows) ── */
 .dots-pattern-svg {
   position: absolute;
   top: -20px;
@@ -201,29 +427,20 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   height: 160px;
 }
 
-/* FIX 6: Dot colour — coral/pinkish-red matching Angular (#e05a6a / #d9534f range)
-   Angular dots are clearly a warm coral-red, NOT a pure red like #e63946 */
 .dots-pattern-svg svg path,
 .dots-pattern-svg svg ellipse {
-  fill: #d9534f;       /* was #e63946 — Angular is a softer coral-red */
-  opacity: 0.55;       /* was 0.6 — Angular dots are slightly softer */
+  fill: #d9534f;
+  opacity: 0.55;
 }
 
-/* ── ROW 2, COL 2 — Carousel card (reviews-middle) ── */
 .reviews-middle {
   grid-row: 2;
   grid-column: 2;
   position: relative;
   z-index: 1;
-  /* FIX 7: remove the negative margin-top — Angular carousel card
-     aligns naturally at the top of row 2, no pull-up needed.
-     The reduced row gap (fix 1) handles the closeness. */
   margin-top: 0;
 }
 
-/* ══════════════════════════════════════
-   RIGHT COLUMN
-══════════════════════════════════════ */
 .reviews-right {
   display: flex;
   flex-direction: column;
@@ -243,9 +460,7 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
 }
 .btn-testimonials:hover { background: #2AB2A6; transform: translateY(-2px); }
 
-/* ══════════════════════════════════════
-   REVIEW CARD (shared by flip + carousel)
-══════════════════════════════════════ */
+/* REVIEW CARD */
 .review-card {
   background: #fff;
   border-radius: 16px;
@@ -268,9 +483,7 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   border-radius: 20px; white-space: pre-wrap;
 }
 
-/* ══════════════════════════════════════
-   3D FLIP CARD
-══════════════════════════════════════ */
+/* 3D FLIP CARD */
 .custom-card {
   position: relative;
   width: 100%;
@@ -318,9 +531,7 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
-/* ══════════════════════════════════════
-   CAROUSEL CARD
-══════════════════════════════════════ */
+/* CAROUSEL CARD */
 .carousel-card {
   display: flex;
   flex-direction: column;
@@ -363,9 +574,7 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
 }
 .carousel-next-btn:hover { background: #2AB2A6; transform: scale(1.1); }
 
-/* ══════════════════════════════════════
-   MENTOR PANEL INTERNALS
-══════════════════════════════════════ */
+/* MENTOR PANEL */
 .mentor-badge {
   position: absolute; top: -18px; right: 24px;
   width: 40px; height: 40px; border-radius: 50%;
@@ -379,10 +588,13 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
 .mentor-name    { font-size: 13.5px; font-weight: 600; color: #1e293b; margin-bottom: 1px; }
 .mentor-subject { font-size: 12px; color: #888; }
 
-/* ══════════════════════════════════════════════════════════
-   OUR STUDENT DESTINATIONS
-══════════════════════════════════════════════════════════ */
-.destinations-section { padding: 64px 52px 48px; background: #fff; }
+/* ══════════════════════════ DESTINATIONS SECTION ══════════════════════════ */
+.destinations-section {
+  padding: 64px 52px 48px;
+  background: #fff;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 .destinations-container { max-width: 1200px; margin: 0 auto; text-align: center; }
 .destinations-heading { font-size: 38px; font-weight: 800; color: #2AB2A6; margin-bottom: 48px; letter-spacing: -0.3px; }
 
@@ -412,10 +624,14 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
 
 .uni-dots { display: flex; justify-content: center; gap: 10px; margin-top: 28px; }
 
-/* ══════════════════════════════════════════════════════════
-   POWERED BY
-══════════════════════════════════════════════════════════ */
-.powered-section { padding: 40px 52px 56px; background: #fff; border-top: 1px solid #f0f0f0; }
+/* ══════════════════════════ POWERED BY ══════════════════════════ */
+.powered-section {
+  padding: 40px 52px 56px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 .powered-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 52px; }
 .powered-label { font-size: 22px; font-weight: 700; color: #1e293b; white-space: nowrap; flex-shrink: 0; }
 .powered-logo-link { display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.2s; }
@@ -429,9 +645,7 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   border-radius: 50%; border: 2px solid #1e293b; padding: 24px;
 }
 
-/* ══════════════════════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════════════════════ */
+/* ══════════════════════════ FOOTER ══════════════════════════ */
 .site-footer {
   position: relative; padding-top: 56px;
   background-image: url('./assets/Footer-Banner.png');
@@ -442,7 +656,7 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
   position: absolute; inset: 0;
   background: rgba(220, 230, 245, 0.55); pointer-events: none; z-index: 0;
 }
-.footer-inner { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 0 52px; }
+.footer-inner { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 0 52px; }
 .footer-grid {
   display: grid;
   grid-template-columns: 2.2fr 1fr 1.2fr 1.2fr 1.4fr;
@@ -506,173 +720,146 @@ body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; }
 .success-icon  { width: 60px; height: 60px; border-radius: 50%; background: #2AB2A6; color: #fff; font-size: 28px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
 .success-msg   { font-size: 14.5px; color: #555; line-height: 1.7; }
 
-/* ══════════════════════════ WHATSAPP FLOAT ══════════════════════════ */
+/* ══════════════════════════ WHATSAPP ══════════════════════════ */
 .whatsapp-float { position: fixed; bottom: 24px; left: 24px; width: 52px; height: 52px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; z-index: 200; box-shadow: 0 4px 18px rgba(37,211,102,0.45); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
 .whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 6px 24px rgba(37,211,102,0.55); }
 
-/* ══════════════════════════════════════════════════════════
-   RESPONSIVE — 1200px (tablet-wide)
-══════════════════════════════════════════════════════════ */
+/* ══════════════════════════ RESPONSIVE — 1200px ══════════════════════════ */
 @media (max-width: 1200px) {
-  .reviews-container {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .reviews-left {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 12px 20px;
-  }
-
-  .custom-card-wrapper {
-    grid-row: 1;
-    grid-column: 1;
-    min-height: 340px;
-  }
+  /* hero-left: reduce left padding proportionally from 130px → 80px */
+  .hero-left { padding: 0px 0px 48px 80px; }
+  .stats-section,
+  .career-cards-section,
+  .action-box-section,
+  .destinations-section,
+  .powered-section { padding-left: 32px; padding-right: 32px; }
+  .reviews-container { padding: 0 32px; }
+  .footer-inner { padding: 0 32px; }
+  .reviews-left { grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+  .custom-card-wrapper { min-height: 340px; }
   .custom-card { min-height: 340px; }
-
-  .mentor-panel {
-    grid-row: 1;
-    grid-column: 2;
-    margin-top: 40px;
-  }
-
-  .dot-pattern-spacer {
-    display: none;
-  }
-
-  .reviews-middle {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    margin-top: 0;
-  }
-
-  .reviews-right {
-    padding-top: 8px;
-  }
-
-  /* Circle — slightly smaller on tablet */
-  .circle-decoration-svg {
-    width: 110px;
-    height: 110px;
-    top: -20px;
-    left: -20px;
-  }
+  .mentor-panel { margin-top: 40px; }
+  .dot-pattern-spacer { display: none; }
+  .reviews-middle { grid-row: 2; grid-column: 1 / -1; margin-top: 0; }
+  .circle-decoration-svg { width: 110px; height: 110px; top: -20px; left: -20px; }
   .circle-decoration-svg svg { width: 110px; height: 110px; }
-
-  .destinations-section { padding: 48px 32px 40px; }
   .destinations-heading { font-size: 32px; }
   .uni-logo-img { max-height: 75px; max-width: 180px; }
-  .uni-nav-btn  { width: 38px; height: 38px; }
+  .uni-nav-btn { width: 38px; height: 38px; }
   .uni-slides-track { min-height: 100px; }
-
-  .powered-section { padding: 32px 32px 48px; }
-  .powered-container { gap: 36px; }
-
   .footer-grid { grid-template-columns: 1.8fr 1fr 1fr; }
   .footer-widget--brand { grid-column: 1 / -1; }
-  .footer-inner { padding: 0 32px; }
 }
 
-/* ══════════════════════════════════════════════════════════
-   RESPONSIVE — 1024px
-══════════════════════════════════════════════════════════ */
+/* ══════════════════════════ RESPONSIVE — 1024px ══════════════════════════ */
 @media (max-width: 1024px) {
-  .hero-left  { flex: 0 0 55%; max-width: 55%; padding: 48px 32px 48px 40px; }
-  .hero-right { flex: 0 0 45%; max-width: 45%; }
+  /* hero-left: reduce left padding further → 56px; hero-right keeps 47% width */
+  .hero-left { padding: 0px 0px 48px 56px; width: 55%; }
+  .hero-right { width: 50%; }
   .hero-title { font-size: 36px; }
-  .stats-section { flex-wrap: wrap; padding: 28px 24px 36px; gap: 12px; }
+  .underline-svg-wrap { height: 34px; bottom: 11px; left: 48%; }
+  .stats-section { flex-wrap: wrap; gap: 12px; }
   .stat-card { flex: 1 1 calc(50% - 12px); min-width: 200px; }
-  .career-cards-section { padding: 36px 28px; gap: 18px; }
+  .career-cards-section { gap: 18px; }
   .career-card { height: 300px; }
   .career-card-content h3 { font-size: 20px; max-width: 60%; }
-  .career-card-content p  { font-size: 13px; max-width: 60%; }
-  .action-box-section { padding: 20px 28px 40px; }
+  .career-card-content p { font-size: 13px; max-width: 60%; }
   .action-box { padding: 36px 36px; }
   .action-box-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .reviews-section { padding: 50px 28px; }
+  .reviews-section { padding: 50px 0; }
 }
 
-/* ══════════════════════════════════════════════════════════
-   RESPONSIVE — 768px (mobile)
-══════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-  /* Hero */
-  .hero { flex-direction: column; }
-  .hero-left { flex: unset; max-width: 100%; padding: 40px 24px 28px; }
-  .hero-right { flex: unset; max-width: 100%; min-height: 240px; }
-  .hero-right::before { width: 100%; height: 80px; background: linear-gradient(to bottom, #fff 0%, transparent 100%); }
-  .hero-title { font-size: 28px; }
+/* ══════════════════════════ RESPONSIVE — 992px ══════════════════════════ */
+@media (max-width: 992px) {
+  /* hero-left: tighten left padding → 40px */
+  .hero-left { padding: 0px 0px 40px 40px; }
+  .stats-section,
+  .career-cards-section,
+  .action-box-section,
+  .destinations-section,
+  .powered-section { padding-left: 24px; padding-right: 24px; }
+  .reviews-container { padding: 0 24px; }
+  .footer-inner { padding: 0 24px; }
+}
 
-  /* Stats */
+/* ══════════════════════════ RESPONSIVE — 768px ══════════════════════════ */
+@media (max-width: 768px) {
+  /* Hero stacks vertically on mobile — left padding resets to 16px */
+  .hero {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .hero-left {
+    width: 100%;
+    max-width: 100%;
+    padding: 0px 16px 28px 16px;
+    position: relative;
+    z-index: 2;
+  }
+  /* On mobile the video sits below the text, full width, no absolute */
+  .hero-right {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    right: auto;
+    top: auto;
+  }
+  .hero-right::before {
+    width: 100%;
+    height: 80px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #fff 0%, transparent 100%);
+  }
+  .hero-title { font-size: 28px; }
+  .underline-svg-wrap { width: 115%; height: 27px; bottom: 9px; left: 48%; }
   .stats-section { padding: 20px 16px 28px; gap: 10px; }
   .stat-card { flex: 1 1 calc(50% - 10px); min-width: 140px; padding: 18px 16px; gap: 12px; }
   .stat-info h3 { font-size: 20px; }
   .stat-img { width: 40px; height: 40px; }
-
-  /* Career cards */
   .career-cards-section { padding: 24px 16px; flex-direction: column; gap: 16px; }
   .career-card { height: 260px; }
   .career-card-content { padding: 24px 20px; }
   .career-card-content h3 { font-size: 18px; max-width: 70%; }
-  .career-card-content p  { font-size: 13px; max-width: 70%; margin-bottom: 16px; }
+  .career-card-content p { font-size: 13px; max-width: 70%; margin-bottom: 16px; }
   .read-more-btn { padding: 9px 22px; font-size: 13px; }
-
-  /* Action box */
   .action-box-section { padding: 16px 16px 32px; }
   .action-box { padding: 28px 22px; border-radius: 12px; }
   .action-box-text h3 { font-size: 18px; }
-  .action-box-text p  { font-size: 13.5px; }
-
-  /* Reviews — single column stacked */
-  .reviews-section { padding: 36px 16px; overflow: visible; }
-  .reviews-container {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .reviews-left {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 16px;
-  }
-  .custom-card-wrapper { grid-row: 1; grid-column: 1; min-height: 300px; }
+  .action-box-text p { font-size: 13.5px; }
+  .reviews-section { padding: 36px 0; }
+  .reviews-container { padding: 0 16px; grid-template-columns: 1fr; gap: 24px; }
+  .reviews-left { grid-template-columns: 1fr; gap: 16px; }
+  .custom-card-wrapper { grid-row: 1; min-height: 300px; }
   .custom-card { min-height: 300px; }
-  .mentor-panel { grid-row: 2; grid-column: 1; margin-top: 0; }
-  .dot-pattern-spacer { display: none; }
-  .reviews-middle { grid-row: 3; grid-column: 1; margin-top: 0; }
+  .mentor-panel { grid-row: 2; margin-top: 0; }
+  .reviews-middle { grid-row: 3; }
   .circle-decoration-svg { display: none; }
   .dots-pattern-svg { display: none; }
   .reviews-heading { font-size: 22px; }
-
-  /* Destinations */
   .destinations-section { padding: 36px 16px 28px; }
   .destinations-heading { font-size: 26px; margin-bottom: 32px; }
   .uni-slider-wrapper { gap: 8px; }
   .uni-nav-btn { width: 34px; height: 34px; }
   .uni-logo-img { max-height: 55px; max-width: 130px; }
   .uni-slides-track { min-height: 80px; }
-
-  /* Powered by */
   .powered-section { padding: 28px 16px 40px; }
   .powered-container { gap: 20px; flex-wrap: wrap; }
   .powered-label { font-size: 18px; }
   .powered-logo--aws { height: 100px; width: 100px; padding: 14px; }
   .powered-logo--nvidia { height: 100px; width: 100px; padding: 16px; }
-
-  /* Footer */
   .footer-inner { padding: 0 16px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer-widget--brand { grid-column: 1 / -1; }
   .footer-widget--contact { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .footer-legal-links { gap: 2px; }
 }
 
-/* ══════════════════════════════════════════════════════════
-   RESPONSIVE — 480px (small mobile)
-══════════════════════════════════════════════════════════ */
+/* ══════════════════════════ RESPONSIVE — 480px ══════════════════════════ */
 @media (max-width: 480px) {
+  .hero-left { padding: 0px 16px 24px 16px; }
+  .hero-title { font-size: 24px; }
+  .underline-svg-wrap { width: 115%; height: 23px; bottom: 7px; left: 48%; }
   .destinations-heading { font-size: 22px; }
   .uni-logo-img { max-height: 45px; max-width: 100px; }
   .footer-grid { grid-template-columns: 1fr; }
