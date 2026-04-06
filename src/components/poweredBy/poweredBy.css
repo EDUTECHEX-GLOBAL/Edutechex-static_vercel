@@ -1,0 +1,13 @@
+.powered-section { padding: 40px 52px 56px; background: #fff; border-top: 1px solid #f0f0f0; width: 100%; }
+.powered-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: flex-start; gap: 100px; }
+.powered-label { font-size: 28px; font-weight: 700; color: #1e293b; white-space: nowrap; flex-shrink: 0; }
+.powered-logo-link { display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.2s; }
+.powered-logo-link:hover { transform: scale(1.05); }
+.powered-logo--aws { height: auto; width: 170px; max-width: 170px; object-fit: contain; display: block; }
+.powered-logo--nvidia { width: 170px; height: 170px; object-fit: contain; display: block; border: 2px solid #1e293b; border-radius: 50%; background: #fff; box-sizing: border-box; }
+
+@media (max-width: 1200px) { .powered-container { gap: 80px; } .powered-logo--aws { width: 150px; max-width: 150px; } .powered-logo--nvidia { width: 150px; height: 150px; } .powered-label { font-size: 24px; } }
+@media (max-width: 1024px) { .powered-container { gap: 70px; } .powered-logo--aws { width: 140px; max-width: 140px; } .powered-logo--nvidia { width: 140px; height: 140px; } .powered-label { font-size: 22px; } }
+@media (max-width: 992px) { .powered-container { gap: 60px; } .powered-logo--aws { width: 130px; max-width: 130px; } .powered-logo--nvidia { width: 130px; height: 130px; } .powered-label { font-size: 20px; } }
+@media (max-width: 768px) { .powered-section { padding: 28px 16px 40px; } .powered-container { gap: 40px; flex-wrap: wrap; justify-content: center; } .powered-label { font-size: 20px; width: 100%; text-align: center; } .powered-logo--aws { width: 100px; max-width: 100px; } .powered-logo--nvidia { width: 100px; height: 100px; } }
+@media (max-width: 480px) { .powered-container { gap: 30px; } .powered-label { font-size: 18px; } .powered-logo--aws { width: 75px; max-width: 75px; } .powered-logo--nvidia { width: 75px; height: 75px; } }

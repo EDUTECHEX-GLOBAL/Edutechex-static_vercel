@@ -1,0 +1,41 @@
+.site-footer { position: relative; padding-top: 56px; background-image: url('../../assets/Footer-Banner.png'); background-repeat: no-repeat; background-size: cover; background-position: center; overflow: hidden; }
+.footer-bg-overlay { position: absolute; inset: 0; background: rgba(220, 230, 245, 0.55); pointer-events: none; z-index: 0; }
+.footer-inner { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 0 52px; }
+.footer-grid { display: grid; grid-template-columns: 2.2fr 1fr 1.2fr 1.2fr 1.4fr; gap: 32px; align-items: start; }
+.footer-widget--brand { padding-right: 24px; }
+.footer-logo-link { display: inline-block; margin-bottom: 18px; }
+.footer-logo { width: 100%; max-width: 240px; display: block; }
+.footer-brand-desc { font-size: 14px; color: #313D9C; line-height: 1.75; margin-bottom: 20px; }
+.footer-socials { list-style: none; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 0; margin: 0; }
+.footer-social-btn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.10); text-decoration: none; transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s; color: #555; flex-shrink: 0; }
+.footer-social-btn svg { width: 16px; height: 16px; display: block; flex-shrink: 0; }
+.footer-social-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.16); }
+.footer-social-btn--fb:hover { background: #1877f2; color: #fff; }
+.footer-social-btn--ig:hover { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+.footer-social-btn--tw:hover { background: #1da1f2; color: #fff; }
+.footer-social-btn--li:hover { background: #0a66c2; color: #fff; }
+.footer-social-btn--yt:hover { background: #ff0000; color: #fff; }
+.footer-social-btn--fb { color: #1877f2; }
+.footer-social-btn--ig { color: #c13584; }
+.footer-social-btn--tw { color: #1da1f2; }
+.footer-social-btn--li { color: #0a66c2; }
+.footer-social-btn--yt { color: #ff0000; }
+.footer-nav-heading { font-size: 16px; font-weight: 700; color: #313D9C; margin-bottom: 18px; letter-spacing: 0.1px; }
+.footer-nav-list { list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 0; }
+.footer-nav-link { font-size: 14px; color: #444; text-decoration: none; line-height: 1.5; transition: color 0.18s, padding-left 0.18s; display: inline-block; }
+.footer-nav-link:hover { color: #313D9C; padding-left: 4px; }
+.footer-contact-row { font-size: 14px; color: #313D9C; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.footer-contact-value { font-size: 14px; font-weight: 500; color: #2ab2a6; text-decoration: none; transition: color 0.18s; }
+.footer-contact-value:hover { color: #1a8a85; text-decoration: underline; }
+.footer-divider { border: none; border-top: 1px solid rgba(49,61,156,0.15); margin: 40px 0 0; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 18px 0 24px; }
+.footer-copyright { font-size: 14px; color: #313D9C; }
+.footer-copyright-link { color: #313D9C; text-decoration: none; font-weight: 600; }
+.footer-copyright-link:hover { text-decoration: underline; }
+.footer-legal-links { list-style: none; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding: 0; }
+.footer-legal-link { font-size: 14px; color: #555; text-decoration: none; padding: 4px 10px; border-radius: 4px; transition: color 0.18s, background 0.18s; }
+.footer-legal-link:hover { color: #313D9C; background: rgba(49,61,156,0.06); }
+
+@media (max-width: 1200px) { .footer-inner { padding: 0 32px; } .footer-grid { grid-template-columns: 1.8fr 1fr 1fr; } .footer-widget--brand { grid-column: 1 / -1; } }
+@media (max-width: 768px) { .footer-inner { padding: 0 16px; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; } .footer-widget--brand { grid-column: 1 / -1; } .footer-widget--contact { grid-column: 1 / -1; } .footer-bottom { flex-direction: column; align-items: flex-start; gap: 14px; } .footer-logo { max-width: 200px; } .footer-social-btn { width: 36px; height: 36px; } }
+@media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } .footer-widget--brand, .footer-widget--contact { grid-column: auto; } .footer-legal-links { flex-direction: column; gap: 4px; } .footer-social-btn { width: 34px; height: 34px; } }

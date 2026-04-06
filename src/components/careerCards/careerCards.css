@@ -1,0 +1,61 @@
+.career-cards-section {
+  display: flex;
+  gap: 24px;
+  padding: 0 52px 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.career-card {
+  flex: 1;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 360px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.career-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+.career-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  z-index: 0;
+}
+.career-card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 36px;
+  background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 50%, transparent 75%);
+}
+.navigate-content h3 { color: #313D9C !important; text-shadow: none !important; }
+.navigate-content p { color: #313D9C !important; text-shadow: none !important; }
+.career-card-content h3 { font-size: 24px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 10px; max-width: 55%; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.career-card-content p { font-size: 15px; color: rgba(255,255,255,0.92); margin-bottom: 22px; max-width: 55%; line-height: 1.5; text-shadow: 0 1px 6px rgba(0,0,0,0.25); }
+.read-more-btn {
+  background: #313D9C;
+  border: none;
+  padding: 11px 28px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.read-more-btn:hover { background: #2AB2A6; color: #fff; transform: translateX(4px); }
+.read-more-btn--dark { background: #fff; color: #1e293b; }
+.read-more-btn--dark:hover { background: #313D9C; color: #fff; }
+
+@media (max-width: 1024px) { .career-cards-section { gap: 18px; } .career-card { height: 300px; } .career-card-content h3 { font-size: 20px; max-width: 60%; } .career-card-content p { font-size: 13px; max-width: 60%; } }
+@media (max-width: 768px) { .career-cards-section { padding: 24px 16px; flex-direction: column; gap: 16px; } .career-card { height: 260px; } .career-card-content { padding: 24px 20px; } .career-card-content h3 { font-size: 18px; max-width: 70%; } .career-card-content p { font-size: 13px; max-width: 70%; margin-bottom: 16px; } .read-more-btn { padding: 9px 22px; font-size: 13px; } }

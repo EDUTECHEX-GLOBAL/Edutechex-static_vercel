@@ -1,0 +1,21 @@
+.destinations-section { padding: 64px 52px 48px; background: #fff; width: 100%; }
+.destinations-container { max-width: 1400px; margin: 0 auto; text-align: center; }
+.destinations-heading { font-size: 38px; font-weight: 800; color: #2AB2A6; margin-bottom: 48px; letter-spacing: -0.3px; }
+.uni-slider-wrapper { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.uni-nav-btn { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #313D9C; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.15s; }
+.uni-nav-btn:hover { background: #2AB2A6; transform: scale(1.08); }
+.uni-slides-track { flex: 1; overflow: hidden; }
+.uni-slide { display: none; width: 100%; }
+.uni-slide--active { display: block; }
+.uni-slide-row { display: flex; flex-wrap: wrap; margin: 0; padding: 0; }
+.uni-logo-cell { flex: 0 0 25%; max-width: 25%; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; }
+.uni-logo-img { width: 90%; height: auto; display: block; transition: transform 0.25s ease; }
+.uni-logo-img:hover { transform: scale(1.02); }
+.uni-dots { display: flex; justify-content: center; gap: 10px; margin-top: 40px; }
+.uni-dots .dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: #cbd5e1; cursor: pointer; padding: 0; }
+.uni-dots .dot.active { background: #313D9C; width: 24px; border-radius: 4px; }
+
+@media (max-width: 1200px) { .destinations-heading { font-size: 32px; } .uni-logo-img { width: 85%; } .uni-nav-btn { width: 38px; height: 38px; } }
+@media (max-width: 1024px) { .destinations-section { padding: 48px 32px; } }
+@media (max-width: 768px) { .destinations-section { padding: 36px 16px 28px; } .destinations-heading { font-size: 26px; margin-bottom: 32px; } .uni-logo-img { width: 75%; } .uni-slider-wrapper { gap: 8px; } .uni-nav-btn { width: 34px; height: 34px; } .uni-dots { margin-top: 24px; } }
+@media (max-width: 480px) { .destinations-heading { font-size: 22px; } .uni-logo-img { width: 70%; } }

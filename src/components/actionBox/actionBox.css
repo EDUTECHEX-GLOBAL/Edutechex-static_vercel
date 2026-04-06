@@ -1,0 +1,14 @@
+.action-box-section { padding: 20px 52px 48px; max-width: 1400px; margin: 0 auto; }
+.action-box { background-color: #313D9C; border-radius: 16px; padding: 48px 56px; position: relative; overflow: hidden; }
+.action-deco { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.08); pointer-events: none; }
+.action-deco--tl { width: 200px; height: 200px; top: -70px; left: -70px; }
+.action-deco--br { width: 140px; height: 140px; bottom: -50px; right: 180px; background: rgba(255,255,255,0.05); }
+.action-box-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+.action-box-text { flex: 1; }
+.action-box-text h3 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.action-box-text p { font-size: 14.5px; color: rgba(255,255,255,0.85); line-height: 1.75; max-width: 580px; }
+.btn-register { background: transparent; border: 2px solid #f5c518; color: #f5c518; padding: 13px 28px; border-radius: 8px; font-size: 14.5px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; white-space: nowrap; transition: background 0.2s, color 0.2s, transform 0.15s; }
+.btn-register:hover { background: #f5c518; color: #313D9C; transform: translateY(-2px); }
+
+@media (max-width: 1024px) { .action-box { padding: 36px 36px; } .action-box-inner { flex-direction: column; align-items: flex-start; gap: 24px; } }
+@media (max-width: 768px) { .action-box-section { padding: 16px 16px 32px; } .action-box { padding: 28px 22px; border-radius: 12px; } .action-box-text h3 { font-size: 18px; } .action-box-text p { font-size: 13.5px; } }
