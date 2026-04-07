@@ -26,19 +26,18 @@ const Internships = () => {
     <div className="internships-container">
 
       {/* HERO SECTION */}
-      <section className="hero-section">
-        <div className="hero-inner">
-          <div className="hero-left">
+      <section className="internships-hero-section">
+        <div className="internships-hero-inner">
+          <div className="internships-hero-left">
 
-            {/* Tagline with circle icon */}
             <div className="tagline-row">
-              <div className="tagline-icon">
-                💡
-              </div>
-              <span className="tagline-text">Navigate Your Future With Us</span>
+              <div className="tagline-icon">💡</div>
+              <span className="tagline-text">
+                Navigate Your Future With Us
+              </span>
             </div>
 
-            <h1 className="hero-title">
+            <h1 className="internships-hero-title">
               Get Mapped to Internships in Core Emerging Areas!
             </h1>
 
@@ -46,7 +45,6 @@ const Internships = () => {
               Find Internships aligned with Industry Requirement
             </p>
 
-            {/* Search box with white card bg */}
             <div className="search-card">
               <div className="search-box">
                 <input
@@ -61,13 +59,13 @@ const Internships = () => {
 
           </div>
 
-          <div className="hero-right">
+          <div className="internships-hero-right">
             <img src={bannerImg} alt="Internship Banner" />
           </div>
         </div>
       </section>
 
-      {/* SECTION HEADER */}
+      {/* SKILLS SECTION */}
       <section className="skills-section">
         <div className="section-header">
           <h2>Enhance Your Skills Through Internships</h2>
@@ -77,18 +75,23 @@ const Internships = () => {
           </p>
         </div>
 
-        {/* TABS */}
         <div className="tabs-wrapper">
           <div className="tabs">
             <button
-              className={activeTab === "k12" ? "tab-btn active" : "tab-btn"}
+              className={
+                activeTab === "k12"
+                  ? "internships-tab-btn active"
+                  : "internships-tab-btn"
+              }
               onClick={() => setActiveTab("k12")}
             >
               K12
             </button>
             <button
               className={
-                activeTab === "undergraduate" ? "tab-btn active" : "tab-btn"
+                activeTab === "undergraduate"
+                  ? "internships-tab-btn active"
+                  : "internships-tab-btn"
               }
               onClick={() => setActiveTab("undergraduate")}
             >
@@ -97,7 +100,6 @@ const Internships = () => {
           </div>
         </div>
 
-        {/* CARD */}
         <div className="cards-area">
           <div className="card">
             <div className="card-top">
@@ -117,9 +119,9 @@ const Internships = () => {
                 Internships for {data[activeTab].title}
               </h4>
 
-              <p className="card-desc">{data[activeTab].description}</p>
-
-             
+              <p className="card-desc">
+                {data[activeTab].description}
+              </p>
 
               <div className="card-footer-row">
                 <button className="arrow-btn">

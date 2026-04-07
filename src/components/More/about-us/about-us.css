@@ -20,6 +20,7 @@
   user-select: none;
 }
 
+
 /* ════════════════════════════════════════════════════════════════
    SECTION 1 — QUOTES HERO
 ════════════════════════════════════════════════════════════════ */
@@ -35,7 +36,7 @@
 /* Top full-width centered quote */
 .top-quote-row {
   width: 100%;
-  padding: 48px 10% 0;
+  padding: 38px 10% 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,13 +72,13 @@
 }
 
 .student-img {
-  width: 89%;
+  width: 95%;
   height: auto;
   object-fit: cover;
   display: block;
   margin: 0 auto;
-  border-radius: 24px;
-  box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+  border-radius: 10px;
+
 }
 
 
@@ -97,9 +98,9 @@
 
 .intro-inner {
   display: flex;
-  flex-direction: row;          /* ← force side by side */
+  flex-direction: row;
   align-items: center;
-  gap: 80px;
+  gap: 40px;              /* ← reduced from 80px */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -107,9 +108,8 @@
 /* MODIFIED: intro-left now takes full width (no right side forced) */
 .intro-left {
   flex: 1.2;
-  max-width: 58%;
+  max-width: 52%;         /* ← reduced from 58% */
 }
-
 .intro-title {
   font-size: 32px;
   font-weight: 800;
@@ -122,7 +122,7 @@
 }
 
 .inline-logo {
-  height: 26px;
+  height: 36px;
   width: auto;
   vertical-align: middle;
 }
@@ -171,10 +171,13 @@
 }
 .intro-about-img {
   width: 100%;
-  max-width: 460px;             /* ← size to match Image 1 */
+  max-width: 520px;
   height: auto;
-  border-radius: 0;             /* ← no border radius, image has its own */
-  box-shadow: none;             /* ← no extra shadow */
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
 }
 /* ========== MODIFIED: RIGHT SIDE — LOGO PROMINENTLY ON THE RIGHT ========== */
 .intro-right {
@@ -182,9 +185,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  overflow: hidden;        /* ← prevents overflow */
 }
-
 /* Watermark background (stays as subtle backdrop) */
 .watermark-bg {
   position: absolute;
@@ -287,8 +289,8 @@
 
 .flag-img {
   width: 100%;
-  max-width: 400px;
-  height: auto;
+  max-width: 600px;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -331,13 +333,13 @@
 
 .vision-section {
   background: #eef2f8;
-  padding: 80px 80px;
+  padding: 80px 250px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;  /* ← change from hidden to visible */
 }
 
 .vision-inner {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -358,7 +360,7 @@
 }
 
 .vision-box {
-  border-radius: 24px;
+  border-radius: 24px;  
   padding: 28px 36px;
   transition: transform 0.2s ease;
 }
@@ -374,8 +376,12 @@
 .vision-box--teal { background: #1ab5b8; }
 
 .deco-plus-vision { top: 36px;  left: 36px;  font-size: 28px; color: #7c3aed; }
-.deco-star-vision { top: 200px; right: 52px; font-size: 26px; color: #f97316; }
-
+.deco-star-vision { 
+  top: 250px;
+  right: 287px;
+  font-size: 30px; 
+  color: #f97316; 
+}
 /* ════════════════════════════════════════════════════════════════
    FOOTER SECTION
 ════════════════════════════════════════════════════════════════ */

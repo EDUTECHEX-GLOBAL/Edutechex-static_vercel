@@ -41,7 +41,7 @@ const AboutUs = () => {
       <section className="quotes-section">
 
         <span className="deco deco-plus-top">+</span>
-        <span className="deco deco-star-top">✳</span>
+         <span className="deco deco-star-top">✸</span>
         <span className="deco deco-x-right">✕</span>
 
         {/* Top full-width centered quote */}
@@ -164,7 +164,7 @@ const AboutUs = () => {
       ════════════════════════════════════════ */}
       <section className="vision-section">
         <span className="deco deco-plus-vision" aria-hidden="true">+</span>
-        <span className="deco deco-star-vision" aria-hidden="true">✳</span>
+        <span className="deco deco-star-vision" aria-hidden="true">✸</span>
 
         <div className="vision-inner">
           <h2 className="vision-title">

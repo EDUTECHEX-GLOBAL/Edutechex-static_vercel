@@ -2,7 +2,7 @@ import React from "react";
 import "./pariksha.css";
 
 import mockTestSVG from "../../assets/Mock Test.svg";
-import pariImg     from "../../assets/pari.JPG";
+import pariImg from "../../assets/pari.JPG";
 
 const aboutItems = [
   "K12 Curriculum",
@@ -18,15 +18,15 @@ const Pariksha = () => {
     <div className="pariksha-page">
 
       {/* HERO SECTION */}
-      <section className="hero">
-        <div className="hero-left">
-          <h1>
+      <section className="pariksha-hero">
+        <div className="pariksha-hero-left">
+          <h1 className="pariksha-hero-title">
             Gamified Assessment Experience with{" "}
             <span className="accent">Counselling</span>{" "}
             and Learning.
           </h1>
 
-          <p>
+          <p className="pariksha-hero-desc">
             The vision of the platform is to offer assessments to people from
             all walks of the life globally right from a precise psychometric
             test mapping one's personality to navigating people towards their
@@ -36,11 +36,11 @@ const Pariksha = () => {
           <button className="demo-btn">Get Demo</button>
         </div>
 
-        <div className="hero-right">
+        <div className="pariksha-hero-right">
           <img
             src={mockTestSVG}
             alt="Mock Test Illustration"
-            className="hero-svg"
+            className="pariksha-hero-svg"
           />
         </div>
       </section>

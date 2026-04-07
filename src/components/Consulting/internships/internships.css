@@ -4,12 +4,12 @@
 }
 
 /* ─── HERO SECTION ───────────────────────────────── */
-.hero-section {
+.internships-hero-section {
   background-color: #eef2f8;
   padding: 60px 80px;
 }
 
-.hero-inner {
+.internships-hero-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,7 +18,7 @@
   margin: 0 auto;
 }
 
-.interships-hero-left {
+.internships-hero-left {
   flex: 1;
   max-width: 52%;
 }
@@ -34,7 +34,7 @@
 .tagline-icon {
   width: 42px;
   height: 42px;
-  background: #ffffff;          /* ← white bg not #eef2f8 — so icon pops */
+  background: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
 }
 
 /* H1 */
-.interships-hero-title {
+.internships-hero-title {
   font-size: 38px;
   font-weight: 800;
   color: #0f1c3f;
@@ -59,7 +59,7 @@
   margin-bottom: 16px;
 }
 
-.hero-subtext {
+.internships-hero-subtext {
   font-size: 15px;
   color: #666;
   margin-bottom: 24px;
@@ -107,23 +107,21 @@
   justify-content: center;
 }
 
-/* Hero right image — blends seamlessly, no white box */
+/* Hero right image */
 .internships-hero-right {
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-      /* ← match hero bg */
-  mix-blend-mode: multiply;     /* ← move blend to PARENT too */
+  mix-blend-mode: multiply;
 }
 
-.hero-right img {
+.internships-hero-right img {
   width: 100%;
   max-width: 520px;
   height: auto;
   display: block;
   mix-blend-mode: multiply;
-   /* ← force same bg color */
   border-radius: 0;
   padding: 0;
   box-shadow: none;
@@ -161,18 +159,19 @@
 
 .tabs {
   display: inline-flex;
-  justify-content: center;      /* ← centers buttons inside */
-  align-items: center;          /* ← key: shrinks to content */
+  justify-content: center;
+  align-items: center;
   background: #e9e7f5;
   padding: 6px;
   border-radius: 12px;
   gap: 4px;
-  max-width: unset;             /* ← REMOVE the 340px min-width */
-  width: 89%;                  /* ← shrinks to fit buttons only */
+  max-width: unset;
+  width: 89%;
 }
+
 .internships-tab-btn {
-  flex: none;                   /* ← stops buttons stretching */
-  padding: 12px 48px;           /* ← comfortable padding */
+  flex: none;
+  padding: 12px 48px;
   border: none;
   background: transparent;
   border-radius: 8px;
@@ -184,7 +183,7 @@
   white-space: nowrap;
 }
 
-.tab-btn.active {
+.internships-tab-btn.active {
   background: #2d3e9f;
   color: #ffffff;
   border-radius: 8px;
@@ -310,28 +309,28 @@
 
 /* ─── RESPONSIVE ─────────────────────────────────── */
 @media (max-width: 768px) {
-  .hero-section {
+  .internships-hero-section {
     padding: 40px 24px;
   }
 
-  .hero-inner {
+  .internships-hero-inner {
     flex-direction: column;
   }
 
-  .hero-left {
+  .internships-hero-left {
     max-width: 100%;
   }
 
-  .hero-title {
+  .internships-hero-title {
     font-size: 28px;
   }
 
-  .hero-right {
+  .internships-hero-right {
     width: 100%;
     justify-content: center;
   }
 
-  .hero-right img {
+  .internships-hero-right img {
     max-width: 100%;
   }
 
