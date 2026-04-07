@@ -1,73 +1,70 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './header.css';
-import logo from '../../assets/Edutech-logo.svg';
-import cartIcon from '../../assets/cart.png';
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./header.css";
 
-// ── Category dropdown items ──────────────────────────────────────────────────
+import logo from "../../assets/Edutech-logo.svg";
+import cartIcon from "../../assets/cart.png";
+
+// ── Category dropdown items ─────────────────────────────────────────
 const categoryItems = [
-  { label: 'K12', link: '/k12' },
-  { label: 'UG',  link: '/ug' },
-  { label: 'PG',  link: '/pg' },
+  { label: "K12", link: "/k12" },
+  { label: "UG", link: "/ug" },
+  { label: "PG", link: "/pg" },
 ];
 
-// ── Main nav items ───────────────────────────────────────────────────────────
+// ── Main nav items ──────────────────────────────────────────────────
 const megaMenuItems = [
   {
-    label: 'Courses',
+    label: "Courses",
     normalMenuItems: [
-      { name: 'K12',           link: '/courses/k12' },
-      { name: 'Undergraduate', link: '/courses/under-graduate' },
-      { name: 'Postgraduate',  link: '/courses/post-graduate' },
+      { name: "K12", link: "/courses/k12" },
+      { name: "Undergraduate", link: "/courses/under-graduate" },
+      { name: "Postgraduate", link: "/courses/post-graduate" },
     ],
   },
   {
-    label: 'Products',
+    label: "Products",
     normalMenuItems: [
-      { name: 'Assessments - Pariksha', link: '/products/pariksha' },
+      { name: "Assessments - Pariksha", link: "/pariksha" }, // ✅ FIXED
     ],
   },
+{
+  label: "Consulting",
+  normalMenuItems: [
+    { name: "Internships", link: "/consulting/internships" },
+{ name: "Information Technology", link: "/consulting/information-technology" },
+    { name: "STEM Labs", link: "/consulting/stem-labs" },
+  ],
+},
   {
-    label: 'Consulting',
-    normalMenuItems: [
-      { name: 'Internships',            link: '/consulting/internships' },
-      { name: 'Information Technology', link: '/consulting/information-technology' },
-      { name: 'STEM Labs',              link: '/consulting/stem-labs' },
-    ],
+    label: "Buy Courses",
+    link: "/buy-courses",
   },
   {
-    label: 'Buy Courses',
-    link: '/buy-courses',
-  },
-  {
-    label: 'More',
+    label: "More",
     normalMenuItems: [
-      { name: 'About Us',     link: '/about' },
-      { name: 'Contact Us',   link: '/contact' },
-      { name: 'Testimonials', link: '/testimonials' },
+      { name: "About Us", link: "/about" },
+      { name: "Contact Us", link: "/contact" },
+      { name: "Testimonials", link: "/testimonials" },
     ],
   },
 ];
 
-// ── Chevron SVG ──────────────────────────────────────────────────────────────
+// ── Chevron Icon ────────────────────────────────────────────────────
 const ChevronIcon = () => (
-  <svg
-    className="chevron-icon"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fillRule="evenodd"
-      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-    />
+  <svg className="chevron-icon" viewBox="0 0 16 16" fill="currentColor">
+    <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
   </svg>
 );
 
-// ── Header Component ─────────────────────────────────────────────────────────
+// ── Header Component ────────────────────────────────────────────────
 const Header = () => {
+  const navigate = useNavigate(); // ✅ IMPORTANT
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown]         = useState(null);
-  const headerRef  = useRef(null);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const headerRef = useRef(null);
   const closeTimer = useRef(null);
 
   useEffect(() => {
@@ -76,8 +73,8 @@ const Header = () => {
         setOpenDropdown(null);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleMouseEnter = (key) => {
@@ -95,52 +92,60 @@ const Header = () => {
     <header className="header" ref={headerRef}>
       <div className="header-container">
 
-        {/* ── LEFT: Logo + Category ── */}
+        {/* LEFT */}
         <div className="left-section">
-          <img src={logo} alt="EDUTECH" className="logo-img" />
+          <img
+            src={logo}
+            alt="EDUTECH"
+            className="logo-img"
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
+          />
 
           <div
             className="dropdown-wrapper"
-            onMouseEnter={() => handleMouseEnter('category')}
+            onMouseEnter={() => handleMouseEnter("category")}
             onMouseLeave={handleMouseLeave}
           >
-            <button
-              className={`category-btn ${openDropdown === 'category' ? 'active' : ''}`}
-              aria-expanded={openDropdown === 'category'}
-            >
-              <i className="bi bi-ui-radios-grid category-icon"></i>
+            <button className="category-btn">
               <span>Category</span>
             </button>
 
-            {openDropdown === 'category' && (
+            {openDropdown === "category" && (
               <div className="category-dropdown">
                 {categoryItems.map((item) => (
-                  <a
+                  <div
                     key={item.label}
-                    href={item.link}
                     className="category-dropdown-item"
-                    onClick={closeAll}
+                    onClick={() => {
+                      navigate(item.link);
+                      closeAll();
+                    }}
                   >
                     {item.label}
-                  </a>
+                  </div>
                 ))}
               </div>
             )}
           </div>
         </div>
 
-        {/* ── CENTER: Main Nav ── */}
-        <nav className={`nav ${isMobileMenuOpen ? 'active' : ''}`}>
+        {/* CENTER NAV */}
+        <nav className={`nav ${isMobileMenuOpen ? "active" : ""}`}>
           {megaMenuItems.map((menuItem, index) => (
             <div
               className="nav-item-wrapper"
               key={index}
-              onMouseEnter={() => menuItem.normalMenuItems && handleMouseEnter(index)}
+              onMouseEnter={() =>
+                menuItem.normalMenuItems && handleMouseEnter(index)
+              }
               onMouseLeave={handleMouseLeave}
             >
               <button
-                className={`nav-link${menuItem.label === 'Buy Courses' ? ' buy' : ''}${openDropdown === index ? ' open' : ''}`}
-                onClick={() => menuItem.link && (window.location.href = menuItem.link)}
+                className={`nav-link ${
+                  menuItem.label === "Buy Courses" ? "buy" : ""
+                }`}
+                onClick={() => menuItem.link && navigate(menuItem.link)} // ✅ FIXED
               >
                 {menuItem.label}
                 {menuItem.normalMenuItems && <ChevronIcon />}
@@ -149,14 +154,16 @@ const Header = () => {
               {menuItem.normalMenuItems && openDropdown === index && (
                 <div className="nav-dropdown">
                   {menuItem.normalMenuItems.map((item) => (
-                    <a
+                    <div
                       key={item.name}
-                      href={item.link}
                       className="nav-dropdown-item"
-                      onClick={closeAll}
+                      onClick={() => {
+                        navigate(item.link); // ✅ FIXED
+                        closeAll();
+                      }}
                     >
                       {item.name}
-                    </a>
+                    </div>
                   ))}
                 </div>
               )}
@@ -164,9 +171,12 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* ── RIGHT: Cart + Mobile Toggle ── */}
+        {/* RIGHT */}
         <div className="right-section">
-          <button className="cart-btn" onClick={() => (window.location.href = '/cart')}>
+          <button
+            className="cart-btn"
+            onClick={() => navigate("/cart")}
+          >
             <img src={cartIcon} alt="Cart" className="cart-icon-img" />
           </button>
 
@@ -176,9 +186,8 @@ const Header = () => {
               setIsMobileMenuOpen((prev) => !prev);
               closeAll();
             }}
-            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? '✕' : '☰'}
+            {isMobileMenuOpen ? "✕" : "☰"}
           </button>
         </div>
 
