@@ -97,6 +97,7 @@
 
 .intro-inner {
   display: flex;
+  flex-direction: row;          /* ← force side by side */
   align-items: center;
   gap: 80px;
   max-width: 1200px;
@@ -168,24 +169,20 @@
 .intro-image-wrapper {
   margin-top: 24px;
 }
-
 .intro-about-img {
   width: 100%;
-  max-width: 400px;
+  max-width: 460px;             /* ← size to match Image 1 */
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border-radius: 0;             /* ← no border radius, image has its own */
+  box-shadow: none;             /* ← no extra shadow */
 }
-
 /* ========== MODIFIED: RIGHT SIDE — LOGO PROMINENTLY ON THE RIGHT ========== */
 .intro-right {
   flex: 0.8;
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end;  /* Pushes content to the right */
-  min-height: 340px;
-  overflow: visible;
+  justify-content: center;
+  position: relative;
 }
 
 /* Watermark background (stays as subtle backdrop) */
@@ -199,20 +196,20 @@
   gap: 6px;
   pointer-events: none;
   user-select: none;
-  opacity: 0.4;
+  opacity: 0.08;
 }
 
 .watermark-text {
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 900;
-  color: #eeeeee;
+  color: #3d4fba;
   letter-spacing: 2px;
   white-space: nowrap;
 }
 
 .watermark-sub {
-  font-size: 12px;
-  color: #e4e4e4;
+  font-size: 13px;
+  color: #3d4fba;
   letter-spacing: 1px;
   white-space: nowrap;
 }
@@ -224,49 +221,47 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   background: #ffffff;
-  padding: 32px 42px;
+  padding: 48px 64px;
   border-radius: 24px;
-  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(61, 79, 186, 0.15);
-  transition: transform 0.2s ease;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(61, 79, 186, 0.1);
+  min-width: 320px;
 }
 
 .logo-center:hover {
   transform: translateY(-4px);
 }
-
 .dots-row {
   display: flex;
   gap: 10px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.dot { width: 14px; height: 14px; border-radius: 50%; }
+.dot { width: 16px; height: 16px; border-radius: 50%; }
 .dot--purple { background: #7c3aed; }
 .dot--teal   { background: #0ea5e9; }
 .dot--orange { background: #f97316; }
 
-/* Logo image styling */
-.center-logo { 
-  height: 58px; 
-  width: auto; 
+/* UPDATED: Much larger logo */
+.center-logo {
+  height: 80px;
+  width: auto;
   object-fit: contain;
 }
 
-.unlock-text { 
-  font-size: 15px; 
-  color: #1e293b; 
-  font-weight: 600; 
+
+.unlock-text {
+  font-size: 17px;
+  font-weight: 700;
   margin: 0;
   letter-spacing: 0.3px;
   background: linear-gradient(135deg, #3d4fba 0%, #1ab5b8 100%);
-  background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-
 /* ════════════════════════════════════════════════════════════════
    SECTION 3 — WHAT IS EDUTECHEX
 ════════════════════════════════════════════════════════════════ */
@@ -392,7 +387,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.footer-inner {
+.about-us-footer-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -487,7 +482,7 @@
   .what-right   { width: 100%; }
   .flag-img     { max-width: 300px; }
   
-  .footer-inner {
+  .about-us-footer-inner {
     flex-direction: column;
     align-items: center;
     text-align: center;

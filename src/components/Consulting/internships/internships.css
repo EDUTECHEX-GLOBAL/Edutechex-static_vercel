@@ -4,12 +4,10 @@
 }
 
 /* ─── HERO SECTION ───────────────────────────────── */
-/* Light blue-grey background exactly like original */
 .hero-section {
   background-color: #eef2f8;
   padding: 60px 80px;
 }
-
 
 .hero-inner {
   display: flex;
@@ -20,12 +18,12 @@
   margin: 0 auto;
 }
 
-.hero-left {
+.interships-hero-left {
   flex: 1;
   max-width: 52%;
 }
 
-/* Tagline row — circle icon with shadow + text */
+/* Tagline row */
 .tagline-row {
   display: flex;
   align-items: center;
@@ -36,7 +34,7 @@
 .tagline-icon {
   width: 42px;
   height: 42px;
-  background: #ffffff;
+  background: #ffffff;          /* ← white bg not #eef2f8 — so icon pops */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -51,22 +49,24 @@
   font-weight: 600;
   color: #333;
 }
-/* H1 — large bold, matches original */
-.hero-title {
+
+/* H1 */
+.interships-hero-title {
   font-size: 38px;
   font-weight: 800;
-  color: #111;
+  color: #0f1c3f;
   line-height: 1.25;
   margin-bottom: 16px;
 }
 
 .hero-subtext {
-  font-size: 16px;
+  font-size: 15px;
   color: #666;
   margin-bottom: 24px;
+  line-height: 1.6;
 }
 
-/* Search — white rounded card wrapper */
+/* Search */
 .search-card {
   background: #ffffff;
   border-radius: 10px;
@@ -75,6 +75,7 @@
   width: 100%;
   max-width: 500px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: none;
 }
 
 .search-box {
@@ -106,17 +107,26 @@
   justify-content: center;
 }
 
-/* Hero image */
-.hero-right {
+/* Hero right image — blends seamlessly, no white box */
+.internships-hero-right {
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+      /* ← match hero bg */
+  mix-blend-mode: multiply;     /* ← move blend to PARENT too */
 }
 
 .hero-right img {
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
   height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+   /* ← force same bg color */
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 /* ─── SKILLS SECTION ─────────────────────────────── */
@@ -150,17 +160,19 @@
 }
 
 .tabs {
-  display: flex;
+  display: inline-flex;
+  justify-content: center;      /* ← centers buttons inside */
+  align-items: center;          /* ← key: shrinks to content */
   background: #e9e7f5;
   padding: 6px;
-  border-radius: 10px;
+  border-radius: 12px;
   gap: 4px;
-  min-width: 340px;
+  max-width: unset;             /* ← REMOVE the 340px min-width */
+  width: 89%;                  /* ← shrinks to fit buttons only */
 }
-
-.tab-btn {
-  flex: 1;
-  padding: 10px 20px;
+.internships-tab-btn {
+  flex: none;                   /* ← stops buttons stretching */
+  padding: 12px 48px;           /* ← comfortable padding */
   border: none;
   background: transparent;
   border-radius: 8px;
@@ -169,11 +181,13 @@
   color: #555;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .tab-btn.active {
   background: #2d3e9f;
   color: #ffffff;
+  border-radius: 8px;
 }
 
 /* ─── CARDS AREA ─────────────────────────────────── */
@@ -192,7 +206,6 @@
   background: #ffffff;
 }
 
-/* Image — unchanged, your actual jpg */
 .card-top {
   height: 190px;
   overflow: hidden;
@@ -204,7 +217,6 @@
   object-fit: cover;
 }
 
-/* Card body */
 .card-body {
   padding: 16px;
 }
@@ -252,7 +264,6 @@
   margin-bottom: 12px;
 }
 
-/* Rating */
 .rating-row {
   display: flex;
   align-items: center;
@@ -271,7 +282,6 @@
   color: #777;
 }
 
-/* Footer row — arrow only */
 .card-footer-row {
   border-top: 1px solid #eee;
   padding-top: 12px;
@@ -314,6 +324,11 @@
 
   .hero-title {
     font-size: 28px;
+  }
+
+  .hero-right {
+    width: 100%;
+    justify-content: center;
   }
 
   .hero-right img {

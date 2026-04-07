@@ -18,7 +18,7 @@
    HERO SECTION
 ================================================================ */
 
-.hero {
+.pariksha-hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@
   min-height: 580px;
 }
 
-.hero-left {
+.pariksha-hero-left {
   flex: 0 0 auto;
   width: 46%;
   max-width: 520px;
@@ -84,7 +84,7 @@
 }
 
 /* ── Right column ── */
-.hero-right {
+.pariksha-hero-right {
   flex: 1;
   display: flex;
   justify-content: flex-end;

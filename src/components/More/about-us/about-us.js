@@ -65,60 +65,57 @@ const AboutUs = () => {
 
       </section>
 
-      {/* ════════════════════════════════════════
-          SECTION 2 — INTRODUCING EDUTECHEX
-      ════════════════════════════════════════ */}
-      <section className="intro-section">
-        <div className="intro-inner">
+{/* ════ SECTION 2 — INTRODUCING EDUTECHEX ════ */}
+{/* ════ SECTION 2 — INTRODUCING EDUTECHEX ════ */}
+<section className="intro-section">
+  <div className="intro-inner">
 
-          <div className="intro-left">
-            <h2 className="intro-title">
-              Introducing&nbsp;
-              <img src={logo} alt="EDUTECHEX" className="inline-logo" />
-              &nbsp;?
-            </h2>
+    {/* LEFT */}
+    <div className="intro-left">
+      <h2 className="intro-title">
+        Introducing&nbsp;
+        <img src={logo} alt="EDUTECHEX" className="inline-logo" />
+        &nbsp;?
+      </h2>
 
-            <div className="intro-box">
-              <p>
-                EDUTECHEX represents a critical catalyst in the
-                decision-making process when students are at the crossroads
-                between passion, education and career.
-              </p>
-            </div>
+      <div className="intro-box">
+        <p>
+          EDUTECHEX represents a critical catalyst in the
+          decision-making process when students are at the crossroads
+          between passion, education and career.
+        </p>
+      </div>
 
-            <ul className="intro-list">
-              <li>
-                <span className="check-icon">✓</span>
-                Students overcome challenges of ambiguity through data-driven
-                and experiential guidance.
-              </li>
-              <li>
-                <span className="check-icon">✓</span>
-                Students gain knowledge and build confidence to successfully
-                navigate various career pathways.
-              </li>
-              <li>
-                <span className="check-icon">✓</span>
-                Students identify their strengths and capabilities and build
-                the right roadmap for their education and profession careers.
-              </li>
-            </ul>
+      <ul className="intro-list">
+        <li>
+          <span className="check-icon">✓</span>
+          Students overcome challenges of ambiguity through data-driven
+          and experiential guidance.
+        </li>
+        <li>
+          <span className="check-icon">✓</span>
+          Students gain knowledge and build confidence to successfully
+          navigate various career pathways.
+        </li>
+        <li>
+          <span className="check-icon">✓</span>
+          Students identify their strengths and capabilities and build
+          the right roadmap for their education and profession careers.
+        </li>
+      </ul>
+    </div>
 
-            {/* aboutImg added here in Section 2 */}
-            <div className="intro-image-wrapper">
-              <img
-                src={aboutImg}
-                alt="About EDUTECHEX"
-                className="intro-about-img"
-              />
-            </div>
-          </div>
+    {/* RIGHT — just the image, it already has everything */}
+    <div className="intro-right">
+      <img
+        src={aboutImg}
+        alt="EDUTECHEX Unlock Your Potential"
+        className="intro-about-img"
+      />
+    </div>
 
-          
-
-        </div>
-      </section>
-
+  </div>
+</section>
       {/* ════════════════════════════════════════
           SECTION 3 — WHAT IS EDUTECHEX
       ════════════════════════════════════════ */}

@@ -7,8 +7,10 @@
    SECTION 1 — HERO
 ══════════════════════════════════════════════════ */
 .info-hero {
-  background-color: #eef2f8; /* ✅ make sure this is not white */
+  background-color: #EEF3F5;    /* ← slightly more blue-grey */
+  padding: 60px 80px;           /* ← add padding */
 }
+
 .info-hero-inner {
   display: flex;
   justify-content: space-between;
@@ -46,20 +48,20 @@
 .tagline-text {
   font-size: 15px;
   font-weight: 600;
-  color: #333;
+  color: #1e1e2f;               /* ← same dark charcoal */
 }
 
 .info-hero-title {
-  font-size: 36px;
-  font-weight: 800;
-  color: #504e4e;
-  line-height: 1.3;
+  font-size: 38px;
+  font-weight: 600;
+  color: #1e1e2f;               /* ← dark charcoal matching screenshot */
+  line-height: 1.25;
   margin-bottom: 18px;
 }
 
 .info-hero-sub {
   font-size: 15px;
-  color: #666;
+  color: #888;                  /* ← lighter grey matching screenshot */
   line-height: 1.6;
   max-width: 480px;
 }
@@ -121,12 +123,11 @@
 ══════════════════════════════════════════════════ */
 .it-solutions-section {
   background: #ffffff;
-  padding: 60px 80px;
+  padding: 70px 80px;           /* ← more padding */
 }
-
 .it-solutions-inner {
   display: flex;
-  align-items: center;
+  align-items: center;          /* ← vertically center both sides */
   justify-content: space-between;
   gap: 60px;
   max-width: 1100px;
@@ -141,8 +142,9 @@
 
 .it-solutions-left img {
   width: 100%;
-  max-width: 480px;
+  max-width: 560px;             /* ← increased from 480px */
   height: auto;
+  mix-blend-mode: multiply;    /* ← removes white bg */
 }
 
 .it-solutions-right {
@@ -150,12 +152,11 @@
 }
 
 .it-solutions-right h2 {
-  font-size: 34px;
-  font-weight: 800;
-  color: #111;
-  line-height: 1.3;
+  font-size: 42px;              /* ← increased from 34px */
+  font-weight: 900;             /* ← heavier from 800 */
+  color: #1a1a2e;               /* ← deep black matching screenshot */
+  line-height: 1.25;
 }
-
 /* ══════════════════════════════════════════════════
    SECTION 4 — WE CUSTOMIZE YOUR SOFTWARE
 ══════════════════════════════════════════════════ */
@@ -250,7 +251,7 @@
 
 .analytics-right img {
   width: 100%;
-  max-width: 480px;
+  max-width: 680px;
   height: auto;
 }
 
