@@ -241,7 +241,7 @@
   margin-bottom: 8px;
 }
 
-.dot { width: 16px; height: 16px; border-radius: 50%; }
+.aboutus-dot { width: 16px; height: 16px; border-radius: 50%; }
 .dot--purple { background: #7c3aed; }
 .dot--teal   { background: #0ea5e9; }
 .dot--orange { background: #f97316; }
