@@ -31,9 +31,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  min-height: 600px;   /* ← give section proper height */
+  min-height: 600px;
 }
-/* Top full-width centered quote */
+
 .top-quote-row {
   width: 100%;
   padding: 48px 14% 0;
@@ -41,8 +41,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 0;      /* ← remove any bottom margin */
+  margin-bottom: 0;
 }
+
 .top-quote-text {
   font-size: 25px;
   font-weight: 650;
@@ -50,25 +51,26 @@
   line-height: 1.45;
   max-width: 800px;
 }
+
 .curly-arrow {
   width: 220px;
   height: 88px;
-  margin-top: 8px;       /* ← reduce top margin */
-  margin-bottom: 0;      /* ← no bottom gap */
+  margin-top: 8px;
+  margin-bottom: 0;
   align-self: center;
   margin-left: -80px;
 }
+
 .image-center-row {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;             /* ← change from margin: 20px 0 0 to 0 */
+  margin: 0;
   padding: 0 5%;
   position: relative;
 }
-
 
 .student-img {
   width: 85%;
@@ -77,36 +79,35 @@
   display: block;
   margin: 1px;
   border-radius: 10px;
-
 }
-
 
 /* Decorative symbols */
 .deco-plus-top {
   top: 40px;
   left: 210px;
   font-size: 35px;
-  color: #fe8732;
+  color: #fd944a;
   font-weight: 600;
 }
 
 .deco-star-top {
-  top: 38px;          /* ← lower, vertically near quote middle */
-  right: 330px;       /* ← pull away from edge, toward center */
+  top: 38px;
+  right: 330px;
   font-size: 28px;
   color: #f97316;
 }
 
-.deco-x-right { 
-  top: 120px; 
+.deco-x-right {
+  top: 120px;
   right: 300px;
-  font-size: 18px; 
-  color: #ef4444; 
+  font-size: 18px;
+  color: #ef4444;
   font-weight: 900;
-  -webkit-text-stroke: 1px #ef4444;  /* ← makes it appear bolder/thicker */
+  -webkit-text-stroke: 1px #ef4444;
 }
+
 /* ════════════════════════════════════════════════════════════════
-   SECTION 2 — INTRODUCING EDUTECHEX (MODIFIED: LOGO ON RIGHT)
+   SECTION 2 — INTRODUCING EDUTECHEX
 ════════════════════════════════════════════════════════════════ */
 
 .intro-section {
@@ -118,19 +119,19 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 40px;              /* ← reduced from 80px */
+  gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* MODIFIED: intro-left now takes full width (no right side forced) */
 .intro-left {
   flex: 1.2;
-  max-width: 52%;         /* ← reduced from 58% */
+  max-width: 52%;
 }
+
 .intro-title {
-  font-size: 32px;
-  font-weight: 800;
+  font-size: 35px;
+  font-weight: 600;
   color: #111;
   margin-bottom: 28px;
   display: flex;
@@ -147,13 +148,13 @@
 
 .intro-box {
   background: #3d4fba;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 20px 24px;
   margin-bottom: 28px;
 }
 
 .intro-box p {
-  font-size: 14px;
+  font-size: 13px;
   color: #ffffff;
   line-height: 1.75;
   margin: 0;
@@ -171,22 +172,24 @@
 .intro-list li {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-  color: #444;
-  line-height: 1.65;
+  gap: 10px;
 }
 
 .check-icon {
-  font-size: 18px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  color: #3d4fba;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3px;
+  background: none;
 }
 
 .intro-image-wrapper {
   margin-top: 24px;
 }
+
 .intro-about-img {
   width: 100%;
   max-width: 520px;
@@ -197,15 +200,15 @@
   box-shadow: none;
   display: block;
 }
-/* ========== MODIFIED: RIGHT SIDE — LOGO PROMINENTLY ON THE RIGHT ========== */
+
 .intro-right {
   flex: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;        /* ← prevents overflow */
+  overflow: hidden;
 }
-/* Watermark background (stays as subtle backdrop) */
+
 .watermark-bg {
   position: absolute;
   inset: 0;
@@ -234,7 +237,6 @@
   white-space: nowrap;
 }
 
-/* MODIFIED: Logo card — positioned clearly on the right, larger presence */
 .logo-center {
   position: relative;
   z-index: 2;
@@ -253,6 +255,7 @@
 .logo-center:hover {
   transform: translateY(-4px);
 }
+
 .dots-row {
   display: flex;
   gap: 10px;
@@ -264,13 +267,11 @@
 .dot--teal   { background: #0ea5e9; }
 .dot--orange { background: #f97316; }
 
-/* UPDATED: Much larger logo */
 .center-logo {
   height: 80px;
   width: auto;
   object-fit: contain;
 }
-
 
 .unlock-text {
   font-size: 17px;
@@ -282,6 +283,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 /* ════════════════════════════════════════════════════════════════
    SECTION 3 — WHAT IS EDUTECHEX
 ════════════════════════════════════════════════════════════════ */
@@ -316,7 +318,7 @@
 
 .what-title {
   font-size: 32px;
-  font-weight: 800;
+  font-weight: 620;
   color: #111;
   margin-bottom: 24px;
   display: flex;
@@ -326,7 +328,7 @@
 }
 
 .what-para {
-  font-size: 15px;
+  font-size: 13px;
   color: #444;
   line-height: 1.78;
   margin: 0;
@@ -339,8 +341,8 @@
 }
 
 .what-mission {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 600;
   color: #111;
   margin-top: 28px;
 }
@@ -351,9 +353,12 @@
 
 .vision-section {
   background: #eef2f8;
-  padding: 80px 250px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 80px 40px;
   position: relative;
-  overflow: visible;  /* ← change from hidden to visible */
+  overflow: visible;
+  border-radius: 10px;
 }
 
 .vision-inner {
@@ -366,7 +371,7 @@
 
 .vision-title {
   font-size: 30px;
-  font-weight: 800;
+  font-weight: 650;
   color: #1a1a2e;
   text-align: center;
   margin-bottom: 16px;
@@ -378,7 +383,7 @@
 }
 
 .vision-box {
-  border-radius: 24px;  
+  border-radius: 24px;
   padding: 28px 36px;
   transition: transform 0.2s ease;
 }
@@ -393,13 +398,14 @@
 .vision-box--blue { background: #3d4fba; }
 .vision-box--teal { background: #1ab5b8; }
 
-.deco-plus-vision { top: 36px;  left: 36px;  font-size: 28px; color: #7c3aed; }
-.deco-star-vision { 
+.deco-plus-vision { top: 36px;  left: 16px;  font-size: 35px; color: #7c3aed; }
+.deco-star-vision {
   top: 250px;
-  right: 287px;
-  font-size: 30px; 
-  color: #f97316; 
+  right: 183px;
+  font-size: 30px;
+  color: #f97316;
 }
+
 /* ════════════════════════════════════════════════════════════════
    FOOTER SECTION
 ════════════════════════════════════════════════════════════════ */
@@ -482,7 +488,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
-   RESPONSIVE (KEEPS LOGO VISIBLE ON RIGHT)
+   RESPONSIVE
 ════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 1024px) {
@@ -497,29 +503,22 @@
   .intro-inner,
   .what-inner { flex-direction: column; gap: 40px; }
 
-  /* On tablet, logo moves below but remains right-aligned within its container */
   .intro-left   { max-width: 100%; }
   .intro-right  { width: 100%; min-height: auto; justify-content: center; margin-top: 20px; }
   .logo-center  { padding: 28px 36px; }
-  
+
   .what-left,
   .what-right   { width: 100%; }
   .flag-img     { max-width: 300px; }
-  
+
   .about-us-footer-inner {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-  .footer-contact {
-    text-align: center;
-  }
-  .contact-line {
-    justify-content: center;
-  }
-  .footer-brand p {
-    max-width: 100%;
-  }
+  .footer-contact { text-align: center; }
+  .contact-line   { justify-content: center; }
+  .footer-brand p { max-width: 100%; }
 }
 
 @media (max-width: 640px) {
@@ -538,18 +537,155 @@
   .intro-section,
   .what-section,
   .vision-section { padding: 40px 20px; }
-  
-  .logo-center {
-    padding: 20px 28px;
-  }
-  .center-logo {
-    height: 44px;
-  }
-  .watermark-text {
-    font-size: 20px;
-  }
-  .watermark-sub {
-    font-size: 9px;
-  }
+
+  .logo-center    { padding: 20px 28px; }
+  .center-logo    { height: 44px; }
+  .watermark-text { font-size: 20px; }
+  .watermark-sub  { font-size: 9px; }
 }
 
+.question-img {
+  height: 36px;
+  width: auto;
+  vertical-align: middle;
+  object-fit: contain;
+  margin-left: -20px;
+}
+.what-title--question {
+  gap: 4px;   /* tighter spacing only here */
+}
+
+.what-title--question .question-img {
+  height: 35px;
+  margin-left: -2px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 5 — MEET OUR TEAM / OUR STORY
+════════════════════════════════════════════════════════════════ */
+
+.team-section {
+  background: #ffffff;
+  padding: 80px 80px;
+}
+
+.team-heading {
+  font-size: 35px;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.team-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── LEFT: Story text ── */
+.team-left {
+  flex: 1;
+  max-width: 48%;
+}
+
+.story-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 60px;     /* 👈 pushes heading down */
+  margin-bottom: 30px;
+}
+
+.story-para {
+  font-size: 13px;
+  color: #919191;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.story-link {
+  color: #3d4fba;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.story-link:hover {
+  text-decoration: underline;
+}
+
+/* ── RIGHT: Single image inside blue cross frame ── */
+.team-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/*
+  The frame mimics the screenshot:
+  - a dark-blue rounded rectangle sits as the background
+  - the image floats on top, offset slightly top-left
+  - a white triangular notch clips the top-right corner of the blue bg
+*/
+.story-frame {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  /* extra space at bottom + right for the blue bg to peek out */
+  padding-bottom: 40px;
+  padding-right: 30px;
+}
+
+/* Dark-blue background rectangle — peeks out bottom & right */
+.story-bg-cross {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 20px);   /* slightly narrower than image */
+  height: calc(100% - 20px);  /* slightly shorter than image  */
+  background: #2d3daa;
+  border-radius: 18px;
+  z-index: 0;
+}
+
+/* White triangular notch cut from top-right of the blue bg */
+.story-corner-notch {
+  position: absolute;
+  top: 18px;          /* aligns with where blue bg starts */
+  right: 0px;
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2;
+}
+
+/* The single story image */
+.story-single-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 500px;
+  display: block;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .team-section  { padding: 52px 32px; }
+  .team-inner    { flex-direction: column; gap: 48px; }
+  .team-left     { max-width: 100%; }
+  .story-frame   { max-width: 480px; margin: 0 auto; }
+}
+
+@media (max-width: 640px) {
+  .team-section  { padding: 40px 20px; }
+  .team-heading  { font-size: 24px; margin-bottom: 36px; }
+  .story-title   { font-size: 22px; }
+  .story-frame   { max-width: 320px; padding-bottom: 28px; padding-right: 20px; }
+  .story-corner-notch { width: 30px; height: 30px; }
+}

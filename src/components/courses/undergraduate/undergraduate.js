@@ -83,13 +83,9 @@ function CourseCard({ course, navigate }) {
             )}
           </div>
         )}
-        <button
-          className="ug-arrow-btn"
-          onClick={() => navigate(link)}
-          aria-label={`View ${course.title}`}
-        >
-          &#10140;
-        </button>
+       <span className="ug-arrow-btn" aria-label={`View ${course.title}`}>
+  &#10140;
+</span>
       </div>
     </div>
   );

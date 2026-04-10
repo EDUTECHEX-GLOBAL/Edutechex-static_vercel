@@ -24,7 +24,7 @@
 
 /* Banner */
 .pg-banner {  background-size: cover; background-color: var(--brand-blue); padding: 56px 0 48px; text-align: center; }
-.pg-banner h1 { font-family: 'Nunito', sans-serif; font-size: 2.6rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 10px; }
+.pg-banner h1 {  font-size: 2.6rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 10px; }
 .pg-breadcrumb { display: flex; justify-content: center; list-style: none; gap: 8px; font-size: 0.92rem; }
 .pg-breadcrumb li { color: rgba(255,255,255,0.75); }
 .pg-breadcrumb li a { color: rgba(255,255,255,0.9); text-decoration: none; }
@@ -54,7 +54,7 @@
 /* Card */
 .pg-card { background: #fff; border-radius: var(--radius); box-shadow: var(--card-shadow); display: flex; flex-direction: column; overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); text-decoration: none; color: inherit; }
 .pg-card:hover { transform: translateY(-5px); box-shadow: var(--card-hover-shadow); }
-.pg-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+.pg-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border-radius: 8px 8px 0 0 ; }
 .pg-card-body { padding: 16px 18px 12px; flex: 1; }
 .pg-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .pg-badge { background: rgba(68,76,174,0.10); color: var(--brand-blue); font-size: 0.75rem; font-weight: 600; border-radius: 20px; padding: 3px 12px; }
@@ -73,7 +73,7 @@
 .pg-price { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); }
 .pg-price-original { font-size: 0.82rem; color: #b0b8d0; text-decoration: line-through; }
 .pg-discount-badge { display: inline-block; background: var(--accent-green); color: #fff; font-size: 0.72rem; font-weight: 700; border-radius: 4px; padding: 2px 8px; margin-top: 2px; }
-.pg-arrow-btn { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: var(--brand-blue); color: #fff; border-radius: 50%; text-decoration: none; font-size: 1rem; transition: background var(--transition), transform var(--transition); flex-shrink: 0; }
+.pg-arrow-btn { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: var(--brand-blue); color: #fff; border-radius: 50%; text-decoration: none; font-size: 1.5rem; transition: background var(--transition), transform var(--transition); flex-shrink: 0; }
 .pg-arrow-btn:hover { background: var(--brand-blue-dark); transform: scale(1.1); color: #fff; }
 
 /* Sidebar */
@@ -87,7 +87,7 @@
 .pg-category-list a:hover { color: var(--brand-blue); }
 .pg-category-count { font-size: 0.82rem; color: var(--text-muted); }
 .pg-tag-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.pg-tag { background: #f0f2fb; color: var(--text-dark); border: 1px solid #e0e3f5; border-radius: 8px; padding: 6px 16px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: background var(--transition), color var(--transition); }
+.pg-tag { background: #cecece; color: var(--text-dark); border: 1px solid #e0e3f5; border-radius: 5px; padding: 6px 16px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: background var(--transition), color var(--transition); }
 .pg-tag:hover, .pg-tag.active { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
 .pg-counselling-cta { background: var(--brand-blue-dark); border-radius: var(--radius); padding: 28px 22px; position: relative; overflow: hidden; }
 .pg-counselling-cta::before { content: ''; position: absolute; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.06); top: 50%; left: -40px; transform: translateY(-50%); pointer-events: none; }

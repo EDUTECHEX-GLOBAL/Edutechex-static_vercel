@@ -5,6 +5,9 @@ import studentImg1 from "../../../assets/About_US_21.png";
 import flagImg    from "../../../assets/falg-test.png";
 import logo       from "../../../assets/Edutech-logo.svg";
 import aboutImg   from "../../../assets/About_US_2_2.png";
+import questionImg from "../../../assets/question.png";
+import storyImg   from "../../../assets/About US_story.png";
+
 const CurlyArrow = () => (
   <svg
     className="curly-arrow"
@@ -21,6 +24,24 @@ const CurlyArrow = () => (
   </svg>
 );
 
+const CheckIcon = () => (
+  <span className="check-icon">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 2L14.5 4.5L18 3.5L19 7L22 8.5L21 12L22 15.5L19 17L18 20.5L14.5 19.5L12 22L9.5 19.5L6 20.5L5 17L2 15.5L3 12L2 8.5L5 7L6 3.5L9.5 4.5L12 2Z"
+        fill="#10b981"
+      />
+      <path
+        d="M8 12L10.5 14.5L16 9"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+);
+
 const AboutUs = () => {
   return (
     <div className="about-container">
@@ -29,12 +50,10 @@ const AboutUs = () => {
           SECTION 1 — QUOTES HERO
       ════════════════════════════════════════ */}
       <section className="quotes-section">
-
         <span className="deco deco-plus-top">+</span>
-         <span className="deco deco-star-top">✸</span>
+        <span className="deco deco-star-top">✸</span>
         <span className="deco deco-x-right">✕</span>
 
-        {/* Top full-width centered quote */}
         <div className="top-quote-row">
           <p className="top-quote-text">
             "Passion when equipped with the right education and guidance leads
@@ -43,7 +62,6 @@ const AboutUs = () => {
           <CurlyArrow />
         </div>
 
-        {/* Bottom: single student image only */}
         <div className="image-center-row">
           <img
             src={studentImg1}
@@ -52,60 +70,58 @@ const AboutUs = () => {
           />
           <div className="wave-bottom"></div>
         </div>
-
       </section>
 
-{/* ════ SECTION 2 — INTRODUCING EDUTECHEX ════ */}
-{/* ════ SECTION 2 — INTRODUCING EDUTECHEX ════ */}
-<section className="intro-section">
-  <div className="intro-inner">
+      {/* ════ SECTION 2 — INTRODUCING EDUTECHEX ════ */}
+      <section className="intro-section">
+        <div className="intro-inner">
 
-    {/* LEFT */}
-    <div className="intro-left">
-      <h2 className="intro-title">
-        Introducing&nbsp;
-        <img src={logo} alt="EDUTECHEX" className="inline-logo" />
-        &nbsp;?
-      </h2>
+          <div className="intro-left">
+            <h2 className="intro-title">
+              Introducing&nbsp;
+              <img src={logo} alt="EDUTECHEX" className="inline-logo" />
+              &nbsp;
+              <img src={questionImg} alt="?" className="question-img" />
+            </h2>
 
-      <div className="intro-box">
-        <p>
-          EDUTECHEX represents a critical catalyst in the
-          decision-making process when students are at the crossroads
-          between passion, education and career.
-        </p>
-      </div>
+            <div className="intro-box">
+              <p>
+                EDUTECHEX represents a critical catalyst in the
+                decision-making process when students are at the crossroads
+                between passion, education and career..
+              </p>
+            </div>
 
-      <ul className="intro-list">
-        <li>
-          <span className="check-icon">✓</span>
-          Students overcome challenges of ambiguity through data-driven
-          and experiential guidance.
-        </li>
-        <li>
-          <span className="check-icon">✓</span>
-          Students gain knowledge and build confidence to successfully
-          navigate various career pathways.
-        </li>
-        <li>
-          <span className="check-icon">✓</span>
-          Students identify their strengths and capabilities and build
-          the right roadmap for their education and profession careers.
-        </li>
-      </ul>
-    </div>
+            <ul className="intro-list">
+              <li>
+                <CheckIcon />
+                Students overcome challenges of ambiguity through data-driven
+                and experiential guidance.
+              </li>
+              <li>
+                <CheckIcon />
+                Students gain knowledge and build confidence to successfully
+                navigate various career pathways.
+              </li>
+              <li>
+                <CheckIcon />
+                Students identify their strengths and capabilities and build
+                the right roadmap for their education and profession careers.
+              </li>
+            </ul>
+          </div>
 
-    {/* RIGHT — just the image, it already has everything */}
-    <div className="intro-right">
-      <img
-        src={aboutImg}
-        alt="EDUTECHEX Unlock Your Potential"
-        className="intro-about-img"
-      />
-    </div>
+          <div className="intro-right">
+            <img
+              src={aboutImg}
+              alt="EDUTECHEX Unlock Your Potential"
+              className="intro-about-img"
+            />
+          </div>
 
-  </div>
-</section>
+        </div>
+      </section>
+
       {/* ════════════════════════════════════════
           SECTION 3 — WHAT IS EDUTECHEX
       ════════════════════════════════════════ */}
@@ -117,11 +133,11 @@ const AboutUs = () => {
           </div>
 
           <div className="what-right">
-            <h2 className="what-title">
-              What is&nbsp;
-              <img src={logo} alt="EDUTECHEX" className="inline-logo" />
-              &nbsp;?
-            </h2>
+     <h2 className="what-title what-title--question">
+  What is&nbsp;
+  <img src={logo} alt="EDUTECHEX" className="inline-logo" />
+  <img src={questionImg} alt="?" className="question-img" />
+</h2>
             <p className="what-para">
               EDUTECHEX represents a critical catalyst in the decision-making
               process when students are at the crossroads between passion,
@@ -183,9 +199,55 @@ const AboutUs = () => {
       </section>
 
       {/* ════════════════════════════════════════
-          FOOTER SECTION
+          SECTION 5 — MEET OUR TEAM / OUR STORY
       ════════════════════════════════════════ */}
-     
+      <section className="team-section">
+        <h2 className="team-heading">Meet Our Team</h2>
+
+        <div className="team-inner">
+
+          {/* LEFT — Our Story text */}
+          <div className="team-left">
+            <h3 className="story-title">Our Story</h3>
+            <p className="story-para">
+              Having gained global experience at top universities and companies
+              across the globe, the EDUTECHEX founders discovered that the
+              biggest challenge for India's multi-disciplinary talent pool was
+              the mobilisation of people to explore their true passions and
+              creating individual roadmaps with navigation for success.
+            </p>
+            <p className="story-para">
+              The founders believe that timely intervention and curated guidance
+              can help to create an infrastructure for innovation to thrive
+              across domains and allow for the country and its industries of
+              economy to grow together.
+            </p>
+            <p className="story-para">
+              The end goal is to provide an ecosystem where passion is not just
+              preserved, but discovered early and provided with the right{" "}
+              <a href="#" className="story-link">
+                education and navigation, leading to innovation and thereby
+                creating wealth.
+              </a>
+            </p>
+          </div>
+
+          {/* RIGHT — Single image with blue cross/plus background frame */}
+          <div className="team-right">
+            <div className="story-frame">
+              {/* Blue rounded rectangle background (the cross shape) */}
+              
+              {/* Single image */}
+              <img
+                src={storyImg}
+                alt="Our Story"
+                className="story-single-img"
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
 
     </div>
   );
