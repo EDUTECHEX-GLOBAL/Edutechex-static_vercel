@@ -7,8 +7,8 @@
    SECTION 1 — HERO
 ══════════════════════════════════════════════════ */
 .info-hero {
-  background-color: #EEF3F5;    /* ← slightly more blue-grey */
-  padding: 60px 80px;           /* ← add padding */
+  background-color: #f4f8fb;
+  padding: 50px 50px;
 }
 
 .info-hero-inner {
@@ -25,44 +25,47 @@
   max-width: 50%;
 }
 
+/* ── Tagline row: icon + text ── */
 .tagline-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 14px;
+  margin-bottom: 24px;
 }
 
 .tagline-icon {
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   background: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-size: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
+  color: #f5a623;
 }
 
 .tagline-text {
   font-size: 15px;
   font-weight: 600;
-  color: #1e1e2f;               /* ← same dark charcoal */
+  color: #1e1e2f;
 }
 
 .info-hero-title {
-  font-size: 38px;
+  font-size: 37px;
   font-weight: 600;
-  color: #1e1e2f;               /* ← dark charcoal matching screenshot */
+  color: #1e1e2f;
   line-height: 1.25;
   margin-bottom: 18px;
 }
 
 .info-hero-sub {
   font-size: 15px;
-  color: #888;                  /* ← lighter grey matching screenshot */
-  line-height: 1.6;
+  font-weight: 400;
+  color: #888;
+  line-height: 1.7;
   max-width: 480px;
 }
 
@@ -71,12 +74,13 @@
   display: flex;
   justify-content: flex-end;
 }
-/* AFTER */
+
 .info-hero-right img {
   width: 100%;
   max-width: 620px;
   height: auto;
 }
+
 /* ══════════════════════════════════════════════════
    SECTION 2 — OUR WORKS PROCESS
 ══════════════════════════════════════════════════ */
@@ -88,7 +92,7 @@
 
 .works-title {
   font-size: 30px;
-  font-weight: 800;
+  font-weight: 600;
   color: #1a1a2e;
   margin-bottom: 48px;
 }
@@ -102,20 +106,20 @@
 }
 
 .works-card {
-  border: 1.5px solid #ddd;
+  border: 1.5px solid #0d6efd;
   border-radius: 10px;
-  padding: 28px 20px;
+  padding: 36px 24px;
   text-align: center;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   color: #1a1a2e;
   background: #ffffff;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: pointer;
 }
 
-.works-card--active {
-  border-color: #2b2b2b;
-  color: #2b2b2b;
+.works-card:hover {
+  background: #f0f5ff;
 }
 
 /* ══════════════════════════════════════════════════
@@ -123,13 +127,14 @@
 ══════════════════════════════════════════════════ */
 .it-solutions-section {
   background: #ffffff;
-  padding: 70px 80px;           /* ← more padding */
+  padding: 70px 80px;
 }
+
 .it-solutions-inner {
   display: flex;
-  align-items: center;          /* ← vertically center both sides */
+  align-items: center;
   justify-content: space-between;
-  gap: 60px;
+  gap: 40px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -142,9 +147,8 @@
 
 .it-solutions-left img {
   width: 100%;
-  max-width: 560px;             /* ← increased from 480px */
+  max-width: 560px;
   height: auto;
-  mix-blend-mode: multiply;    /* ← removes white bg */
 }
 
 .it-solutions-right {
@@ -152,11 +156,12 @@
 }
 
 .it-solutions-right h2 {
-  font-size: 42px;              /* ← increased from 34px */
-  font-weight: 900;             /* ← heavier from 800 */
-  color: #1a1a2e;               /* ← deep black matching screenshot */
+  font-size: 42px;
+  font-weight: 600;
+  color: #1a1a2e;
   line-height: 1.25;
 }
+
 /* ══════════════════════════════════════════════════
    SECTION 4 — WE CUSTOMIZE YOUR SOFTWARE
 ══════════════════════════════════════════════════ */
@@ -167,52 +172,64 @@
 }
 
 .customize-title {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 37px;
+  font-weight: 600;
   color: #1a1a2e;
   margin-bottom: 48px;
   line-height: 1.3;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.customize-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-
-/* ✅ ALL cards — tall, centered, generous padding */
 .customize-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 32px;
-  border: 0.5px solid #e0e0e0;
+  padding: 48px 30px;
   background: #ffffff;
-  gap: 24px;
-  transition: background 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.09);
+  gap: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
+.customize-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.13);
+}
 
-/* ✅ Icons — larger to match original ~80px */
-.customize-icon {
+.customize-icon-wrap {
+  width: 90px;
+  height: 90px;
+  background: #f8f9fa;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  flex-shrink: 0;
 }
 
-.customize-icon img {
-  width: 80px;
-  height: 80px;
+.customize-icon-wrap img {
+  width: 52px;
+  height: 52px;
   object-fit: contain;
 }
 
 .customize-label {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   color: #1a1a2e;
-}
-
-.customize-label--active {
-  color: #2b2b2b;
 }
 
 /* ══════════════════════════════════════════════════
@@ -237,8 +254,8 @@
 }
 
 .analytics-left h2 {
-  font-size: 34px;
-  font-weight: 800;
+  font-size: 43px;
+  font-weight: 600;
   color: #111;
   line-height: 1.35;
 }
@@ -251,117 +268,307 @@
 
 .analytics-right img {
   width: 100%;
-  max-width: 680px;
+  max-width: 620px;
   height: auto;
 }
 
-/* ─── RESPONSIVE ─────────────────────────────────── */
-@media (max-width: 900px) {
+/* ─── RESPONSIVE — LARGE DESKTOP (min 1280px) ────── */
+@media (min-width: 1280px) {
   .info-hero,
   .works-section,
   .it-solutions-section,
   .customize-section,
   .analytics-section {
-    padding: 48px 24px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+/* ─── RESPONSIVE — TABLET LANDSCAPE (max 1024px) ─── */
+@media (max-width: 1024px) {
+  .info-hero,
+  .works-section,
+  .it-solutions-section,
+  .customize-section,
+  .analytics-section {
+    padding: 60px 40px;
   }
 
-  .info-hero-inner,
-  .it-solutions-inner,
-  .analytics-inner {
+  .info-hero-title {
+    font-size: 30px;
+  }
+
+  .it-solutions-right h2 {
+    font-size: 34px;
+  }
+
+  .customize-title {
+    font-size: 30px;
+  }
+
+  .customize-label {
+    font-size: 17px;
+  }
+
+  .analytics-left h2 {
+    font-size: 36px;
+  }
+
+  .works-card {
+    font-size: 18px;
+  }
+
+  .works-grid {
+    gap: 16px;
+  }
+
+  .customize-grid {
+    gap: 18px;
+  }
+}
+
+/* ─── RESPONSIVE — TABLET PORTRAIT (max 900px) ───── */
+@media (max-width: 900px) {
+  .info-hero-inner {
+    gap: 28px;
+  }
+
+  .info-hero-title {
+    font-size: 28px;
+  }
+
+  .it-solutions-right h2 {
+    font-size: 30px;
+  }
+
+  .customize-title {
+    font-size: 28px;
+  }
+
+  .customize-label {
+    font-size: 16px;
+  }
+
+  .analytics-left h2 {
+    font-size: 32px;
+  }
+
+  .works-card {
+    font-size: 17px;
+    padding: 30px 20px;
+  }
+
+  .customize-card {
+    padding: 36px 20px;
+  }
+}
+
+/* ─── RESPONSIVE — MOBILE (max 768px) ───────────── */
+@media (max-width: 768px) {
+  .info-hero,
+  .works-section,
+  .it-solutions-section,
+  .customize-section,
+  .analytics-section {
+    padding: 48px 20px;
+  }
+
+  /* Hero stacks vertically */
+  .info-hero-inner {
     flex-direction: column;
+    align-items: flex-start;
   }
 
-  .info-hero-left,
-  .it-solutions-left,
-  .it-solutions-right,
-  .analytics-left,
-  .analytics-right {
+  .info-hero-left {
     max-width: 100%;
     flex: unset;
     width: 100%;
   }
 
-  .info-hero-title,
-  .it-solutions-right h2,
-  .analytics-left h2 {
+  .info-hero-right {
+    width: 100%;
+    flex: unset;
+    justify-content: center;
+  }
+
+  .info-hero-right img {
+    max-width: 100%;
+  }
+
+  .info-hero-title {
     font-size: 26px;
   }
 
-  .works-grid,
+  .info-hero-sub {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  /* Works — single column */
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* IT Solutions stacks */
+  .it-solutions-inner {
+    flex-direction: column;
+  }
+
+  .it-solutions-left,
+  .it-solutions-right {
+    flex: unset;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .it-solutions-right h2 {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  /* Customize — 2 cols */
+  .customize-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .customize-title {
+    font-size: 26px;
+  }
+
+  .customize-label {
+    font-size: 15px;
+  }
+
+  .customize-card {
+    padding: 32px 16px;
+  }
+
+  .customize-icon-wrap {
+    width: 72px;
+    height: 72px;
+  }
+
+  .customize-icon-wrap img {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Analytics stacks */
+  .analytics-inner {
+    flex-direction: column;
+  }
+
+  .analytics-left,
+  .analytics-right {
+    flex: unset;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .analytics-left h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .analytics-right {
+    justify-content: center;
+  }
+
+  .analytics-right img {
+    max-width: 100%;
+  }
+}
+
+/* ─── RESPONSIVE — SMALL MOBILE (max 480px) ─────── */
+@media (max-width: 480px) {
+  .info-hero,
+  .works-section,
+  .it-solutions-section,
+  .customize-section,
+  .analytics-section {
+    padding: 36px 16px;
+  }
+
   .customize-grid {
     grid-template-columns: 1fr;
   }
 
-  .customize-grid {
-    border-radius: 10px;
+  .info-hero-title {
+    font-size: 22px;
+  }
+
+  .works-title,
+  .customize-title {
+    font-size: 24px;
+  }
+
+  .it-solutions-right h2,
+  .analytics-left h2 {
+    font-size: 22px;
+  }
+
+  .tagline-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .tagline-text {
+    font-size: 13px;
+  }
+
+  .works-card {
+    padding: 22px 16px;
+    font-size: 16px;
   }
 
   .customize-card {
-    padding: 40px 24px;
+    padding: 28px 14px;
+    gap: 14px;
   }
 
-  .customize-icon,
-  .customize-icon img {
+  .customize-icon-wrap {
     width: 64px;
     height: 64px;
   }
-}
-/* ── GRID LAYOUT (CARD STYLE) ── */
-.customize-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px; /* ✅ spacing between cards */
-  max-width: 1100px;
-  margin: 0 auto;
-}
 
-/* ── CARD STYLE ── */
-.customize-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 30px;
-  background: #ffffff;
-  border-radius: 14px;
+  .customize-icon-wrap img {
+    width: 36px;
+    height: 36px;
+  }
 
-  /* ✅ SHADOW like second image */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  .customize-label {
+    font-size: 15px;
+  }
 
-  gap: 20px;
-  transition: all 0.3s ease;
+  .analytics-left h2 {
+    text-align: left;
+  }
 }
 
-/* ✅ HOVER EFFECT (optional but nice) */
-.customize-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
-}
+/* ─── RESPONSIVE — EXTRA SMALL (max 360px) ──────── */
+@media (max-width: 360px) {
+  .info-hero-title {
+    font-size: 20px;
+  }
 
-/* ✅ ACTIVE CARD */
-.customize-card--active {
-  background: #ffffff; /* soft lavender */
-}
+  .works-title,
+  .customize-title,
+  .it-solutions-right h2,
+  .analytics-left h2 {
+    font-size: 20px;
+  }
 
-/* ICON */
-.customize-icon {
-  width: 70px;
-  height: 70px;
-}
+  .works-card {
+    font-size: 15px;
+  }
 
-.customize-icon img {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-}
+  .customize-label {
+    font-size: 14px;
+  }
 
-/* TEXT */
-.customize-label {
-  font-size: 16px;
-  font-weight: 700;
-  color: #2b2b2b;
-}
-
-.customize-label--active {
-  color: #2b2b2b;
+  .info-hero-sub {
+    font-size: 13px;
+  }
 }

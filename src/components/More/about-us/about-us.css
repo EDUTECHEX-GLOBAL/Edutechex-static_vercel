@@ -78,9 +78,7 @@
   display: block;
   margin: 0 auto;
   border-radius: 10px;
-
 }
-
 
 /* Decorative */
 .deco-plus-top  { top: 24px;  left: 32px;  font-size: 28px; color: #f97316; }
@@ -100,7 +98,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 40px;              /* ← reduced from 80px */
+  gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -108,8 +106,9 @@
 /* MODIFIED: intro-left now takes full width (no right side forced) */
 .intro-left {
   flex: 1.2;
-  max-width: 52%;         /* ← reduced from 58% */
+  max-width: 52%;
 }
+
 .intro-title {
   font-size: 32px;
   font-weight: 800;
@@ -159,7 +158,7 @@
   line-height: 1.65;
 }
 
-.check-icon {
+.about-check-icon {
   font-size: 18px;
   flex-shrink: 0;
   margin-top: 1px;
@@ -169,6 +168,7 @@
 .intro-image-wrapper {
   margin-top: 24px;
 }
+
 .intro-about-img {
   width: 100%;
   max-width: 520px;
@@ -179,14 +179,16 @@
   box-shadow: none;
   display: block;
 }
+
 /* ========== MODIFIED: RIGHT SIDE — LOGO PROMINENTLY ON THE RIGHT ========== */
 .intro-right {
   flex: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;        /* ← prevents overflow */
+  overflow: hidden;
 }
+
 /* Watermark background (stays as subtle backdrop) */
 .watermark-bg {
   position: absolute;
@@ -235,16 +237,31 @@
 .logo-center:hover {
   transform: translateY(-4px);
 }
+
 .dots-row {
   display: flex;
   gap: 10px;
   margin-bottom: 8px;
 }
 
-.dot { width: 16px; height: 16px; border-radius: 50%; }
-.dot--purple { background: #7c3aed; }
-.dot--teal   { background: #0ea5e9; }
-.dot--orange { background: #f97316; }
+/* ✅ FIXED: Renamed from .dot to .about-dot to avoid conflict with reviews.css */
+.about-dot { 
+  width: 16px; 
+  height: 16px; 
+  border-radius: 50%; 
+}
+
+.about-dot--purple { 
+  background: #7c3aed; 
+}
+
+.about-dot--teal { 
+  background: #0ea5e9; 
+}
+
+.about-dot--orange { 
+  background: #f97316; 
+}
 
 /* UPDATED: Much larger logo */
 .center-logo {
@@ -252,7 +269,6 @@
   width: auto;
   object-fit: contain;
 }
-
 
 .unlock-text {
   font-size: 17px;
@@ -264,6 +280,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 /* ════════════════════════════════════════════════════════════════
    SECTION 3 — WHAT IS EDUTECHEX
 ════════════════════════════════════════════════════════════════ */
@@ -294,7 +311,9 @@
   object-fit: contain;
 }
 
-.what-right { flex: 1; }
+.what-right { 
+  flex: 1; 
+}
 
 .what-title {
   font-size: 32px;
@@ -335,7 +354,7 @@
   background: #eef2f8;
   padding: 80px 250px;
   position: relative;
-  overflow: visible;  /* ← change from hidden to visible */
+  overflow: visible;
 }
 
 .vision-inner {
@@ -372,16 +391,28 @@
   margin: 0;
 }
 
-.vision-box--blue { background: #3d4fba; }
-.vision-box--teal { background: #1ab5b8; }
+.vision-box--blue { 
+  background: #3d4fba; 
+}
 
-.deco-plus-vision { top: 36px;  left: 36px;  font-size: 28px; color: #7c3aed; }
+.vision-box--teal { 
+  background: #1ab5b8; 
+}
+
+.deco-plus-vision { 
+  top: 36px;  
+  left: 36px;  
+  font-size: 28px; 
+  color: #7c3aed; 
+}
+
 .deco-star-vision { 
   top: 250px;
   right: 287px;
   font-size: 30px; 
   color: #f97316; 
 }
+
 /* ════════════════════════════════════════════════════════════════
    FOOTER SECTION
 ════════════════════════════════════════════════════════════════ */

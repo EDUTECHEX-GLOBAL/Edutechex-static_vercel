@@ -25,17 +25,17 @@ const megaMenuItems = [
   {
     label: "Products",
     normalMenuItems: [
-      { name: "Assessments - Pariksha", link: "/pariksha" }, // ✅ FIXED
+      { name: "Assessments - Pariksha", link: "/pariksha" },
     ],
   },
-{
-  label: "Consulting",
-  normalMenuItems: [
-    { name: "Internships", link: "/consulting/internships" },
-{ name: "Information Technology", link: "/consulting/information-technology" },
-    { name: "STEM Labs", link: "/consulting/stem-labs" },
-  ],
-},
+  {
+    label: "Consulting",
+    normalMenuItems: [
+      { name: "Internships", link: "/consulting/internships" },
+      { name: "Information Technology", link: "/consulting/information-technology" },
+      { name: "STEM Labs", link: "/consulting/stem-labs" },
+    ],
+  },
   {
     label: "Buy Courses",
     link: "/buy-courses",
@@ -59,7 +59,7 @@ const ChevronIcon = () => (
 
 // ── Header Component ────────────────────────────────────────────────
 const Header = () => {
-  const navigate = useNavigate(); // ✅ IMPORTANT
+  const navigate = useNavigate();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -108,6 +108,7 @@ const Header = () => {
             onMouseLeave={handleMouseLeave}
           >
             <button className="category-btn">
+              <i className="bi bi-ui-radios-grid category-icon"></i>
               <span>Category</span>
             </button>
 
@@ -145,7 +146,7 @@ const Header = () => {
                 className={`nav-link ${
                   menuItem.label === "Buy Courses" ? "buy" : ""
                 }`}
-                onClick={() => menuItem.link && navigate(menuItem.link)} // ✅ FIXED
+                onClick={() => menuItem.link && navigate(menuItem.link)}
               >
                 {menuItem.label}
                 {menuItem.normalMenuItems && <ChevronIcon />}
@@ -158,7 +159,7 @@ const Header = () => {
                       key={item.name}
                       className="nav-dropdown-item"
                       onClick={() => {
-                        navigate(item.link); // ✅ FIXED
+                        navigate(item.link);
                         closeAll();
                       }}
                     >
