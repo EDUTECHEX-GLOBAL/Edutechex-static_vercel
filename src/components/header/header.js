@@ -18,8 +18,8 @@ const megaMenuItems = [
     label: "Courses",
     normalMenuItems: [
       { name: "K12", link: "/courses/k12" },
-      { name: "Undergraduate", link: "/courses/under-graduate" },
-      { name: "Postgraduate", link: "/courses/post-graduate" },
+    { name: "Undergraduate", link: "/courses/undergraduate" },
+    { name: "Postgraduate", link: "/courses/postgraduate" },
     ],
   },
   {
