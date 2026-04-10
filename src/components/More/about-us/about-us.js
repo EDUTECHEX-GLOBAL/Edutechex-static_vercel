@@ -5,6 +5,8 @@ import studentImg1 from "../../../assets/About_US_21.png";
 import flagImg    from "../../../assets/falg-test.png";
 import logo       from "../../../assets/Edutech-logo.svg";
 import aboutImg   from "../../../assets/About_US_2_2.png";
+import storyImg   from "../../../assets/About_US_story.png";
+
 const CurlyArrow = () => (
   <svg
     className="curly-arrow"
@@ -34,7 +36,6 @@ const AboutUs = () => {
         <span className="deco deco-star-top">✸</span>
         <span className="deco deco-x-right">✕</span>
 
-        {/* Top full-width centered quote */}
         <div className="top-quote-row">
           <p className="top-quote-text">
             "Passion when equipped with the right education and guidance leads
@@ -43,7 +44,6 @@ const AboutUs = () => {
           <CurlyArrow />
         </div>
 
-        {/* Bottom: single student image only */}
         <div className="image-center-row">
           <img
             src={studentImg1}
@@ -59,7 +59,6 @@ const AboutUs = () => {
       <section className="intro-section">
         <div className="intro-inner">
 
-          {/* LEFT */}
           <div className="intro-left">
             <h2 className="intro-title">
               Introducing&nbsp;
@@ -94,7 +93,6 @@ const AboutUs = () => {
             </ul>
           </div>
 
-          {/* RIGHT — just the image */}
           <div className="intro-right">
             <img
               src={aboutImg}
@@ -183,30 +181,51 @@ const AboutUs = () => {
       </section>
 
       {/* ════════════════════════════════════════
-          FOOTER SECTION
+          SECTION 5 — MEET OUR TEAM + OUR STORY
       ════════════════════════════════════════ */}
-      <footer className="footer-section">
-        <div className="about-us-footer-inner">
-          <div className="footer-brand">
-            <h3>EDUTECHEX</h3>
-            <p>Guiding students to discover their passion and build successful careers through holistic education and career counselling.</p>
-          </div>
-          <div className="footer-contact">
-            <h4>Contact Us</h4>
-            <div className="contact-line">
-              <span>Email:</span>
-              <a href="mailto:info@edutechex.com">info@edutechex.com</a>
+      <section className="team-section">
+        <div className="team-inner">
+
+          <h2 className="team-title">Meet Our Team</h2>
+
+          <div className="team-body">
+
+            {/* LEFT — Our Story text */}
+            <div className="team-story">
+              <h3 className="story-title">Our Story</h3>
+              <p className="story-para">
+                Having gained global experience at top universities and
+                companies across the globe, the EDUTECHEX founders discovered
+                that the biggest challenge for India's multi-disciplinary
+                talent pool was the mobilisation of people to explore their
+                true passions and creating individual roadmaps with navigation
+                for success.
+              </p>
+              <p className="story-para">
+                The founders believe that timely intervention and curated
+                guidance can help to create an infrastructure for innovation
+                to thrive across domains and allow for the country and its
+                industries of economy to grow together.
+              </p>
+              <p className="story-para">
+                The end goal is to provide an ecosystem where passion is not
+                just preserved, but discovered early and provided with the
+                right{" "}
+                <strong className="story-highlight">
+                  education and navigation, leading to innovation and thereby
+                  creating wealth.
+                </strong>
+              </p>
             </div>
-            <div className="contact-line">
-              <span>Phone:</span>
-              <a href="tel:+1234567890">+1 234 567 890</a>
+
+            {/* RIGHT — single image (already contains 4-grid layout) */}
+            <div className="team-grid">
+              <img src={storyImg} alt="Our Team" className="team-story-img" />
             </div>
+
           </div>
         </div>
-        <div className="copyright">
-          <p>&copy; {new Date().getFullYear()} EDUTECHEX. All rights reserved.</p>
-        </div>
-      </footer>
+      </section>
 
     </div>
   );

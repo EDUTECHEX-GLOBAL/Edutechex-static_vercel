@@ -20,7 +20,6 @@
   user-select: none;
 }
 
-
 /* ════════════════════════════════════════════════════════════════
    SECTION 1 — QUOTES HERO
 ════════════════════════════════════════════════════════════════ */
@@ -31,9 +30,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  min-height: 600px;   /* ← give section proper height */
+  min-height: 600px;
 }
-/* Top full-width centered quote */
+
 .top-quote-row {
   width: 100%;
   padding: 48px 14% 0;
@@ -41,8 +40,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 0;      /* ← remove any bottom margin */
+  margin-bottom: 0;
 }
+
 .top-quote-text {
   font-size: 25px;
   font-weight: 650;
@@ -50,25 +50,26 @@
   line-height: 1.45;
   max-width: 800px;
 }
+
 .curly-arrow {
   width: 220px;
   height: 88px;
-  margin-top: 8px;       /* ← reduce top margin */
-  margin-bottom: 0;      /* ← no bottom gap */
+  margin-top: 8px;
+  margin-bottom: 0;
   align-self: center;
   margin-left: -80px;
 }
+
 .image-center-row {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;             /* ← change from margin: 20px 0 0 to 0 */
+  margin: 0;
   padding: 0 5%;
   position: relative;
 }
-
 
 .student-img {
   width: 85%;
@@ -79,8 +80,6 @@
   border-radius: 10px;
 }
 
-
-/* Decorative symbols */
 .deco-plus-top {
   top: 40px;
   left: 210px;
@@ -90,22 +89,23 @@
 }
 
 .deco-star-top {
-  top: 38px;          /* ← lower, vertically near quote middle */
-  right: 330px;       /* ← pull away from edge, toward center */
+  top: 38px;
+  right: 330px;
   font-size: 28px;
   color: #f97316;
 }
 
-.deco-x-right { 
-  top: 120px; 
+.deco-x-right {
+  top: 120px;
   right: 300px;
-  font-size: 18px; 
-  color: #ef4444; 
+  font-size: 18px;
+  color: #ef4444;
   font-weight: 900;
-  -webkit-text-stroke: 1px #ef4444;  /* ← makes it appear bolder/thicker */
+  -webkit-text-stroke: 1px #ef4444;
 }
+
 /* ════════════════════════════════════════════════════════════════
-   SECTION 2 — INTRODUCING EDUTECHEX (MODIFIED: LOGO ON RIGHT)
+   SECTION 2 — INTRODUCING EDUTECHEX
 ════════════════════════════════════════════════════════════════ */
 
 .intro-section {
@@ -122,7 +122,6 @@
   margin: 0 auto;
 }
 
-/* MODIFIED: intro-left now takes full width (no right side forced) */
 .intro-left {
   flex: 1.2;
   max-width: 52%;
@@ -199,7 +198,6 @@
   display: block;
 }
 
-/* ========== MODIFIED: RIGHT SIDE — LOGO PROMINENTLY ON THE RIGHT ========== */
 .intro-right {
   flex: 0.8;
   display: flex;
@@ -208,7 +206,6 @@
   overflow: hidden;
 }
 
-/* Watermark background (stays as subtle backdrop) */
 .watermark-bg {
   position: absolute;
   inset: 0;
@@ -237,7 +234,6 @@
   white-space: nowrap;
 }
 
-/* MODIFIED: Logo card — positioned clearly on the right, larger presence */
 .logo-center {
   position: relative;
   z-index: 2;
@@ -263,26 +259,16 @@
   margin-bottom: 8px;
 }
 
-/* ✅ FIXED: Renamed from .dot to .about-dot to avoid conflict with reviews.css */
-.about-dot { 
-  width: 16px; 
-  height: 16px; 
-  border-radius: 50%; 
+.about-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
 }
 
-.about-dot--purple { 
-  background: #7c3aed; 
-}
+.about-dot--purple { background: #7c3aed; }
+.about-dot--teal   { background: #0ea5e9; }
+.about-dot--orange { background: #f97316; }
 
-.about-dot--teal { 
-  background: #0ea5e9; 
-}
-
-.about-dot--orange { 
-  background: #f97316; 
-}
-
-/* UPDATED: Much larger logo */
 .center-logo {
   height: 80px;
   width: auto;
@@ -330,8 +316,8 @@
   object-fit: contain;
 }
 
-.what-right { 
-  flex: 1; 
+.what-right {
+  flex: 1;
 }
 
 .what-title {
@@ -398,7 +384,7 @@
 }
 
 .vision-box {
-  border-radius: 24px;  
+  border-radius: 24px;
   padding: 28px 36px;
   transition: transform 0.2s ease;
 }
@@ -410,111 +396,98 @@
   margin: 0;
 }
 
-.vision-box--blue { 
-  background: #3d4fba; 
+.vision-box--blue { background: #3d4fba; }
+.vision-box--teal { background: #1ab5b8; }
+
+.deco-plus-vision {
+  top: 36px;
+  left: 36px;
+  font-size: 28px;
+  color: #7c3aed;
 }
 
-.vision-box--teal { 
-  background: #1ab5b8; 
-}
-
-.deco-plus-vision { 
-  top: 36px;  
-  left: 36px;  
-  font-size: 28px; 
-  color: #7c3aed; 
-}
-
-.deco-star-vision { 
+.deco-star-vision {
   top: 250px;
   right: 287px;
-  font-size: 30px; 
-  color: #f97316; 
+  font-size: 30px;
+  color: #f97316;
 }
 
 /* ════════════════════════════════════════════════════════════════
-   FOOTER SECTION
+   SECTION 5 — MEET OUR TEAM + OUR STORY
 ════════════════════════════════════════════════════════════════ */
 
-.footer-section {
-  background: #0f172a;
-  padding: 48px 40px 32px;
-  color: #e2e8f0;
-  font-family: "Poppins", sans-serif;
+.team-section {
+  background: #ffffff;
+  padding: 80px 80px;
 }
 
-.about-us-footer-inner {
+.team-inner {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 32px;
 }
 
-.footer-brand h3 {
-  font-size: 24px;
+.team-title {
+  font-size: 32px;
   font-weight: 800;
-  color: white;
-  letter-spacing: -0.3px;
+  color: #1a1a2e;
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.team-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.team-story {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 10px;
+}
+
+.story-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111;
   margin-bottom: 8px;
 }
 
-.footer-brand p {
-  font-size: 13px;
-  opacity: 0.7;
-  max-width: 400px;
-  line-height: 1.6;
+.story-para {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.78;
+  margin: 0;
 }
 
-.footer-contact {
-  text-align: right;
+.story-highlight {
+  color: #3d4fba;
+  font-weight: 700;
 }
 
-.footer-contact h4 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: white;
-}
-
-.contact-line {
+/* RIGHT — single story image */
+.team-grid {
+  flex: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-  font-size: 14px;
 }
 
-.contact-line span:first-child {
-  font-weight: 500;
-  opacity: 0.8;
-}
-
-.contact-line a {
-  color: #facc15;
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.contact-line a:hover {
-  text-decoration: underline;
-  color: #ffd966;
-}
-
-.copyright {
-  text-align: center;
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid #1e293b;
-  font-size: 12px;
-  opacity: 0.6;
+.team-story-img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
 }
 
 /* ════════════════════════════════════════════════════════════════
-   RESPONSIVE (KEEPS LOGO VISIBLE ON RIGHT)
+   RESPONSIVE
 ════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 1024px) {
@@ -524,34 +497,23 @@
 
   .intro-section,
   .what-section,
-  .vision-section { padding: 52px 32px; }
+  .vision-section,
+  .team-section   { padding: 52px 32px; }
 
   .intro-inner,
-  .what-inner { flex-direction: column; gap: 40px; }
+  .what-inner,
+  .team-body      { flex-direction: column; gap: 40px; }
 
-  /* On tablet, logo moves below but remains right-aligned within its container */
-  .intro-left   { max-width: 100%; }
-  .intro-right  { width: 100%; min-height: auto; justify-content: center; margin-top: 20px; }
-  .logo-center  { padding: 28px 36px; }
-  
+  .intro-left     { max-width: 100%; }
+  .intro-right    { width: 100%; min-height: auto; justify-content: center; margin-top: 20px; }
+  .logo-center    { padding: 28px 36px; }
+
   .what-left,
-  .what-right   { width: 100%; }
-  .flag-img     { max-width: 300px; }
-  
-  .about-us-footer-inner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footer-contact {
-    text-align: center;
-  }
-  .contact-line {
-    justify-content: center;
-  }
-  .footer-brand p {
-    max-width: 100%;
-  }
+  .what-right     { width: 100%; }
+  .flag-img       { max-width: 300px; }
+
+  .team-grid      { width: 100%; }
+  .team-story-img { max-width: 100%; }
 }
 
 @media (max-width: 640px) {
@@ -569,18 +531,14 @@
 
   .intro-section,
   .what-section,
-  .vision-section { padding: 40px 20px; }
-  
-  .logo-center {
-    padding: 20px 28px;
-  }
-  .center-logo {
-    height: 44px;
-  }
-  .watermark-text {
-    font-size: 20px;
-  }
-  .watermark-sub {
-    font-size: 9px;
-  }
+  .vision-section,
+  .team-section   { padding: 40px 20px; }
+
+  .logo-center    { padding: 20px 28px; }
+  .center-logo    { height: 44px; }
+  .watermark-text { font-size: 20px; }
+  .watermark-sub  { font-size: 9px; }
+
+  .team-title     { font-size: 24px; }
+  .story-title    { font-size: 22px; }
 }
