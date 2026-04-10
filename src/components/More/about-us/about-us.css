@@ -1,0 +1,586 @@
+/* ================================================================
+   ABOUT US — CSS (MODIFIED TO MATCH REFERENCE STYLE)
+   ================================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.about-container {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  color: #1e293b;
+}
+
+.deco {
+  position: absolute;
+  pointer-events: none;
+  font-weight: 400;
+  line-height: 1;
+  user-select: none;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 1 — QUOTES HERO
+════════════════════════════════════════════════════════════════ */
+
+.quotes-section {
+  position: relative;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 600px;   /* ← give section proper height */
+}
+/* Top full-width centered quote */
+.top-quote-row {
+  width: 100%;
+  padding: 48px 14% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0;      /* ← remove any bottom margin */
+}
+.top-quote-text {
+  font-size: 25px;
+  font-weight: 650;
+  color: #1e293b;
+  line-height: 1.45;
+  max-width: 800px;
+}
+.curly-arrow {
+  width: 220px;
+  height: 88px;
+  margin-top: 8px;       /* ← reduce top margin */
+  margin-bottom: 0;      /* ← no bottom gap */
+  align-self: center;
+  margin-left: -80px;
+}
+.image-center-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;             /* ← change from margin: 20px 0 0 to 0 */
+  padding: 0 5%;
+  position: relative;
+}
+
+
+.student-img {
+  width: 85%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 1px;
+  border-radius: 10px;
+}
+
+
+/* Decorative symbols */
+.deco-plus-top {
+  top: 40px;
+  left: 210px;
+  font-size: 35px;
+  color: #fe8732;
+  font-weight: 600;
+}
+
+.deco-star-top {
+  top: 38px;          /* ← lower, vertically near quote middle */
+  right: 330px;       /* ← pull away from edge, toward center */
+  font-size: 28px;
+  color: #f97316;
+}
+
+.deco-x-right { 
+  top: 120px; 
+  right: 300px;
+  font-size: 18px; 
+  color: #ef4444; 
+  font-weight: 900;
+  -webkit-text-stroke: 1px #ef4444;  /* ← makes it appear bolder/thicker */
+}
+/* ════════════════════════════════════════════════════════════════
+   SECTION 2 — INTRODUCING EDUTECHEX (MODIFIED: LOGO ON RIGHT)
+════════════════════════════════════════════════════════════════ */
+
+.intro-section {
+  background: #ffffff;
+  padding: 80px 80px;
+}
+
+.intro-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* MODIFIED: intro-left now takes full width (no right side forced) */
+.intro-left {
+  flex: 1.2;
+  max-width: 52%;
+}
+
+.intro-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.inline-logo {
+  height: 36px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.intro-box {
+  background: #3d4fba;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+
+.intro-box p {
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.intro-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.intro-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.65;
+}
+
+.about-check-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #3d4fba;
+}
+
+.intro-image-wrapper {
+  margin-top: 24px;
+}
+
+.intro-about-img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+}
+
+/* ========== MODIFIED: RIGHT SIDE — LOGO PROMINENTLY ON THE RIGHT ========== */
+.intro-right {
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Watermark background (stays as subtle backdrop) */
+.watermark-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.08;
+}
+
+.watermark-text {
+  font-size: 38px;
+  font-weight: 900;
+  color: #3d4fba;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.watermark-sub {
+  font-size: 13px;
+  color: #3d4fba;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* MODIFIED: Logo card — positioned clearly on the right, larger presence */
+.logo-center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  padding: 48px 64px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(61, 79, 186, 0.1);
+  min-width: 320px;
+}
+
+.logo-center:hover {
+  transform: translateY(-4px);
+}
+
+.dots-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+/* ✅ FIXED: Renamed from .dot to .about-dot to avoid conflict with reviews.css */
+.about-dot { 
+  width: 16px; 
+  height: 16px; 
+  border-radius: 50%; 
+}
+
+.about-dot--purple { 
+  background: #7c3aed; 
+}
+
+.about-dot--teal { 
+  background: #0ea5e9; 
+}
+
+.about-dot--orange { 
+  background: #f97316; 
+}
+
+/* UPDATED: Much larger logo */
+.center-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.unlock-text {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.3px;
+  background: linear-gradient(135deg, #3d4fba 0%, #1ab5b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 3 — WHAT IS EDUTECHEX
+════════════════════════════════════════════════════════════════ */
+
+.what-section {
+  background: #ffffff;
+  padding: 80px 80px;
+}
+
+.what-inner {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.what-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.flag-img {
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  object-fit: contain;
+}
+
+.what-right { 
+  flex: 1; 
+}
+
+.what-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.what-para {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.78;
+  margin: 0;
+}
+
+.what-divider {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 20px 0;
+}
+
+.what-mission {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+  margin-top: 28px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 4 — VISION & MISSION
+════════════════════════════════════════════════════════════════ */
+
+.vision-section {
+  background: #eef2f8;
+  padding: 80px 250px;
+  position: relative;
+  overflow: visible;
+}
+
+.vision-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.vision-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #1a1a2e;
+  text-align: center;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vision-box {
+  border-radius: 24px;  
+  padding: 28px 36px;
+  transition: transform 0.2s ease;
+}
+
+.vision-box p {
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 1.78;
+  margin: 0;
+}
+
+.vision-box--blue { 
+  background: #3d4fba; 
+}
+
+.vision-box--teal { 
+  background: #1ab5b8; 
+}
+
+.deco-plus-vision { 
+  top: 36px;  
+  left: 36px;  
+  font-size: 28px; 
+  color: #7c3aed; 
+}
+
+.deco-star-vision { 
+  top: 250px;
+  right: 287px;
+  font-size: 30px; 
+  color: #f97316; 
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER SECTION
+════════════════════════════════════════════════════════════════ */
+
+.footer-section {
+  background: #0f172a;
+  padding: 48px 40px 32px;
+  color: #e2e8f0;
+  font-family: "Poppins", sans-serif;
+}
+
+.about-us-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.footer-brand h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  opacity: 0.7;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.footer-contact {
+  text-align: right;
+}
+
+.footer-contact h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.contact-line span:first-child {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.contact-line a {
+  color: #facc15;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.contact-line a:hover {
+  text-decoration: underline;
+  color: #ffd966;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #1e293b;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE (KEEPS LOGO VISIBLE ON RIGHT)
+════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .top-quote-text { font-size: 22px; }
+  .curly-arrow    { margin-left: 15%; }
+  .image-center-row { min-height: auto; }
+
+  .intro-section,
+  .what-section,
+  .vision-section { padding: 52px 32px; }
+
+  .intro-inner,
+  .what-inner { flex-direction: column; gap: 40px; }
+
+  /* On tablet, logo moves below but remains right-aligned within its container */
+  .intro-left   { max-width: 100%; }
+  .intro-right  { width: 100%; min-height: auto; justify-content: center; margin-top: 20px; }
+  .logo-center  { padding: 28px 36px; }
+  
+  .what-left,
+  .what-right   { width: 100%; }
+  .flag-img     { max-width: 300px; }
+  
+  .about-us-footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-contact {
+    text-align: center;
+  }
+  .contact-line {
+    justify-content: center;
+  }
+  .footer-brand p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .top-quote-row  { padding: 36px 6% 0; }
+  .top-quote-text { font-size: 18px; }
+  .curly-arrow    { width: 130px; height: 52px; margin-left: 10%; }
+
+  .image-center-row { min-height: auto; }
+  .student-img      { max-height: 320px; width: 95%; }
+
+  .intro-title,
+  .what-title     { font-size: 24px; }
+  .vision-title   { font-size: 22px; }
+  .vision-box     { padding: 20px 22px; }
+
+  .intro-section,
+  .what-section,
+  .vision-section { padding: 40px 20px; }
+  
+  .logo-center {
+    padding: 20px 28px;
+  }
+  .center-logo {
+    height: 44px;
+  }
+  .watermark-text {
+    font-size: 20px;
+  }
+  .watermark-sub {
+    font-size: 9px;
+  }
+}

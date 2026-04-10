@@ -4,6 +4,7 @@ import { CAROUSEL_REVIEWS } from '../../data/reviews';
 import { FLIP_CARDS } from '../../data/flipCards';
 import { MENTORS } from '../../data/mentors';
 
+import { Link } from "react-router-dom";
 const Reviews = () => {
   const [carouselIdx, setCarouselIdx] = useState(0);
   const current = CAROUSEL_REVIEWS[carouselIdx];
@@ -67,7 +68,9 @@ const Reviews = () => {
         <div className="reviews-right">
           <h2 className="reviews-heading">Some valuable feedback from our students</h2>
           <p className="reviews-desc">We take pride in unlocking students potential and navigating their passion to careers globally. It give's us immense satisfaction when our students achieve their milestones through EDUTECHEX navigation program. Take a look at some of our students incredible success stories.</p>
-          <button className="btn-testimonials">View All Testimonials</button>
+          <Link to="/testimonials" className="btn-testimonials">
+  View All Testimonials
+</Link>
         </div>
       </div>
     </section>
