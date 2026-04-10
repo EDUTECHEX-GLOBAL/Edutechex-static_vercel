@@ -74,7 +74,7 @@ function CourseCard({ course }) {
             )}
           </div>
         )}
-        <a href={link} className="pg-arrow-btn" aria-label={`View ${course.title}`}>&#10140;</a>
+       <span className="pg-arrow-btn" aria-label={`View ${course.title}`}>&#10140;</span>
       </div>
     </div>
   );

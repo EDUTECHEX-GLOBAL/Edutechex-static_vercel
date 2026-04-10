@@ -104,32 +104,7 @@ export default function Shop() {
       ══════════════════════════════════════ */}
       <section className="shop-banner">
 
-        {/* Decorative SVG — exact paths from original Angular template */}
-        <figure className="shop-banner__svg" aria-hidden="true">
-          <svg width="566.3" height="353.7" viewBox="0 0 566.3 353.7"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              stroke="#17a2b8"
-              fill="none"
-              strokeWidth="1.5"
-              d="M525.1,4c8.1,0.7,14.9,7.2,17.9,14.8c3,7.6,3,16,2.1,24.1
-                 c-4.7,44.3-32.1,84.7-69.4,108.9c-37.4,24.2-83.7,32.8-127.9,27.6
-                 c-32.3-3.8-63.5-14.5-95.9-16.6c-21.6-1.4-45.6,2.1-60.1,18.3
-                 c-7.7,8.5-11.8,19.6-14.8,30.7c-7.9,29.5-9,60.8-19.7,89.5
-                 c-5.5,14.8-14,29.1-27.1,38c-15.6,10.5-35.6,12-54.2,9.5
-                 c-18.6-2.5-36.5-8.6-55-12.1"
-            />
-            <path
-              stroke="#F99D2B"
-              fill="none"
-              strokeWidth="1.5"
-              d="M560.7,0.2c10,18.3,3.7,41.1-5,60.1c-11.8,25.9-28,50.3-50.2,68.2
-                 c-29,23.3-66.3,34-103.2,38.6c-36.9,4.6-74.3,3.8-111.3,7.2
-                 c-22.3,2-45.3,5.9-63.5,19c-26.8,19.2-39,55.3-68.3,70.4
-                 c-38.2,19.6-89.7-4.9-125.6,18.8c-22.6,15-30.7,44.2-33.3,71.2"
-            />
-          </svg>
-        </figure>
+        
 
         <div className="shop-banner__content">
 
@@ -154,11 +129,7 @@ export default function Shop() {
   name="course-search" /* unique name stops browser suggestions */
 />
               <span className="shop-search-icon" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
+                
               </span>
             </div>
           </div>

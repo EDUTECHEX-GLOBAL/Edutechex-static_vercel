@@ -34,7 +34,7 @@
 }
 
 .ug-banner h1 {
-  font-family: 'Nunito', sans-serif;
+
   font-size: 2.6rem;
   font-weight: 800;
   color: #fff;
@@ -109,13 +109,21 @@
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: hidden;  /* ← make sure this is present */
   transition: transform var(--transition), box-shadow var(--transition);
   text-decoration: none;
   color: inherit;
 }
+
 .ug-card:hover { transform: translateY(-5px); box-shadow: var(--card-hover-shadow); }
-.ug-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+
+.ug-card-img { 
+  width: 100%; 
+  aspect-ratio: 4/3; 
+  object-fit: cover; 
+  display: block; 
+  border-radius: 14px 14px 0 0 !important;
+}
 .ug-card-body { padding: 16px 18px 12px; flex: 1; }
 .ug-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .ug-badge { background: rgba(68,76,174,0.10); color: var(--brand-blue); font-size: 0.75rem; font-weight: 600; border-radius: 20px; padding: 3px 12px; }
@@ -136,8 +144,23 @@
 .ug-price { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); }
 .ug-price-original { font-size: 0.82rem; color: #b0b8d0; text-decoration: line-through; }
 .ug-discount-badge { display: inline-block; background: var(--accent-green); color: #fff; font-size: 0.72rem; font-weight: 700; border-radius: 4px; padding: 2px 8px; margin-top: 2px; }
-.ug-arrow-btn { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: var(--brand-blue); color: #fff; border-radius: 50%; text-decoration: none; font-size: 1rem; transition: background var(--transition), transform var(--transition); flex-shrink: 0; }
-.ug-arrow-btn:hover { background: var(--brand-blue-dark); transform: scale(1.1); color: #fff; }
+.ug-arrow-btn { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 38px; 
+  height: 38px; 
+  background: var(--brand-blue); 
+  color: #fff; 
+  border-radius: 50%; 
+  text-decoration: none; 
+  font-size: 1.5rem; 
+  transition: background var(--transition), transform var(--transition); 
+  flex-shrink: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}.ug-arrow-btn:hover { background: var(--brand-blue-dark); transform: scale(1.1); color: #fff; }
 
 /* Sidebar */
 .ug-sidebar { display: flex; flex-direction: column; gap: 20px; }
@@ -150,7 +173,7 @@
 .ug-category-list a:hover { color: var(--brand-blue); }
 .ug-category-count { font-size: 0.82rem; color: var(--text-muted); }
 .ug-tag-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.ug-tag { background: #dfdfe1; color: var(--text-dark); border: 1px solid #e0e3f5; border-radius: 5px; padding: 6px 16px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: background var(--transition), color var(--transition); }
+.ug-tag { background: #cecece; color: var(--text-dark); border: 1px solid #e0e3f5; border-radius: 5px; padding: 6px 16px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: background var(--transition), color var(--transition); }
 .ug-tag:hover, .ug-tag.active { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
 
 /* CTA */

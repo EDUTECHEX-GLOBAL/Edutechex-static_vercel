@@ -84,7 +84,7 @@
   top: 40px;
   left: 40px;
   font-size: 35px;
-  color: #fe8732;
+  color: #fd944a;
   font-weight: 600;
 }
 
@@ -146,13 +146,13 @@
 
 .intro-box {
   background: #3d4fba;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 20px 24px;
   margin-bottom: 28px;
 }
 
 .intro-box p {
-  font-size: 14px;
+  font-size: 13px;
   color: #ffffff;
   line-height: 1.75;
   margin: 0;
@@ -170,10 +170,7 @@
 .intro-list li {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-  color: #444;
-  line-height: 1.65;
+  gap: 10px;
 }
 
 .about-check-icon {
@@ -332,7 +329,7 @@
 }
 
 .what-para {
-  font-size: 15px;
+  font-size: 13px;
   color: #444;
   line-height: 1.78;
   margin: 0;

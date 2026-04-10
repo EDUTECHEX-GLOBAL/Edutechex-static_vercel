@@ -69,7 +69,7 @@ function CourseCard({ course }) {
             )}
           </div>
         )}
-        <a href={link} className="k12-arrow-btn" aria-label={`View ${course.title}`}>&#10140;</a>
+      <span className="k12-arrow-btn" aria-label={`View ${course.title}`}>&#10140;</span>
       </div>
     </div>
   );
