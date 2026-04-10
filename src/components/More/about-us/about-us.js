@@ -23,24 +23,6 @@ const CurlyArrow = () => (
   </svg>
 );
 
-const CheckIcon = () => (
-  <span className="check-icon">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 2L14.5 4.5L18 3.5L19 7L22 8.5L21 12L22 15.5L19 17L18 20.5L14.5 19.5L12 22L9.5 19.5L6 20.5L5 17L2 15.5L3 12L2 8.5L5 7L6 3.5L9.5 4.5L12 2Z"
-        fill="#10b981"
-      />
-      <path
-        d="M8 12L10.5 14.5L16 9"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  </span>
-);
-
 const AboutUs = () => {
   return (
     <div className="about-container">
@@ -49,6 +31,7 @@ const AboutUs = () => {
           SECTION 1 — QUOTES HERO
       ════════════════════════════════════════ */}
       <section className="quotes-section">
+
         <span className="deco deco-plus-top">+</span>
         <span className="deco deco-star-top">✸</span>
         <span className="deco deco-x-right">✕</span>
@@ -69,6 +52,7 @@ const AboutUs = () => {
           />
           <div className="wave-bottom"></div>
         </div>
+
       </section>
 
       {/* ════ SECTION 2 — INTRODUCING EDUTECHEX ════ */}
@@ -131,11 +115,11 @@ const AboutUs = () => {
           </div>
 
           <div className="what-right">
-     <h2 className="what-title what-title--question">
-  What is&nbsp;
-  <img src={logo} alt="EDUTECHEX" className="inline-logo" />
-  <img src={questionImg} alt="?" className="question-img" />
-</h2>
+            <h2 className="what-title">
+              What is&nbsp;
+              <img src={logo} alt="EDUTECHEX" className="inline-logo" />
+              &nbsp;?
+            </h2>
             <p className="what-para">
               EDUTECHEX represents a critical catalyst in the decision-making
               process when students are at the crossroads between passion,
