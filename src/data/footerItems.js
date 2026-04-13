@@ -18,9 +18,9 @@ export const FOOTER_ITEMS = [
   {
     heading: 'Resources',
     items: [
-      { name: 'Pariksha – Assessments', link: '/assessments' },
+      { name: 'Pariksha - Assessments', link: '/pariksha' },
       { name: 'Career Navigation', link: '/career-navigation' },
-      { name: 'Internships', link: '/internships' },
+      { name: 'Internships', link: '/consulting/internships' },
       { name: 'Testimonials', link: '/testimonials' },
     ],
   },

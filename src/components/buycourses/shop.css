@@ -531,6 +531,64 @@
 /* ================================================================
    RESPONSIVE — Phone (≤ 600px)
    ================================================================ */
+/* ================================================================
+   RESPONSIVE - iPad Mini only (768 x 1024)
+   ================================================================ */
+@media screen and (width: 768px) and (height: 1024px) {
+  .shop-banner {
+    padding: 2.5rem 1.5rem;
+    min-height: auto;
+  }
+
+  .shop-banner__content { gap: 1.5rem; }
+
+  .shop-banner__title { font-size: 2rem; }
+
+  .shop-banner__subtitle {
+    font-size: 0.92rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .shop-search-wrap {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .shop-banner__image { width: clamp(180px, 55%, 340px); }
+
+  .shop-banner__lines { left: 0; opacity: 0.5; }
+
+  .shop-filters-title { font-size: 1.05rem; }
+
+  .shop-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .shop-card__img-wrap { height: 180px; }
+
+  .shop-card__body {
+    padding: 0.7rem 0.85rem 0.4rem;
+    min-height: 85px;
+  }
+
+  .shop-card__name { font-size: 0.85rem; }
+
+  .shop-card__details { font-size: 0.75rem; }
+
+  .shop-card__footer { padding: 0.55rem 0.85rem 0.7rem; }
+
+  .shop-card__btn {
+    font-size: 0.8rem;
+    padding: 0.42rem 0.6rem;
+  }
+
+  .shop-card__icon { width: 1.9rem; height: 1.9rem; }
+
+  .shop-content { padding: 2rem 1rem 3rem; }
+}
+
 @media (max-width: 600px) {
   .shop-banner { padding: 1.4rem 1rem; }
 

@@ -3,6 +3,7 @@
 // =============================================
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { coursesData } from '../courses';
 import './k12.css';
 
@@ -163,6 +164,7 @@ function CounsellingModal({ isOpen, onClose }) {
 
 // ── Main K12 Component ─────────────────────────────────────
 export default function K12() {
+  const navigate = useNavigate();
   const courses = coursesData.k12;
 
   const [search, setSearch]       = useState('');
@@ -177,8 +179,8 @@ export default function K12() {
 
   function handleCategoryClick(e, name) {
     e.preventDefault();
-    if (name === 'Undergraduate')     window.location.href = '#/course-grid/2/Undergraduate';
-    else if (name === 'Postgraduate') window.location.href = '#/course-grid/3/Postgraduate';
+    if (name === 'Undergraduate')     navigate('/courses/undergraduate');
+    else if (name === 'Postgraduate') navigate('/courses/postgraduate');
   }
 
   return (
@@ -188,7 +190,11 @@ export default function K12() {
         <div className="k12-container">
           <h1>K12 Courses</h1>
           <ul className="k12-breadcrumb">
-            <li><a href="/home">Home</a></li>
+            <li>
+              <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+                Home
+              </span>
+            </li>
             <li className="active">Courses</li>
           </ul>
         </div>

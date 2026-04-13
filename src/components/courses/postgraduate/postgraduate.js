@@ -3,6 +3,7 @@
 // =============================================
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { coursesData } from '../courses';
 import './postgraduate.css';
 
@@ -150,6 +151,7 @@ function CounsellingModal({ isOpen, onClose }) {
 
 // ── Main Postgraduate Component ────────────────────────────
 export default function Postgraduate() {
+  const navigate = useNavigate();
   const courses = coursesData.postgraduate;
 
   const [search,    setSearch]    = useState('');
@@ -164,8 +166,8 @@ export default function Postgraduate() {
 
   function handleCategoryClick(e, name) {
     e.preventDefault();
-    if (name === 'K12')           window.location.href = '#/course-grid/1/K12';
-    else if (name === 'Undergraduate') window.location.href = '#/course-grid/2/Undergraduate';
+    if (name === 'K12')           navigate('/courses/k12');
+    else if (name === 'Undergraduate') navigate('/courses/undergraduate');
   }
 
   return (
@@ -175,7 +177,11 @@ export default function Postgraduate() {
         <div className="pg-container">
           <h1>Postgraduate Courses</h1>
           <ul className="pg-breadcrumb">
-            <li><a href="/home">Home</a></li>
+            <li>
+              <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+                Home
+              </span>
+            </li>
             <li className="active">Courses</li>
           </ul>
         </div>
