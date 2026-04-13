@@ -21,13 +21,8 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-
-
-
 /* ---- Page Banner ---- */
 .k12-banner {
-  
   background-size: cover;
   background-color: var(--brand-blue);
   padding: 56px 0 48px;
@@ -35,7 +30,6 @@
 }
 
 .k12-banner h1 {
-  
   font-size: 2.6rem;
   font-weight: 800;
   color: #fff;
@@ -79,8 +73,9 @@
 /* ---- Layout ---- */
 .k12-section {
   padding: 48px 0 64px;
-  background: var(--bg-light);  /* ADD THIS */
+  background: var(--bg-light);
 }
+
 .k12-container {
   max-width: 1260px;
   margin: 0 auto;
@@ -92,12 +87,6 @@
   grid-template-columns: 1fr 300px;
   gap: 32px;
   align-items: start;
-}
-
-@media (max-width: 992px) {
-  .k12-layout {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ---- Search Bar ---- */
@@ -149,22 +138,10 @@
   gap: 24px;
 }
 
-@media (max-width: 900px) {
-  .k12-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 560px) {
-  .k12-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ---- Course Card ---- */
 .k12-card {
   background: #fff;
-   border-radius: 8px; 
+  border-radius: 8px;
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
@@ -184,7 +161,7 @@
   aspect-ratio: 4/3;
   object-fit: cover;
   display: block;
-  border-radius: 8px 8px 0 0;  /* ← add this: rounds only top corners */
+  border-radius: 8px 8px 0 0;
 }
 
 .k12-card-body {
@@ -329,7 +306,7 @@
   text-decoration: none;
   font-size: 1.5rem;
   transition: background var(--transition), transform var(--transition);
-  flex-shrink: 1.5rem;
+  flex-shrink: 0;
 }
 
 .k12-arrow-btn:hover {
@@ -638,18 +615,301 @@
   padding: 12px 0 4px;
 }
 
-/* ---- Responsive ---- */
+/* ==============================================
+   RESPONSIVE BREAKPOINTS — MOBILE COMPACT FIXES
+   ============================================== */
+
+/* ---- Tablet: ≤992px ---- */
+@media (max-width: 992px) {
+  .k12-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .k12-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .k12-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .k12-counselling-cta {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---- Phablet / large phone: ≤768px ---- */
 @media (max-width: 768px) {
+  .k12-banner {
+    padding: 36px 16px 30px;
+  }
+
   .k12-banner h1 {
-    font-size: 1.9rem;
+    font-size: 1.75rem;
+    letter-spacing: -0.2px;
+  }
+
+  .k12-breadcrumb {
+    font-size: 0.82rem;
+  }
+
+  .k12-section {
+    padding: 24px 0 40px;
+  }
+
+  .k12-container {
+    padding: 0 14px;
+  }
+
+  .k12-search-wrap {
+    margin-bottom: 20px;
+  }
+
+  .k12-search-box {
+    max-width: 100%;
+    padding: 9px 14px;
+  }
+
+  .k12-search-box input {
+    font-size: 0.88rem;
   }
 
   .k12-layout {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .k12-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  /* Card adjustments for mid-size */
+  .k12-card-body {
+    padding: 12px 13px 9px;
+  }
+
+  .k12-card-title {
+    font-size: 0.92rem;
+  }
+
+  .k12-card-desc {
+    font-size: 0.78rem;
+  }
+
+  .k12-card-footer {
+    padding: 9px 13px 12px;
+  }
+
+  .k12-arrow-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+
+  /* Sidebar stacked again on small tablets */
+  .k12-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .k12-sidebar-card {
+    padding: 18px 16px;
+  }
+
+  .k12-counselling-cta {
+    padding: 22px 16px;
+  }
+
+  /* Modal full-screen on mobile */
+  .k12-modal {
+    max-width: calc(100vw - 28px);
+    padding: 24px 18px;
+    margin: 14px;
   }
 }
-.k12-banner {
-  background-color: var(--brand-blue);
-  padding: 56px 0 48px;
-  text-align: center;
+
+/* ---- Phone: ≤560px ---- */
+@media (max-width: 560px) {
+  .k12-banner {
+    padding: 28px 12px 24px;
+  }
+
+  .k12-banner h1 {
+    font-size: 1.45rem;
+  }
+
+  .k12-section {
+    padding: 18px 0 32px;
+  }
+
+  .k12-container {
+    padding: 0 12px;
+  }
+
+  /* 2-column compact grid on phones */
+  .k12-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .k12-card {
+    border-radius: 8px;
+  }
+
+  .k12-card-img {
+    aspect-ratio: 16/10;
+  }
+
+  .k12-card-body {
+    padding: 9px 10px 7px;
+  }
+
+  .k12-card-top {
+    margin-bottom: 5px;
+  }
+
+  .k12-badge {
+    font-size: 0.62rem;
+    padding: 2px 7px;
+  }
+
+  .k12-fav {
+    font-size: 0.9rem;
+  }
+
+  .k12-card-title {
+    font-size: 0.78rem;
+    margin-bottom: 3px;
+  }
+
+  .k12-card-desc {
+    font-size: 0.7rem;
+    -webkit-line-clamp: 2;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .k12-card-footer {
+    padding: 7px 10px 9px;
+    gap: 4px;
+  }
+
+  .k12-price-label {
+    font-size: 0.65rem;
+  }
+
+  .k12-price {
+    font-size: 0.78rem;
+  }
+
+  .k12-price-original {
+    display: none; /* hide strikethrough on very small screens */
+  }
+
+  .k12-discount-badge {
+    font-size: 0.62rem;
+    padding: 1px 5px;
+  }
+
+  .k12-arrow-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  /* Sidebar */
+  .k12-sidebar-card {
+    padding: 14px 13px;
+  }
+
+  .k12-sidebar-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .k12-tag {
+    font-size: 0.75rem;
+    padding: 5px 11px;
+  }
+
+  .k12-tag-list {
+    gap: 7px;
+  }
+
+  .k12-counselling-cta {
+    padding: 18px 14px;
+  }
+
+  .k12-counselling-cta h3 {
+    font-size: 1rem;
+  }
+
+  .k12-counselling-cta p {
+    font-size: 0.78rem;
+  }
+
+  .k12-cta-btn {
+    font-size: 0.82rem;
+    padding: 9px 12px;
+  }
+
+  .k12-category-list a {
+    font-size: 0.83rem;
+  }
+
+  /* Modal */
+  .k12-modal {
+    max-width: 100%;
+    margin: 10px;
+    padding: 20px 14px;
+    border-radius: 10px;
+  }
+
+  .k12-modal h5 {
+    font-size: 1.05rem;
+  }
+
+  .k12-form-group input {
+    padding: 9px 12px;
+    font-size: 0.85rem;
+  }
+
+  .k12-submit-btn {
+    padding: 10px;
+    font-size: 0.88rem;
+  }
+}
+
+/* ---- Very small phones: ≤375px ---- */
+@media (max-width: 375px) {
+  .k12-banner h1 {
+    font-size: 1.25rem;
+  }
+
+  .k12-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .k12-card-title {
+    font-size: 0.72rem;
+  }
+
+  .k12-price {
+    font-size: 0.72rem;
+  }
+
+  .k12-container {
+    padding: 0 10px;
+  }
+
+  .k12-search-box {
+    padding: 8px 11px;
+  }
 }

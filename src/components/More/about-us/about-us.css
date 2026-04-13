@@ -1,5 +1,5 @@
 /* ================================================================
-   ABOUT US — CSS (MODIFIED TO MATCH REFERENCE STYLE)
+   ABOUT US — CSS (MOBILE COMPACT UPDATED)
    ================================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
@@ -144,6 +144,12 @@
   vertical-align: middle;
 }
 
+.question-img {
+  height: 36px;
+  width: auto;
+  vertical-align: middle;
+}
+
 .intro-box {
   background: #3d4fba;
   border-radius: 14px;
@@ -198,42 +204,6 @@
   display: block;
 }
 
-.intro-right {
-  flex: 0.8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.watermark-bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.08;
-}
-
-.watermark-text {
-  font-size: 38px;
-  font-weight: 900;
-  color: #3d4fba;
-  letter-spacing: 2px;
-  white-space: nowrap;
-}
-
-.watermark-sub {
-  font-size: 13px;
-  color: #3d4fba;
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
 .logo-center {
   position: relative;
   z-index: 2;
@@ -244,13 +214,9 @@
   background: #ffffff;
   padding: 48px 64px;
   border-radius: 24px;
-  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(61, 79, 186, 0.1);
+  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.12);
+  border: 1px solid rgba(61,79,186,0.1);
   min-width: 320px;
-}
-
-.logo-center:hover {
-  transform: translateY(-4px);
 }
 
 .dots-row {
@@ -285,6 +251,22 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.watermark-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.08;
+}
+
+.watermark-text { font-size: 38px; font-weight: 900; color: #3d4fba; letter-spacing: 2px; white-space: nowrap; }
+.watermark-sub  { font-size: 13px; color: #3d4fba; letter-spacing: 1px; white-space: nowrap; }
 
 /* ════════════════════════════════════════════════════════════════
    SECTION 3 — WHAT IS EDUTECHEX
@@ -400,13 +382,7 @@
   transition: transform 0.2s ease;
 }
 
-.vision-box p {
-  font-size: 15px;
-  color: #ffffff;
-  line-height: 1.78;
-  margin: 0;
-}
-
+.vision-box p { font-size: 15px; color: #ffffff; line-height: 1.78; margin: 0; }
 .vision-box--blue { background: #3d4fba; }
 .vision-box--teal { background: #1ab5b8; }
 
@@ -439,6 +415,10 @@
 .team-inner {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 60px;
 }
 
 .team-title {

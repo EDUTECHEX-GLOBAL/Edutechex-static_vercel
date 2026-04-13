@@ -325,9 +325,7 @@
     width: 100%;
   }
 
-  .pariksha-hero-svg {
-    max-width: 420px;
-  }
+  .pariksha-hero-svg { max-width: 420px; }
 
   .carousel-control-prev {
     left: -10px;
