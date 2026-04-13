@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./internships.css";
-import { FaSearch, FaArrowRight, FaHeart } from "react-icons/fa";
+import { FaSearch, FaArrowRight } from "react-icons/fa";
+import { FiHeart } from "react-icons/fi";
+import { BsLightbulb } from "react-icons/bs";
 import bannerImg from "../../../assets/banner-03-edit.png";
 import k12Img from "../../../assets/K12.jpg";
 import ugImg from "../../../assets/Undergraduate.jpg";
@@ -11,40 +13,61 @@ const Internships = () => {
   const data = {
     k12: {
       title: "K12",
-      description:
-        "EduTechEx SAT Program is designed by subject matter experts and senior counselors having more than a decade experience in teaching SAT programs worldwide and counselling thousands of students to get admitted into their dream universities worldwide.",
-      image: k12Img,
+      menuId: 1,
+      items: [
+        {
+          id: 1,
+          image: k12Img,
+          title: "Internships for School Students",
+          desc: "EduTechEx SAT Program is designed by subject matter experts and senior counselors having more than a decade experience in teaching SAT programs worldwide and counselling thousands of students to get admitted into their dream universities worldwide.",
+          rating: "5.0/5.0",
+        },
+      ],
     },
     undergraduate: {
-      title: "UNDERGRADUATE",
-      description: "Our curated internships for undergraduate students",
-      image: ugImg,
+      title: "Undergraduate",
+      menuId: 2,
+      items: [
+        {
+          id: 1,
+          image: ugImg,
+          title: "Internships for Undergraduates",
+          desc: "Our curated internships for undergraduate students aligned with their passion and skills in core emerging areas.",
+          rating: "5.0/5.0",
+        },
+      ],
     },
   };
+
+  const currentData = data[activeTab];
 
   return (
     <div className="internships-container">
 
-      {/* HERO SECTION */}
+      {/* ── HERO SECTION ── */}
       <section className="internships-hero-section">
         <div className="internships-hero-inner">
-          <div className="internships-hero-left">
 
+          <div className="internships-hero-left">
+            {/* Tagline */}
             <div className="tagline-row">
-              <div className="tagline-icon">💡</div>
-              <span className="tagline-text">
-                Navigate Your Future With Us
-              </span>
+              <div className="tagline-icon">
+                <BsLightbulb />
+              </div>
+              <span className="tagline-text">Navigate Your Future With Us</span>
             </div>
 
+            {/* Title */}
             <h1 className="internships-hero-title">
               Get Mapped to Internships in Core Emerging Areas!
             </h1>
 
-            <p className="hero-subtext">
+            {/* Subtext */}
+            <p className="internships-hero-subtext">
               Find Internships aligned with Industry Requirement
             </p>
 
+            {/* Search */}
             <div className="search-card">
               <div className="search-box">
                 <input
@@ -56,16 +79,16 @@ const Internships = () => {
                 </button>
               </div>
             </div>
-
           </div>
 
+          {/* Hero Image */}
           <div className="internships-hero-right">
             <img src={bannerImg} alt="Internship Banner" />
           </div>
         </div>
       </section>
 
-      {/* SKILLS SECTION */}
+      {/* ── SKILLS SECTION ── */}
       <section className="skills-section">
         <div className="section-header">
           <h2>Enhance Your Skills Through Internships</h2>
@@ -75,6 +98,7 @@ const Internships = () => {
           </p>
         </div>
 
+        {/* Tabs */}
         <div className="tabs-wrapper">
           <div className="tabs">
             <button
@@ -100,38 +124,44 @@ const Internships = () => {
           </div>
         </div>
 
+        {/* Cards */}
         <div className="cards-area">
-          <div className="card">
-            <div className="card-top">
-              <img
-                src={data[activeTab].image}
-                alt={data[activeTab].title}
-              />
-            </div>
-
-            <div className="card-body">
-              <div className="card-meta">
-                <span className="badge">All level</span>
-                <FaHeart className="heart-icon" />
+          {currentData.items.map((item) => (
+            <div className="card" key={item.id}>
+              {/* Image */}
+              <div className="card-top">
+                <img src={item.image} alt={item.title} />
               </div>
 
-              <h4 className="card-title">
-                Internships for {data[activeTab].title}
-              </h4>
+              {/* Body */}
+              <div className="card-body">
+                <div className="card-meta">
+                  <span className="badge">All level</span>
+                  <FiHeart className="heart-icon" />
+                </div>
 
-              <p className="card-desc">
-                {data[activeTab].description}
-              </p>
+                <h5 className="card-title">{item.title}</h5>
 
-              <div className="card-footer-row">
-                <button className="arrow-btn">
-                  <FaArrowRight />
-                </button>
+                <p className="card-desc">{item.desc}</p>
+
+                <div className="rating-row">
+                  <span className="stars">★★★★★</span>
+                  <span className="rating-score">{item.rating}</span>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="card-footer">
+                <hr className="card-divider" />
+                <div className="card-footer-row">
+                  <button className="arrow-btn">
+                    <FaArrowRight />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-
       </section>
     </div>
   );
