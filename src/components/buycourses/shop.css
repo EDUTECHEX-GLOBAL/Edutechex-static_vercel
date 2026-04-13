@@ -1,5 +1,5 @@
 /* ================================================================
-   shop.css  —  EDUTECHEX Course Store (MOBILE COMPACT UPDATED)
+   shop.css  —  EDUTECHEX Course Store (MOBILE COMPACT — FULL FIX)
    ================================================================ */
 
 /* ----------------------------------------------------------------
@@ -85,14 +85,16 @@
   margin: 0 0 1.4rem;
 }
 
-/* ── Search ── */
+/* ── Search ──
+   FIX: removed hardcoded width:550px — now always 100% of its container */
 .shop-search-wrap {
   position: relative;
+  width: 100%;
   max-width: 480px;
 }
 
 .shop-search {
-  width: 550px;
+  width: 100%;          /* FIXED: was hardcoded 550px */
   height: 50px;
   padding: 0.6rem 2.6rem 0.6rem 0.95rem;
   border: 1px solid var(--shop-border);
@@ -131,7 +133,8 @@
   pointer-events: none;
 }
 
-/* ── Right illustration ── */
+/* ── Right illustration ──
+   FIX: removed hardcoded width:600px height:400px on img */
 .shop-banner__image {
   flex: 0 0 auto;
   width: clamp(80px, 45%, 520px);
@@ -142,8 +145,9 @@
 .shop-banner__image img {
   position: relative;
   z-index: 1;
-  width: 600px;
-  height: 400px;
+  width: 100%;          /* FIXED: was hardcoded 600px */
+  height: auto;         /* FIXED: was hardcoded 400px */
+  max-width: 600px;
   object-fit: contain;
   display: block;
 }
@@ -325,6 +329,7 @@
   line-height: 0;
   padding: 0;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .shop-card__icon i,
@@ -421,9 +426,7 @@
    RESPONSIVE — 3 columns (≤ 1199px)
    ================================================================ */
 @media (max-width: 1199px) {
-  .shop-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .shop-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ================================================================
@@ -441,43 +444,24 @@
     gap: 1.5rem;
   }
 
-  .shop-banner__text {
-    max-width: 100%;
-  }
+  .shop-banner__text { max-width: 100%; }
 
-  .shop-banner__title {
-    font-size: 2rem;
-  }
+  .shop-banner__title { font-size: 2rem; }
 
-  .shop-banner__subtitle {
-    font-size: 0.92rem;
-  }
+  .shop-banner__subtitle { font-size: 0.92rem; }
 
   .shop-search-wrap {
     max-width: 100%;
+    width: 100%;
     margin: 0 auto;
   }
 
-  .shop-search {
-    width: 100%;
-  }
+  .shop-banner__image { width: clamp(180px, 55%, 340px); }
 
-  .shop-banner__image {
-    width: clamp(180px, 55%, 340px);
-  }
-
-  .shop-banner__image img {
-    width: 100%;
-    height: auto;
-  }
-
-  .shop-banner__lines {
-    left: 0;
-    opacity: 0.5;
-  }
+  .shop-banner__lines { left: 0; opacity: 0.5; }
 
   .shop-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 
@@ -486,9 +470,7 @@
     align-items: flex-start;
   }
 
-  .shop-filters-selects {
-    width: 100%;
-  }
+  .shop-filters-selects { width: 100%; }
 
   .shop-select {
     min-width: unset;
@@ -496,260 +478,304 @@
     width: 100%;
   }
 
-  .shop-content {
-    padding: 2rem 1rem 3rem;
-  }
+  .shop-content { padding: 2rem 1rem 3rem; }
 }
 
 /* ================================================================
    RESPONSIVE — Large phone (≤ 768px)
    ================================================================ */
 @media (max-width: 768px) {
-  .shop-banner {
-    padding: 2rem 1.25rem;
-  }
+  .shop-banner { padding: 1.75rem 1.25rem; }
 
-  .shop-banner__title {
-    font-size: 1.65rem;
-  }
+  .shop-banner__content { gap: 1.25rem; }
+
+  .shop-banner__title { font-size: 1.5rem; }
 
   .shop-banner__subtitle {
-    font-size: 0.88rem;
-    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.9rem;
   }
 
-  .shop-banner__image {
-    width: clamp(160px, 60%, 280px);
+  .shop-banner__image { width: clamp(140px, 55%, 260px); }
+
+  .shop-filters-title { font-size: 1.05rem; }
+
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
   }
 
-  .shop-filters-title {
-    font-size: 1.1rem;
-  }
-
-  .shop-card__img-wrap {
-    height: 180px;
-  }
+  .shop-card__img-wrap { height: 160px; }
 
   .shop-card__body {
-    padding: 0.75rem 0.85rem 0.4rem;
-    min-height: 90px;
+    padding: 0.7rem 0.85rem 0.4rem;
+    min-height: 85px;
   }
 
-  .shop-card__name {
-    font-size: 0.88rem;
-  }
+  .shop-card__name { font-size: 0.85rem; }
 
-  .shop-card__details {
-    font-size: 0.76rem;
-  }
+  .shop-card__details { font-size: 0.75rem; }
 
-  .shop-card__footer {
-    padding: 0.6rem 0.85rem 0.75rem;
-  }
+  .shop-card__footer { padding: 0.55rem 0.85rem 0.7rem; }
 
   .shop-card__btn {
-    font-size: 0.82rem;
-    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
+    padding: 0.42rem 0.6rem;
   }
 
-  .shop-card__icon {
-    width: 2rem;
-    height: 2rem;
-  }
+  .shop-card__icon { width: 1.9rem; height: 1.9rem; }
 
-  .shop-content {
-    padding: 1.5rem 0.85rem 2.5rem;
-  }
+  .shop-content { padding: 1.4rem 0.85rem 2.5rem; }
 }
 
 /* ================================================================
-   RESPONSIVE — Phone (≤ 576px)
+   RESPONSIVE — Phone (≤ 600px)
    ================================================================ */
-@media (max-width: 576px) {
-  .shop-banner {
-    padding: 1.5rem 1rem;
-  }
+@media (max-width: 600px) {
+  .shop-banner { padding: 1.4rem 1rem; }
 
-  .shop-banner__content {
-    gap: 1rem;
-  }
+  .shop-banner__content { gap: 1rem; }
 
   .shop-banner__title {
-    font-size: 1.35rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.45rem;
   }
 
   .shop-banner__subtitle {
-    font-size: 0.83rem;
-    line-height: 1.55;
-    margin-bottom: 0.85rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
   }
 
   .shop-search {
-    width: 100%;
-    height: 44px;
-    font-size: 0.82rem;
+    height: 42px;
+    font-size: 0.8rem;
   }
 
-  .shop-banner__image {
-    width: clamp(140px, 70%, 240px);
-  }
+  .shop-banner__image { width: clamp(120px, 60%, 220px); }
 
-  .shop-content {
-    padding: 1.25rem 0.75rem 2rem;
-  }
+  .shop-content { padding: 1.2rem 0.75rem 2rem; }
 
   .shop-filters-row {
     gap: 0.5rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
-  .shop-filters-title {
-    font-size: 1rem;
-  }
+  .shop-filters-title { font-size: 0.95rem; }
 
   .shop-filters-selects {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.45rem;
   }
 
   .shop-select {
     width: 100%;
-    font-size: 0.82rem;
-    padding: 0.4rem 2rem 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    padding: 0.38rem 2rem 0.38rem 0.65rem;
   }
 
   .shop-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
-  .shop-card__img-wrap {
-    height: 140px;
-  }
-
-  .shop-card__body {
-    padding: 0.65rem 0.75rem 0.35rem;
-    min-height: 80px;
-  }
-
-  .shop-card__name {
-    font-size: 0.78rem;
-    line-height: 1.3;
-  }
-
-  .shop-card__subtitle {
-    font-size: 0.72rem;
-  }
-
-  .shop-card__details {
-    font-size: 0.72rem;
-    line-height: 1.45;
-  }
-
-  .shop-card__footer {
-    padding: 0.5rem 0.75rem 0.65rem;
-  }
-
-  .shop-card__btn {
-    font-size: 0.76rem;
-    padding: 0.4rem 0.5rem;
-    letter-spacing: 0;
-  }
-
-  .shop-card__icon {
-    width: 1.75rem;
-    height: 1.75rem;
-  }
-
-  .shop-card__overlay {
-    padding: 0.45rem;
-  }
-}
-
-/* ================================================================
-   RESPONSIVE — Small phone (≤ 400px)
-   ================================================================ */
-@media (max-width: 400px) {
-  .shop-banner {
-    padding: 1.25rem 0.75rem;
-  }
-
-  .shop-banner__title {
-    font-size: 1.15rem;
-  }
-
-  .shop-banner__subtitle {
-    font-size: 0.78rem;
-  }
-
-  .shop-banner__image {
-    width: clamp(120px, 75%, 200px);
-  }
-
-  .shop-content {
-    padding: 1rem 0.6rem 1.75rem;
-  }
-
-  .shop-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-
-  .shop-card__img-wrap {
-    height: 115px;
-  }
+  .shop-card__img-wrap { height: 130px; }
 
   .shop-card__body {
     padding: 0.55rem 0.65rem 0.3rem;
-    min-height: 70px;
+    min-height: 75px;
   }
 
   .shop-card__name {
-    font-size: 0.72rem;
+    font-size: 0.76rem;
+    line-height: 1.3;
   }
+
+  .shop-card__subtitle { font-size: 0.7rem; }
 
   .shop-card__details {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
+    line-height: 1.4;
   }
+
+  .shop-card__footer { padding: 0.45rem 0.65rem 0.6rem; }
 
   .shop-card__btn {
-    font-size: 0.7rem;
+    font-size: 0.73rem;
     padding: 0.38rem 0.4rem;
+    letter-spacing: 0;
   }
 
-  .shop-card__icon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
+  .shop-card__icon { width: 1.65rem; height: 1.65rem; }
 
-  .shop-filters-title {
-    font-size: 0.92rem;
-  }
-
-  .shop-select {
-    font-size: 0.78rem;
-  }
+  .shop-card__overlay { padding: 0.4rem; }
 }
 
 /* ================================================================
-   RESPONSIVE — Very small phones (≤ 360px) — single column
+   RESPONSIVE — Small phone (≤ 480px) — iPhone SE size
+   ================================================================ */
+@media (max-width: 480px) {
+  .shop-banner { padding: 1.2rem 0.9rem; }
+
+  .shop-banner__title { font-size: 1.1rem; }
+
+  .shop-banner__subtitle { font-size: 0.76rem; }
+
+  .shop-banner__image { width: clamp(110px, 65%, 200px); }
+
+  .shop-search { height: 40px; }
+
+  .shop-content { padding: 1rem 0.65rem 1.75rem; }
+
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.55rem;
+  }
+
+  .shop-card__img-wrap { height: 115px; }
+
+  .shop-card__body {
+    padding: 0.5rem 0.6rem 0.28rem;
+    min-height: 68px;
+  }
+
+  .shop-card__name { font-size: 0.72rem; }
+
+  .shop-card__details { font-size: 0.67rem; }
+
+  .shop-card__footer { padding: 0.4rem 0.6rem 0.55rem; }
+
+  .shop-card__btn {
+    font-size: 0.69rem;
+    padding: 0.35rem 0.35rem;
+  }
+
+  .shop-card__icon { width: 1.5rem; height: 1.5rem; }
+
+  .shop-filters-title { font-size: 0.9rem; }
+
+  .shop-select { font-size: 0.76rem; }
+}
+
+/* ================================================================
+   RESPONSIVE — Very small (≤ 390px) — Samsung Galaxy S / iPhone mini
+   ================================================================ */
+@media (max-width: 390px) {
+  .shop-banner { padding: 1rem 0.8rem; }
+
+  .shop-banner__title { font-size: 1rem; }
+
+  .shop-banner__subtitle { font-size: 0.74rem; }
+
+  .shop-banner__image { width: clamp(100px, 65%, 185px); }
+
+  .shop-search { height: 38px; }
+
+  .shop-content { padding: 0.9rem 0.6rem 1.5rem; }
+
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .shop-card__img-wrap { height: 105px; }
+
+  .shop-card__body {
+    padding: 0.45rem 0.55rem 0.25rem;
+    min-height: 62px;
+  }
+
+  .shop-card__name { font-size: 0.69rem; }
+
+  .shop-card__details { font-size: 0.65rem; }
+
+  .shop-card__btn {
+    font-size: 0.67rem;
+    padding: 0.32rem 0.3rem;
+  }
+
+  .shop-card__icon { width: 1.4rem; height: 1.4rem; }
+
+  .shop-filters-title { font-size: 0.85rem; }
+
+  .shop-select { font-size: 0.74rem; }
+}
+
+/* ================================================================
+   RESPONSIVE — Tiny phones (≤ 360px) — Galaxy S8+
    ================================================================ */
 @media (max-width: 360px) {
-  .shop-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
+  .shop-banner { padding: 0.9rem 0.75rem; }
 
-  .shop-card__img-wrap {
-    height: 180px;
-  }
+  .shop-banner__title { font-size: 0.95rem; }
+
+  .shop-banner__subtitle { font-size: 0.72rem; }
 
   .shop-banner__image {
-    display: none;
+    display: block;            /* restore */
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto;
+  }
+  .shop-search { height: 36px; font-size: 0.74rem; }
+
+  .shop-content { padding: 0.85rem 0.55rem 1.4rem; }
+
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.45rem;
   }
 
-  .shop-banner__title {
-    font-size: 1.05rem;
+  .shop-card__img-wrap { height: 100px; }
+
+  .shop-card__body {
+    padding: 0.4rem 0.5rem 0.22rem;
+    min-height: 58px;
+  }
+
+  .shop-card__name { font-size: 0.66rem; }
+
+  .shop-card__details { font-size: 0.63rem; }
+
+  .shop-card__footer { padding: 0.35rem 0.5rem 0.5rem; }
+
+  .shop-card__btn {
+    font-size: 0.64rem;
+    padding: 0.3rem 0.28rem;
+  }
+
+  .shop-card__icon { width: 1.3rem; height: 1.3rem; }
+
+  .shop-select { font-size: 0.72rem; }
+}
+
+/* ================================================================
+   RESPONSIVE — Ultra small (≤ 320px)
+   ================================================================ */
+@media (max-width: 320px) {
+  /* Switch to single column — cards too cramped at 2-col */
+  .shop-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .shop-card__img-wrap { height: 160px; }
+
+  .shop-card__body {
+    padding: 0.65rem 0.75rem 0.35rem;
+    min-height: auto;
+  }
+
+  .shop-banner__title { font-size: 0.88rem; }
+
+  .shop-banner__subtitle { font-size: 0.7rem; }
+
+  .shop-card__name { font-size: 0.8rem; }
+
+  .shop-card__details { font-size: 0.72rem; }
+
+  .shop-card__btn {
+    font-size: 0.76rem;
+    padding: 0.42rem 0.5rem;
   }
 }
