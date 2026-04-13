@@ -44,7 +44,12 @@ const Reviews = () => {
             </div>
           </div>
           <div className="mentor-panel">
-            <div className="mentor-badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg></div>
+            <div className="mentor-badge">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M12 2L4 5v6c0 5.25 3.5 10.15 8 11.35C16.5 21.15 20 16.25 20 11V5L12 2z" fill="#1e293b"/>
+                <path d="M9 12l2 2 4-4" stroke="#f5c518" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
             <h6 className="mentor-title">100+ Verified Mentors</h6>
             {MENTORS.map(m => (<div className="mentor-item" key={m.name}><img src={m.img} alt={m.name} className="mentor-avatar" /><div><p className="mentor-name">{m.name}</p><p className="mentor-subject">{m.subject}</p></div></div>))}
           </div>

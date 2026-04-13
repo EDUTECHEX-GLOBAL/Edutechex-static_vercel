@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './whatsapp.css';
 
 const WhatsAppIcon = () => (
@@ -8,10 +8,59 @@ const WhatsAppIcon = () => (
 );
 
 const WhatsApp = () => {
+  const [bubbleVisible, setBubbleVisible] = useState(false);
+  const [bubbleDismissed, setBubbleDismissed] = useState(false);
+
+  useEffect(() => {
+    if (bubbleDismissed) return;
+    const timer = setTimeout(() => setBubbleVisible(true), 3000);
+    return () => clearTimeout(timer);
+  }, [bubbleDismissed]);
+
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setBubbleVisible(false);
+    setBubbleDismissed(true);
+  };
+
   return (
-    <a href="https://api.whatsapp.com/send?phone=917330611818" className="whatsapp-float" target="_blank" rel="noopener noreferrer">
-      <WhatsAppIcon />
-    </a>
+    <div className="wa-wrapper">
+      {/* Speech Bubble */}
+      <div className={`wa-bubble ${bubbleVisible ? 'wa-bubble--visible' : ''}`}>
+        <button className="wa-bubble__close" onClick={handleDismiss} aria-label="Close">✕</button>
+        <p className="wa-bubble__text">
+          Hi! Need help choosing the <strong>right course?</strong> Our advisor is ready!
+        </p>
+        <a
+          href="https://api.whatsapp.com/send?phone=917330611818"
+          className="wa-bubble__cta"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chat on WhatsApp
+        </a>
+        <div className="wa-bubble__arrow" />
+      </div>
+
+      {/* WhatsApp button with continuous wave rings */}
+      <div className="wa-btn-wrap">
+        <div className="wa-wave-rings">
+          <span className="wa-ring wa-ring--1"></span>
+          <span className="wa-ring wa-ring--2"></span>
+          <span className="wa-ring wa-ring--3"></span>
+        </div>
+        <a
+          href="https://api.whatsapp.com/send?phone=917330611818"
+          className="whatsapp-float"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+        >
+          <WhatsAppIcon />
+        </a>
+      </div>
+    </div>
   );
 };
 

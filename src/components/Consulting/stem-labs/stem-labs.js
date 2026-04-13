@@ -1,21 +1,20 @@
 import React from "react";
 import "./stem-labs.css";
 
-// Import your image correctly
 import stemImage from "../../../assets/stem-edit.png";
 
 const StemLabs = () => {
   return (
     <div className="stem-container">
-      
+
       {/* LEFT CONTENT */}
       <div className="stem-content">
         <h1>
-          Innovating STEM Labs through <br /> <span>R&D</span>
+          Innovating STEM Labs through <span>R&D</span>
         </h1>
 
         <p>
-          Our program's enable inquiry-based learning that promotes acquisition of
+          Our programs enable inquiry-based learning that promotes acquisition of
           deep conceptual domain knowledge and inquiry skills, with the further
           intent of interesting students in careers in science.
         </p>

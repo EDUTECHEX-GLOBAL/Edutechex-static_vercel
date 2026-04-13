@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./header.css";
 
 import logo from "../../assets/Edutech-logo.svg";
@@ -18,8 +18,8 @@ const megaMenuItems = [
     label: "Courses",
     normalMenuItems: [
       { name: "K12", link: "/courses/k12" },
-    { name: "Undergraduate", link: "/courses/undergraduate" },
-    { name: "Postgraduate", link: "/courses/postgraduate" },
+      { name: "Undergraduate", link: "/courses/undergraduate" },
+      { name: "Postgraduate", link: "/courses/postgraduate" },
     ],
   },
   {
@@ -60,33 +60,88 @@ const ChevronIcon = () => (
 // ── Header Component ────────────────────────────────────────────────
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
 
   const headerRef = useRef(null);
   const closeTimer = useRef(null);
 
+  // Detect mobile/desktop on resize
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 992;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setIsMobileMenuOpen(false);
+        setOpenDropdown(null);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close everything on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  }, [location.pathname]);
+
+  // Close on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (headerRef.current && !headerRef.current.contains(e.target)) {
         setOpenDropdown(null);
+        setIsMobileMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // ── Desktop hover handlers
   const handleMouseEnter = (key) => {
+    if (isMobile) return;
     clearTimeout(closeTimer.current);
     setOpenDropdown(key);
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     closeTimer.current = setTimeout(() => setOpenDropdown(null), 150);
   };
 
-  const closeAll = () => setOpenDropdown(null);
+  // ── Nav item click
+  const handleNavClick = (index, menuItem) => {
+    if (menuItem.link) {
+      navigate(menuItem.link);
+      setIsMobileMenuOpen(false);
+      setOpenDropdown(null);
+    } else if (menuItem.normalMenuItems) {
+      if (isMobile) {
+        setOpenDropdown((prev) => (prev === index ? null : index));
+      }
+    }
+  };
+
+  const handleCategoryClick = (link) => {
+    navigate(link);
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const handleSubItemClick = (link) => {
+    navigate(link);
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+    setOpenDropdown(null);
+  };
 
   return (
     <header className="header" ref={headerRef}>
@@ -98,58 +153,100 @@ const Header = () => {
             src={logo}
             alt="EDUTECH"
             className="logo-img"
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              setIsMobileMenuOpen(false);
+              setOpenDropdown(null);
+            }}
             style={{ cursor: "pointer" }}
           />
 
-          <div
-            className="dropdown-wrapper"
-            onMouseEnter={() => handleMouseEnter("category")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button className="category-btn">
-              <i className="bi bi-ui-radios-grid category-icon"></i>
-              <span>Category</span>
-            </button>
+          {/* Category button — desktop only */}
+          {!isMobile && (
+            <div
+              className="dropdown-wrapper"
+              onMouseEnter={() => handleMouseEnter("category")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button className="category-btn">
+                <i className="bi bi-ui-radios-grid category-icon"></i>
+                <span>Category</span>
+              </button>
 
-            {openDropdown === "category" && (
-              <div className="category-dropdown">
-                {categoryItems.map((item) => (
-                  <div
-                    key={item.label}
-                    className="category-dropdown-item"
-                    onClick={() => {
-                      navigate(item.link);
-                      closeAll();
-                    }}
-                  >
-                    {item.label}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+              {openDropdown === "category" && (
+                <div className="category-dropdown">
+                  {categoryItems.map((item) => (
+                    <div
+                      key={item.label}
+                      className="category-dropdown-item"
+                      onClick={() => handleCategoryClick(item.link)}
+                    >
+                      {item.label}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* CENTER NAV */}
         <nav className={`nav ${isMobileMenuOpen ? "active" : ""}`}>
+
+          {/* Category section — inside mobile menu only */}
+          {isMobile && (
+            <>
+              <div className="nav-item-wrapper">
+                <button
+                  className="nav-link"
+                  onClick={() =>
+                    setOpenDropdown((prev) => (prev === "category" ? null : "category"))
+                  }
+                >
+                  <span className="mobile-category-label">
+                    <i className="bi bi-ui-radios-grid category-icon"></i>
+                    &nbsp;Category
+                  </span>
+                  <span className={`chevron-wrap ${openDropdown === "category" ? "rotated" : ""}`}>
+                    <ChevronIcon />
+                  </span>
+                </button>
+
+                {openDropdown === "category" && (
+                  <div className="nav-dropdown">
+                    {categoryItems.map((item) => (
+                      <div
+                        key={item.label}
+                        className="nav-dropdown-item"
+                        onClick={() => handleCategoryClick(item.link)}
+                      >
+                        {item.label}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="mobile-nav-divider" />
+            </>
+          )}
+
           {megaMenuItems.map((menuItem, index) => (
             <div
               className="nav-item-wrapper"
               key={index}
-              onMouseEnter={() =>
-                menuItem.normalMenuItems && handleMouseEnter(index)
-              }
+              onMouseEnter={() => menuItem.normalMenuItems && handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
               <button
-                className={`nav-link ${
-                  menuItem.label === "Buy Courses" ? "buy" : ""
-                }`}
-                onClick={() => menuItem.link && navigate(menuItem.link)}
+                className={`nav-link ${menuItem.label === "Buy Courses" ? "buy" : ""} ${openDropdown === index ? "open" : ""}`}
+                onClick={() => handleNavClick(index, menuItem)}
               >
                 {menuItem.label}
-                {menuItem.normalMenuItems && <ChevronIcon />}
+                {menuItem.normalMenuItems && (
+                  <span className={`chevron-wrap ${openDropdown === index ? "rotated" : ""}`}>
+                    <ChevronIcon />
+                  </span>
+                )}
               </button>
 
               {menuItem.normalMenuItems && openDropdown === index && (
@@ -158,10 +255,7 @@ const Header = () => {
                     <div
                       key={item.name}
                       className="nav-dropdown-item"
-                      onClick={() => {
-                        navigate(item.link);
-                        closeAll();
-                      }}
+                      onClick={() => handleSubItemClick(item.link)}
                     >
                       {item.name}
                     </div>
@@ -176,18 +270,16 @@ const Header = () => {
         <div className="right-section">
           <button
             className="cart-btn"
-            onClick={() => navigate("/cart")}
+            onClick={() => {
+              navigate("/cart");
+              setIsMobileMenuOpen(false);
+              setOpenDropdown(null);
+            }}
           >
             <img src={cartIcon} alt="Cart" className="cart-icon-img" />
           </button>
 
-          <button
-            className="mobile-menu"
-            onClick={() => {
-              setIsMobileMenuOpen((prev) => !prev);
-              closeAll();
-            }}
-          >
+          <button className="mobile-menu" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? "✕" : "☰"}
           </button>
         </div>

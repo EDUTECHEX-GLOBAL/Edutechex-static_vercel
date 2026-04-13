@@ -3,6 +3,7 @@
 // =============================================
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';  // ADD THIS IMPORT
 import { coursesData } from '../courses';
 import './postgraduate.css';
 
@@ -31,10 +32,8 @@ function buildCardLink(course) {
   return `${course.link}${MENU_ID}/${MENU_NAME}/${course.id}/${encodeURIComponent(course.title)}`;
 }
 
-
-
 // ── Course Card ────────────────────────────────────────────
-function CourseCard({ course }) {
+function CourseCard({ course, navigate }) {  // ADD navigate prop
   const link   = buildCardLink(course);
   const imgSrc = getPGImage(course.image) || course.image;
 
@@ -53,7 +52,14 @@ function CourseCard({ course }) {
           <button className="pg-fav" aria-label="Add to favourites">&#9825;</button>
         </div>
 
-        <a href={link} className="pg-card-title">{course.title}</a>
+        {/* CHANGE: Replace <a> with span using navigate */}
+        <span
+          className="pg-card-title"
+          onClick={() => navigate(link)}
+          style={{ cursor: "pointer" }}
+        >
+          {course.title}
+        </span>
         <p className="pg-card-desc">{course.details || ''}</p>
 
         
@@ -143,13 +149,14 @@ function CounsellingModal({ isOpen, onClose }) {
       aria-modal="true"
       onClick={handleOverlayClick}
     >
-      
+      {/* Modal content here */}
     </div>
   );
 }
 
 // ── Main Postgraduate Component ────────────────────────────
 export default function Postgraduate() {
+  const navigate = useNavigate();  // ADD THIS LINE
   const courses = coursesData.postgraduate;
 
   const [search,    setSearch]    = useState('');
@@ -162,10 +169,11 @@ export default function Postgraduate() {
       )
     : courses;
 
+  // UPDATE: Change to use React Router navigation
   function handleCategoryClick(e, name) {
     e.preventDefault();
-    if (name === 'K12')           window.location.href = '#/course-grid/1/K12';
-    else if (name === 'Undergraduate') window.location.href = '#/course-grid/2/Undergraduate';
+    if (name === 'K12')           navigate('/courses/k12');
+    else if (name === 'Undergraduate') navigate('/courses/undergraduate');
   }
 
   return (
@@ -175,7 +183,12 @@ export default function Postgraduate() {
         <div className="pg-container">
           <h1>Postgraduate Courses</h1>
           <ul className="pg-breadcrumb">
-            <li><a href="/home">Home</a></li>
+            <li>
+              {/* CHANGE: Replace anchor with span using navigate */}
+              <span onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+                Home
+              </span>
+            </li>
             <li className="active">Courses</li>
           </ul>
         </div>
@@ -190,7 +203,6 @@ export default function Postgraduate() {
             <div>
               <div className="pg-search-wrap">
                 <div className="pg-search-box">
-                  
                   <input
                     type="text"
                     placeholder="Find your course"
@@ -208,7 +220,7 @@ export default function Postgraduate() {
                   </div>
                 ) : (
                   filtered.map(course => (
-                    <CourseCard key={course.id} course={course} />
+                    <CourseCard key={course.id} course={course} navigate={navigate} />
                   ))
                 )}
               </div>

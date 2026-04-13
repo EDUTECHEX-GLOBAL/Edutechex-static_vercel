@@ -3,6 +3,7 @@
 // =============================================
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';  // ADD THIS IMPORT
 import { coursesData } from '../courses';
 import './k12.css';
 
@@ -10,10 +11,11 @@ import './k12.css';
 const k12Images = require.context('../../../assets/buycourses', false);
 function getK12Image(imagePath) {
   if (!imagePath) return null;
-  const filename = imagePath.split('/').pop(); // extracts "SAT.jpg" from full path
+  const filename = imagePath.split('/').pop();
   try { return k12Images(`./${filename}`); }
   catch { return null; }
 }
+
 // ── Constants ──────────────────────────────────────────────
 const MENU_NAME = 'K12';
 const MENU_ID   = '1';
@@ -30,10 +32,8 @@ function buildCardLink(course) {
   return `${course.link}${MENU_ID}/${MENU_NAME}/${course.id}/${encodeURIComponent(course.title)}`;
 }
 
-
-
 // ── Course Card ────────────────────────────────────────────
-function CourseCard({ course }) {
+function CourseCard({ course, navigate }) {  // ADD navigate prop
   const link   = buildCardLink(course);
   const imgSrc = getK12Image(course.image) || course.image;
 
@@ -50,7 +50,14 @@ function CourseCard({ course }) {
           <span className="k12-badge">All level</span>
           <button className="k12-fav" aria-label="Add to favourites">&#9825;</button>
         </div>
-        <a href={link} className="k12-card-title">{course.title}</a>
+        {/* CHANGE: Replace <a> with span using navigate */}
+        <span
+          className="k12-card-title"
+          onClick={() => navigate(link)}
+          style={{ cursor: "pointer" }}
+        >
+          {course.title}
+        </span>
         <p className="k12-card-desc">{course.details || ''}</p>
         
       </div>
@@ -69,7 +76,7 @@ function CourseCard({ course }) {
             )}
           </div>
         )}
-      <span className="k12-arrow-btn" aria-label={`View ${course.title}`}>&#10140;</span>
+        <span className="k12-arrow-btn" aria-label={`View ${course.title}`}>&#10140;</span>
       </div>
     </div>
   );
@@ -156,13 +163,14 @@ function CounsellingModal({ isOpen, onClose }) {
       aria-modal="true"
       onClick={handleOverlayClick}
     >
-      
+      {/* Modal content here */}
     </div>
   );
 }
 
 // ── Main K12 Component ─────────────────────────────────────
 export default function K12() {
+  const navigate = useNavigate();  // ADD THIS LINE
   const courses = coursesData.k12;
 
   const [search, setSearch]       = useState('');
@@ -175,10 +183,11 @@ export default function K12() {
       )
     : courses;
 
+  // UPDATE: Change to use React Router navigation
   function handleCategoryClick(e, name) {
     e.preventDefault();
-    if (name === 'Undergraduate')     window.location.href = '#/course-grid/2/Undergraduate';
-    else if (name === 'Postgraduate') window.location.href = '#/course-grid/3/Postgraduate';
+    if (name === 'Undergraduate')     navigate('/courses/undergraduate');
+    else if (name === 'Postgraduate') navigate('/courses/postgraduate');
   }
 
   return (
@@ -188,7 +197,12 @@ export default function K12() {
         <div className="k12-container">
           <h1>K12 Courses</h1>
           <ul className="k12-breadcrumb">
-            <li><a href="/home">Home</a></li>
+            <li>
+              {/* CHANGE: Replace anchor with span using navigate */}
+              <span onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+                Home
+              </span>
+            </li>
             <li className="active">Courses</li>
           </ul>
         </div>
@@ -203,7 +217,6 @@ export default function K12() {
             <div>
               <div className="k12-search-wrap">
                 <div className="k12-search-box">
-                  
                   <input
                     id="k12-search"
                     type="text"
@@ -222,7 +235,7 @@ export default function K12() {
                   </div>
                 ) : (
                   filtered.map(course => (
-                    <CourseCard key={course.id} course={course} />
+                    <CourseCard key={course.id} course={course} navigate={navigate} />
                   ))
                 )}
               </div>
