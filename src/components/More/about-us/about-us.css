@@ -1,5 +1,5 @@
 /* ================================================================
-   ABOUT US — CSS (MOBILE COMPACT UPDATED)
+   ABOUT US — CSS (FULLY RESPONSIVE)
    ================================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
@@ -80,29 +80,9 @@
   border-radius: 10px;
 }
 
-.deco-plus-top {
-  top: 40px;
-  left: 40px;
-  font-size: 35px;
-  color: #fe8732;
-  font-weight: 600;
-}
-
-.deco-star-top {
-  top: 38px;
-  right: 220px;
-  font-size: 28px;
-  color: #f97316;
-}
-
-.deco-x-right {
-  top: 250px;
-  right: 150px;
-  font-size: 18px;
-  color: #ef4444;
-  font-weight: 1000;
-  -webkit-text-stroke: 3px #ef4444;
-}
+.deco-plus-top  { top: 40px;  left: 40px;   font-size: 35px; color: #fe8732; font-weight: 600; }
+.deco-star-top  { top: 38px;  right: 220px;  font-size: 28px; color: #f97316; }
+.deco-x-right   { top: 250px; right: 150px;  font-size: 18px; color: #ef4444; font-weight: 1000; -webkit-text-stroke: 3px #ef4444; }
 
 /* ════════════════════════════════════════════════════════════════
    SECTION 2 — INTRODUCING EDUTECHEX
@@ -139,12 +119,6 @@
 }
 
 .inline-logo {
-  height: 36px;
-  width: auto;
-  vertical-align: middle;
-}
-
-.question-img {
   height: 36px;
   width: auto;
   vertical-align: middle;
@@ -189,10 +163,6 @@
   color: #3d4fba;
 }
 
-.intro-image-wrapper {
-  margin-top: 24px;
-}
-
 .intro-about-img {
   width: 100%;
   max-width: 520px;
@@ -203,70 +173,6 @@
   box-shadow: none;
   display: block;
 }
-
-.logo-center {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  background: #ffffff;
-  padding: 48px 64px;
-  border-radius: 24px;
-  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.12);
-  border: 1px solid rgba(61,79,186,0.1);
-  min-width: 320px;
-}
-
-.dots-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.about-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-}
-
-.about-dot--purple { background: #7c3aed; }
-.about-dot--teal   { background: #0ea5e9; }
-.about-dot--orange { background: #f97316; }
-
-.center-logo {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-}
-
-.unlock-text {
-  font-size: 17px;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: 0.3px;
-  background: linear-gradient(135deg, #3d4fba 0%, #1ab5b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.watermark-bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.08;
-}
-
-.watermark-text { font-size: 38px; font-weight: 900; color: #3d4fba; letter-spacing: 2px; white-space: nowrap; }
-.watermark-sub  { font-size: 13px; color: #3d4fba; letter-spacing: 1px; white-space: nowrap; }
 
 /* ════════════════════════════════════════════════════════════════
    SECTION 3 — WHAT IS EDUTECHEX
@@ -298,9 +204,7 @@
   object-fit: contain;
 }
 
-.what-right {
-  flex: 1;
-}
+.what-right { flex: 1; }
 
 .what-title {
   font-size: 37px;
@@ -386,22 +290,8 @@
 .vision-box--blue { background: #3d4fba; }
 .vision-box--teal { background: #1ab5b8; }
 
-.deco-plus-vision {
-  top: 36px;
-  left: 110px;
-  font-size: 32px;
-  color: #7c3aed;
-  font-weight: 700;
-  z-index: 2;
-}
-
-.deco-star-vision {
-  top: 230px;
-  right: 290px;
-  font-size: 30px;
-  color: #f97316;
-  z-index: 2;
-}
+.deco-plus-vision { top: 36px;  left: 110px;  font-size: 32px; color: #7c3aed; font-weight: 700; z-index: 2; }
+.deco-star-vision { top: 230px; right: 290px; font-size: 30px; color: #f97316; z-index: 2; }
 
 /* ════════════════════════════════════════════════════════════════
    SECTION 5 — MEET OUR TEAM + OUR STORY
@@ -416,9 +306,9 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 60px;
+  flex-direction: column;  /* title on top, body below */
+  align-items: stretch;
+  gap: 0;
 }
 
 .team-title {
@@ -426,7 +316,8 @@
   font-weight: 600;
   color: #1a1a2e;
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
+  width: 100%;
 }
 
 .team-body {
@@ -434,6 +325,7 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 60px;
+  width: 100%;
 }
 
 .team-story {
@@ -467,7 +359,7 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .team-story-img {
@@ -480,191 +372,179 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
-   RESPONSIVE — 1024px (tablets / small laptops)
+   RESPONSIVE — 1024px
 ════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 1024px) {
 
-  /* Section 1 */
-  .quotes-section    { min-height: auto; }
-  .top-quote-row     { padding: 64px 8% 0; }
-  .top-quote-text    { font-size: 28px; }
-  .curly-arrow       { width: 160px; height: 64px; margin-left: 10%; }
-  .image-center-row  { padding: 0 3%; }
-  .deco-plus-top     { font-size: 28px; left: 24px; top: 28px; }
-  .deco-star-top     { display: block; font-size: 22px; right: 100px; top: 28px; }
-  .deco-x-right      { display: block; font-size: 14px; right: 60px; top: 180px; }
+  .quotes-section   { min-height: auto; }
+  .top-quote-row    { padding: 64px 8% 0; }
+  .top-quote-text   { font-size: 28px; }
+  .curly-arrow      { width: 160px; height: 64px; margin-left: 10%; }
+  .image-center-row { padding: 0 3%; }
+  .deco-plus-top    { font-size: 28px; left: 24px; top: 28px; }
+  .deco-star-top    { font-size: 22px; right: 100px; top: 28px; }
+  .deco-x-right     { font-size: 14px; right: 60px; top: 180px; }
 
-  /* Section 2 */
-  .intro-section     { padding: 52px 32px 0px; }
-  .intro-inner       { flex-direction: column; gap: 32px; }
-  .intro-left        { max-width: 100%; }
-  .intro-right       { width: 100%; justify-content: center; margin-top: 0; }
-  .intro-title       { font-size: 28px; }
-  .intro-about-img   { max-width: 100%; }
-  .logo-center       { padding: 28px 36px; min-width: auto; width: 100%; }
+  .intro-section    { padding: 52px 32px 0px; }
+  .intro-inner      { flex-direction: column; gap: 32px; }
+  .intro-left       { max-width: 100%; }
+  .intro-right      { width: 100%; justify-content: center; }
+  .intro-title      { font-size: 28px; }
+  .intro-about-img  { max-width: 100%; }
 
-  /* Section 3 */
-  .what-section      { padding: 0px 32px 52px; }
-  .what-inner        { flex-direction: column; gap: 40px; }
+  .what-section     { padding: 0px 32px 52px; }
+  .what-inner       { flex-direction: column; gap: 40px; }
   .what-left,
-  .what-right        { width: 100%; }
-  .flag-img          { max-width: 340px; }
-  .what-title        { font-size: 28px; }
-  .what-mission      { font-size: 18px; }
+  .what-right       { width: 100%; }
+  .flag-img         { max-width: 340px; }
+  .what-title       { font-size: 28px; }
+  .what-mission     { font-size: 18px; }
 
-  /* Section 4 */
-  .vision-section    { padding: 52px 32px; }
+  .vision-section   { padding: 52px 32px; }
   .vision-section::before { inset: 16px 32px; }
-  .vision-title      { font-size: 26px; }
-  .vision-box        { padding: 22px 28px; }
-  .deco-plus-vision  { left: 52px; top: 28px; font-size: 26px; }
-  .deco-star-vision  { right: 52px; top: 200px; font-size: 24px; }
+  .vision-title     { font-size: 26px; }
+  .vision-box       { padding: 22px 28px; }
+  .deco-plus-vision { left: 52px; top: 28px; font-size: 26px; }
+  .deco-star-vision { right: 52px; top: 200px; font-size: 24px; }
 
-  /* Section 5 */
-  .team-section      { padding: 52px 32px; }
-  .team-body         { flex-direction: column; gap: 40px; }
-  .team-title        { font-size: 28px; margin-bottom: 36px; }
-  .story-title       { font-size: 24px; }
-  .team-grid         { width: 100%; }
-  .team-story-img    { max-width: 100%; }
+  .team-section     { padding: 52px 32px; }
+  .team-title       { font-size: 28px; margin-bottom: 36px; }
+  .team-body        { gap: 40px; }
+  .story-title      { font-size: 24px; }
+  .team-story-img   { max-width: 100%; }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   RESPONSIVE — 768px (portrait tablets)
+   RESPONSIVE — 768px
 ════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
 
-  /* Section 1 */
-  .top-quote-row     { padding: 56px 6% 0; }
-  .top-quote-text    { font-size: 22px; }
-  .curly-arrow       { width: 130px; height: 52px; margin-left: 5%; }
-  .deco-plus-top     { display: block; font-size: 22px; left: 16px; top: 20px; }
-  .deco-star-top     { display: block; font-size: 18px; right: 40px; top: 20px; }
-  .deco-x-right      { display: block; font-size: 13px; right: 20px; top: 160px; -webkit-text-stroke: 2px #ef4444; }
+  .top-quote-row    { padding: 56px 6% 0; }
+  .top-quote-text   { font-size: 22px; }
+  .curly-arrow      { width: 130px; height: 52px; margin-left: 5%; }
+  .deco-plus-top    { font-size: 22px; left: 16px; top: 20px; }
+  .deco-star-top    { font-size: 18px; right: 40px; top: 20px; }
+  .deco-x-right     { font-size: 13px; right: 20px; top: 160px; -webkit-text-stroke: 2px #ef4444; }
 
-  /* Section 2 */
-  .intro-section     { padding: 44px 24px 0px; }
-  .intro-title       { font-size: 24px; }
-  .intro-box p       { font-size: 13px; }
-  .intro-list li     { font-size: 13px; }
+  .intro-section    { padding: 44px 24px 0px; }
+  .intro-title      { font-size: 24px; }
+  .intro-box p      { font-size: 13px; }
+  .intro-list li    { font-size: 13px; }
 
-  /* Section 3 */
-  .what-section      { padding: 0px 24px 44px; }
-  .what-title        { font-size: 24px; }
-  .what-para         { font-size: 14px; }
-  .what-mission      { font-size: 16px; }
-  .flag-img          { max-width: 260px; }
+  .what-section     { padding: 0px 24px 44px; }
+  .what-title       { font-size: 24px; }
+  .what-para        { font-size: 14px; }
+  .what-mission     { font-size: 16px; }
+  .flag-img         { max-width: 260px; }
 
-  /* Section 4 */
-  .vision-section    { padding: 44px 20px; }
+  .vision-section   { padding: 44px 20px; }
   .vision-section::before { inset: 14px 20px; }
-  .vision-title      { font-size: 22px; }
-  .vision-box p      { font-size: 14px; }
-  .deco-plus-vision  { display: block; left: 36px; top: 24px; font-size: 22px; }
-  .deco-star-vision  { display: block; right: 36px; top: 180px; font-size: 20px; }
+  .vision-title     { font-size: 22px; }
+  .vision-box p     { font-size: 14px; }
+  .deco-plus-vision { left: 36px; top: 24px; font-size: 22px; }
+  .deco-star-vision { right: 36px; top: 180px; font-size: 20px; }
 
-  /* Section 5 */
-  .team-section      { padding: 44px 24px; }
-  .team-title        { font-size: 24px; margin-bottom: 28px; }
-  .story-title       { font-size: 22px; }
-  .story-para        { font-size: 14px; }
+  /* ── TEAM SECTION MOBILE FIX ── */
+  .team-section     { padding: 44px 24px; }
+  .team-title       { font-size: 24px; margin-bottom: 28px; text-align: center; }
+
+  /* Stack story text ABOVE image on mobile */
+  .team-body        {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .team-story       { width: 100%; gap: 16px; padding-top: 0; }
+  .story-title      { font-size: 22px; }
+  .story-para       { font-size: 14px; }
+
+  .team-grid        { width: 100%; justify-content: center; }
+  .team-story-img   { max-width: 100%; width: 100%; border-radius: 10px; }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   RESPONSIVE — 640px (large phones)
+   RESPONSIVE — 640px
 ════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 640px) {
 
-  /* Section 1 */
-  .quotes-section    { min-height: auto; }
-  .top-quote-row     { padding: 48px 5% 0; }
-  .top-quote-text    { font-size: 18px; }
-  .curly-arrow       { width: 110px; height: 44px; margin-left: 0; align-self: flex-start; }
-  .student-img       { width: 95%; border-radius: 8px; }
-  .deco-plus-top     { display: block; font-size: 20px; left: 12px; top: 16px; }
-  .deco-star-top     { display: block; font-size: 16px; right: 20px; top: 16px; }
-  .deco-x-right      { display: block; font-size: 12px; right: 14px; top: 140px; -webkit-text-stroke: 2px #ef4444; }
+  .quotes-section   { min-height: auto; }
+  .top-quote-row    { padding: 48px 5% 0; }
+  .top-quote-text   { font-size: 18px; }
+  .curly-arrow      { width: 110px; height: 44px; margin-left: 0; align-self: flex-start; }
+  .student-img      { width: 95%; border-radius: 8px; }
+  .deco-plus-top    { font-size: 20px; left: 12px; top: 16px; }
+  .deco-star-top    { font-size: 16px; right: 20px; top: 16px; }
+  .deco-x-right     { font-size: 12px; right: 14px; top: 140px; -webkit-text-stroke: 2px #ef4444; }
 
-  /* Section 2 */
-  .intro-section     { padding: 36px 16px 0px; }
-  .intro-title       { font-size: 20px; }
-  .inline-logo       { height: 26px; }
-  .intro-box         { padding: 16px 18px; }
-  .intro-box p       { font-size: 13px; }
-  .intro-list        { gap: 16px; }
-  .intro-list li     { font-size: 13px; }
-  .about-check-icon  { font-size: 16px; }
-  .logo-center       { padding: 20px 24px; }
-  .center-logo       { height: 44px; }
-  .watermark-text    { font-size: 20px; }
-  .watermark-sub     { font-size: 9px; }
+  .intro-section    { padding: 36px 16px 0px; }
+  .intro-title      { font-size: 20px; }
+  .inline-logo      { height: 26px; }
+  .intro-box        { padding: 16px 18px; }
+  .intro-box p      { font-size: 13px; }
+  .intro-list       { gap: 16px; }
+  .intro-list li    { font-size: 13px; }
+  .about-check-icon { font-size: 16px; }
 
-  /* Section 3 */
-  .what-section      { padding: 0px 16px 36px; }
-  .what-title        { font-size: 20px; }
-  .what-para         { font-size: 13px; }
-  .what-mission      { font-size: 15px; margin-top: 20px; }
-  .flag-img          { max-width: 220px; }
-  .what-inner        { gap: 28px; }
+  .what-section     { padding: 0px 16px 36px; }
+  .what-title       { font-size: 20px; }
+  .what-para        { font-size: 13px; }
+  .what-mission     { font-size: 15px; margin-top: 20px; }
+  .flag-img         { max-width: 220px; }
+  .what-inner       { gap: 28px; }
 
-  /* Section 4 */
-  .vision-section    { padding: 36px 12px; }
+  .vision-section   { padding: 36px 12px; }
   .vision-section::before { inset: 10px 12px; border-radius: 18px; }
-  .vision-title      { font-size: 18px; }
-  .vision-box        { padding: 18px 20px; border-radius: 18px; }
-  .vision-box p      { font-size: 13px; }
-  .vision-inner      { gap: 20px; }
-  .deco-plus-vision  { display: block; left: 24px; top: 20px; font-size: 20px; }
-  .deco-star-vision  { display: block; right: 24px; top: 160px; font-size: 18px; }
+  .vision-title     { font-size: 18px; }
+  .vision-box       { padding: 18px 20px; border-radius: 18px; }
+  .vision-box p     { font-size: 13px; }
+  .vision-inner     { gap: 20px; }
+  .deco-plus-vision { left: 24px; top: 20px; font-size: 20px; }
+  .deco-star-vision { right: 24px; top: 160px; font-size: 18px; }
 
-  /* Section 5 */
-  .team-section      { padding: 36px 16px; }
-  .team-title        { font-size: 20px; margin-bottom: 24px; }
-  .team-body         { gap: 28px; }
-  .story-title       { font-size: 20px; }
-  .story-para        { font-size: 13px; }
-  .team-story        { gap: 16px; }
+  .team-section     { padding: 36px 16px; }
+  .team-title       { font-size: 20px; margin-bottom: 24px; }
+  .team-body        { gap: 24px; }
+  .story-title      { font-size: 20px; }
+  .story-para       { font-size: 13px; }
+  .team-story       { gap: 14px; }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   RESPONSIVE — 400px (small phones)
+   RESPONSIVE — 400px
 ════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 400px) {
 
-  /* Section 1 */
-  .top-quote-row     { padding: 40px 4% 0; }
-  .top-quote-text    { font-size: 16px; }
-  .curly-arrow       { width: 90px; height: 36px; }
-  .deco-plus-top     { display: block; font-size: 18px; left: 10px; top: 14px; }
-  .deco-star-top     { display: block; font-size: 14px; right: 14px; top: 14px; }
-  .deco-x-right      { display: block; font-size: 11px; right: 10px; top: 120px; -webkit-text-stroke: 1.5px #ef4444; }
+  .top-quote-row    { padding: 40px 4% 0; }
+  .top-quote-text   { font-size: 16px; }
+  .curly-arrow      { width: 90px; height: 36px; }
+  .deco-plus-top    { font-size: 18px; left: 10px; top: 14px; }
+  .deco-star-top    { font-size: 14px; right: 14px; top: 14px; }
+  .deco-x-right     { font-size: 11px; right: 10px; top: 120px; -webkit-text-stroke: 1.5px #ef4444; }
 
-  /* Section 2 */
-  .intro-section     { padding: 28px 12px 0px; }
-  .intro-title       { font-size: 18px; }
-  .inline-logo       { height: 22px; }
+  .intro-section    { padding: 28px 12px 0px; }
+  .intro-title      { font-size: 18px; }
+  .inline-logo      { height: 22px; }
 
-  /* Section 3 */
-  .what-section      { padding: 0px 12px 28px; }
-  .what-title        { font-size: 18px; }
-  .flag-img          { max-width: 180px; }
+  .what-section     { padding: 0px 12px 28px; }
+  .what-title       { font-size: 18px; }
+  .flag-img         { max-width: 180px; }
 
-  /* Section 4 */
-  .vision-section    { padding: 28px 10px; }
+  .vision-section   { padding: 28px 10px; }
   .vision-section::before { inset: 8px 10px; border-radius: 14px; }
-  .vision-title      { font-size: 16px; }
-  .vision-box        { padding: 14px 16px; border-radius: 14px; }
-  .vision-box p      { font-size: 12px; }
-  .deco-plus-vision  { display: block; left: 18px; top: 16px; font-size: 18px; }
-  .deco-star-vision  { display: block; right: 18px; top: 140px; font-size: 16px; }
+  .vision-title     { font-size: 16px; }
+  .vision-box       { padding: 14px 16px; border-radius: 14px; }
+  .vision-box p     { font-size: 12px; }
+  .deco-plus-vision { left: 18px; top: 16px; font-size: 18px; }
+  .deco-star-vision { right: 18px; top: 140px; font-size: 16px; }
 
-  /* Section 5 */
-  .team-section      { padding: 28px 12px; }
-  .team-title        { font-size: 18px; }
-  .story-title       { font-size: 18px; }
-  .story-para        { font-size: 12px; }
+  .team-section     { padding: 28px 12px; }
+  .team-title       { font-size: 18px; }
+  .story-title      { font-size: 18px; }
+  .story-para       { font-size: 12px; }
+  .team-story       { gap: 12px; }
 }
