@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./pariksha.css";
 
-// Import images (adjust paths as needed)
 import mockTestSVG from "../../assets/Mock Test.svg";
 import dashboardSVG from "../../assets/Dashboard.svg";
 import assessmentSVG from "../../assets/Assessment.svg";
@@ -26,34 +25,27 @@ const carouselImages = [
   growthSVG,
 ];
 
-// Change this value to adjust auto-slide speed (in milliseconds)
-const AUTO_SLIDE_INTERVAL = 3000; // 3 seconds
+const AUTO_SLIDE_INTERVAL = 3000;
 
 const Pariksha = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
+      setActiveIndex((prev) => (prev + 1) % carouselImages.length);
     }, AUTO_SLIDE_INTERVAL);
-
     return () => clearInterval(interval);
   }, []);
 
-  const nextSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
-  };
+  const nextSlide = () =>
+    setActiveIndex((prev) => (prev + 1) % carouselImages.length);
 
-  const prevSlide = () => {
+  const prevSlide = () =>
     setActiveIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + carouselImages.length) % carouselImages.length
+      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
     );
-  };
 
-  const goToSlide = (index) => {
-    setActiveIndex(index);
-  };
+  const goToSlide = (index) => setActiveIndex(index);
 
   return (
     <div className="pariksha-page">
@@ -79,7 +71,7 @@ const Pariksha = () => {
 
         <div className="pariksha-hero-right">
           <div className="carousel-wrapper">
-            <button className="carousel-control-prev" onClick={prevSlide}>
+            <button className="carousel-control-prev" onClick={prevSlide} aria-label="Previous">
               <span className="prev-icon">
                 <i className="fas fa-chevron-left"></i>
               </span>
@@ -95,15 +87,14 @@ const Pariksha = () => {
               {carouselImages.map((_, idx) => (
                 <button
                   key={idx}
-                  className={`carousel-dot ${
-                    idx === activeIndex ? "active" : ""
-                  }`}
+                  className={`carousel-dot ${idx === activeIndex ? "active" : ""}`}
                   onClick={() => goToSlide(idx)}
+                  aria-label={`Slide ${idx + 1}`}
                 />
               ))}
             </div>
 
-            <button className="carousel-control-next" onClick={nextSlide}>
+            <button className="carousel-control-next" onClick={nextSlide} aria-label="Next">
               <span className="next-icon">
                 <i className="fas fa-chevron-right"></i>
               </span>

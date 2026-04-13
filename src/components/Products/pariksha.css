@@ -47,7 +47,6 @@
   line-height: 1.2;
   letter-spacing: -0.3px;
   margin-bottom: 20px;
-  /* Prevent any auto-wrapping from overriding our manual <br> breaks */
   word-break: keep-all;
   overflow-wrap: normal;
 }
@@ -58,7 +57,7 @@
   white-space: nowrap;
 }
 
-.pariksha-hero-left p {
+.pariksha-hero-desc {
   margin: 0 0 32px 0;
   font-size: 16px;
   color: #747579;
@@ -125,13 +124,8 @@
   z-index: 1;
 }
 
-.carousel-control-prev {
-  left: -20px;
-}
-
-.carousel-control-next {
-  right: -20px;
-}
+.carousel-control-prev { left: -20px; }
+.carousel-control-next { right: -20px; }
 
 .prev-icon,
 .next-icon {
@@ -177,8 +171,6 @@
 
 .carousel-dot.active {
   background-color: #313d9c;
-  width: 10px;
-  height: 10px;
   transform: scale(1.2);
 }
 
@@ -221,13 +213,8 @@
   color: #313d9c;
 }
 
-.pariksha-blue-bold {
-  color: #313d9c;
-}
-
-.pariksha-green-text {
-  color: #2ab2a6;
-}
+.pariksha-blue-bold { color: #313d9c; }
+.pariksha-green-text { color: #2ab2a6; }
 
 .pariksha-about-content > p {
   font-size: 16px;
@@ -246,10 +233,6 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: none;
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
   font-size: 16px;
   font-weight: 600;
   color: #1e293b;
@@ -270,17 +253,15 @@
 }
 
 /* ================================================================
-   RESPONSIVE — Large tablets / small desktops (max 1200px)
+   RESPONSIVE — Large tablets / small desktops (max-width: 1200px)
 ================================================================ */
 
 @media (max-width: 1200px) {
-  .pariksha-hero-title {
-    font-size: 42px;
-  }
+  .pariksha-hero-title { font-size: 42px; }
 }
 
 /* ================================================================
-   RESPONSIVE — Tablets (max 1100px)
+   RESPONSIVE — Tablets (max-width: 1100px)
 ================================================================ */
 
 @media (max-width: 1100px) {
@@ -302,22 +283,15 @@
   .pariksha-hero-title {
     font-size: 38px;
     text-align: center;
-    /* Allow natural wrapping on tablet since space is wider */
     word-break: normal;
     overflow-wrap: normal;
   }
 
-  .pariksha-hero-title .accent {
-    white-space: normal;
-  }
+  .pariksha-hero-title .accent { white-space: normal; }
 
-  .pariksha-hero-left p {
-    text-align: center;
-  }
+  .pariksha-hero-desc { text-align: center; }
 
-  .demo-btn {
-    align-self: center;
-  }
+  .demo-btn { align-self: center; }
 
   .pariksha-hero-right {
     justify-content: center;
@@ -325,17 +299,10 @@
     width: 100%;
   }
 
-  .pariksha-hero-svg {
-    max-width: 420px;
-  }
+  .pariksha-hero-svg { max-width: 420px; }
 
-  .carousel-control-prev {
-    left: -10px;
-  }
-
-  .carousel-control-next {
-    right: -10px;
-  }
+  .carousel-control-prev { left: -10px; }
+  .carousel-control-next { right: -10px; }
 
   .pariksha-about-section {
     flex-direction: column;
@@ -358,176 +325,262 @@
     text-align: left;
   }
 
-  .pariksha-about-content h2 {
-    text-align: center;
-  }
-
-  .pariksha-about-content > p {
-    text-align: center;
-  }
+  .pariksha-about-content h2,
+  .pariksha-about-content > p { text-align: center; }
 }
 
 /* ================================================================
-   RESPONSIVE — Mobile landscape / large phones (max 768px)
+   RESPONSIVE — Tablets/Large phones (max-width: 768px)
 ================================================================ */
 
 @media (max-width: 768px) {
   .pariksha-hero {
-    padding: 44px 5% 40px;
-    gap: 36px;
-  }
-
-  .pariksha-hero-title {
-    font-size: 32px;
-    line-height: 1.25;
-  }
-
-  .pariksha-hero-left p {
-    font-size: 15px;
-  }
-
-  .pariksha-hero-svg {
-    max-width: 360px;
-  }
-
-  .pariksha-about-section {
-    padding: 44px 5%;
-    gap: 36px;
-  }
-
-  .pariksha-about-content h2 {
-    font-size: 34px;
-  }
-}
-
-/* ================================================================
-   RESPONSIVE — Mobile (max 640px)
-================================================================ */
-
-@media (max-width: 640px) {
-  .pariksha-hero {
-    padding: 36px 5% 30px;
+    padding: 36px 5% 44px;
     gap: 28px;
   }
 
   .pariksha-hero-title {
-    font-size: 26px;
-    line-height: 1.3;
+    font-size: 28px;
+    line-height: 1.25;
+    margin-bottom: 14px;
   }
 
-  .pariksha-hero-left p {
+  .pariksha-hero-desc {
     font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 22px;
   }
 
   .demo-btn {
     padding: 10px 24px;
     font-size: 14px;
+  }
+
+  .pariksha-hero-svg { max-width: 320px; }
+
+  .carousel-dots { bottom: -28px; gap: 8px; }
+
+  .carousel-dot { width: 8px; height: 8px; }
+
+  .pariksha-about-section {
+    padding: 36px 5% 44px;
+    gap: 28px;
+  }
+
+  .pariksha-about-content h2 { font-size: 30px; }
+
+  .pariksha-about-content > p { font-size: 14px; }
+}
+
+/* ================================================================
+   RESPONSIVE — Mobile (max-width: 640px)
+================================================================ */
+
+@media (max-width: 640px) {
+  .pariksha-hero {
+    padding: 28px 4% 40px;
+    gap: 22px;
+  }
+
+  .pariksha-hero-title {
+    font-size: 23px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .pariksha-hero-title .accent { white-space: normal; }
+
+  .pariksha-hero-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  .demo-btn {
+    padding: 9px 22px;
+    font-size: 13px;
     width: 100%;
     text-align: center;
     align-self: stretch;
   }
 
-  .pariksha-hero-svg {
-    max-width: 280px;
-  }
+  .pariksha-hero-svg { max-width: 260px; }
 
-  .carousel-control-prev {
-    left: -5px;
-  }
-
-  .carousel-control-next {
-    right: -5px;
-  }
+  .carousel-control-prev { left: -2px; }
+  .carousel-control-next { right: -2px; }
 
   .prev-icon,
   .next-icon {
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
   }
 
-  .carousel-dots {
-    bottom: -30px;
-    gap: 8px;
-  }
+  .carousel-dots { bottom: -26px; gap: 6px; }
 
-  .carousel-dot {
-    width: 8px;
-    height: 8px;
-  }
-
-  .carousel-dot.active {
-    width: 8px;
-    height: 8px;
-  }
+  .carousel-dot { width: 7px; height: 7px; }
 
   .pariksha-about-section {
-    padding: 36px 5%;
-    gap: 28px;
+    padding: 28px 4% 36px;
+    gap: 22px;
   }
 
+  .pariksha-why-card-wrapper { max-width: 100%; }
+
   .pariksha-about-content h2 {
-    font-size: 26px;
+    font-size: 22px;
+    margin-bottom: 12px;
   }
 
   .pariksha-about-content > p {
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 24px;
+    line-height: 1.65;
   }
 
+  .pariksha-about-list { gap: 16px 0; }
+
   .pariksha-about-item {
-    font-size: 14px;
-    gap: 12px;
+    font-size: 13px;
+    gap: 10px;
   }
 
   .pariksha-check-icon {
-    min-width: 28px;
-    height: 28px;
-    font-size: 12px;
-  }
-
-  .pariksha-why-card-wrapper {
-    max-width: 100%;
+    min-width: 26px;
+    height: 26px;
+    font-size: 11px;
+    border-radius: 6px;
   }
 }
 
 /* ================================================================
-   RESPONSIVE — Small phones (max 480px)
+   RESPONSIVE — Small phones (max-width: 480px)
 ================================================================ */
 
 @media (max-width: 480px) {
+  .pariksha-hero {
+    padding: 22px 4% 36px;
+    gap: 18px;
+  }
+
   .pariksha-hero-title {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .pariksha-hero-desc {
+    font-size: 12.5px;
+    margin-bottom: 16px;
+  }
+
+  .demo-btn {
+    padding: 8px 18px;
+    font-size: 12.5px;
+  }
+
+  .pariksha-hero-svg { max-width: 230px; }
+
+  .carousel-dots { bottom: -22px; }
+
+  .pariksha-about-section {
+    padding: 22px 4% 30px;
+    gap: 18px;
+  }
+
+  .pariksha-about-content h2 { font-size: 19px; }
+
+  .pariksha-about-content > p { font-size: 12.5px; }
+
+  .pariksha-about-list { gap: 14px 0; }
+
+  .pariksha-about-item { font-size: 12.5px; gap: 9px; }
+
+  .pariksha-check-icon {
+    min-width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+
+  .carousel-wrapper { max-width: 100%; }
+}
+
+/* ================================================================
+   RESPONSIVE — Very small phones (max-width: 380px)
+================================================================ */
+
+@media (max-width: 380px) {
+  .pariksha-hero {
+    padding: 18px 4% 32px;
+    gap: 14px;
+  }
+
+  .pariksha-hero-title {
+    font-size: 18px;
+    line-height: 1.38;
+    margin-bottom: 8px;
+  }
+
+  .pariksha-hero-desc {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .demo-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .pariksha-hero-svg { max-width: 200px; }
+
+  .prev-icon,
+  .next-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+
+  .pariksha-about-section {
+    padding: 18px 4% 26px;
+    gap: 14px;
   }
 
   .pariksha-about-content h2 {
-    font-size: 22px;
+    font-size: 17px;
+    margin-bottom: 10px;
   }
 
-  .carousel-wrapper {
-    max-width: 100%;
+  .pariksha-about-content > p {
+    font-size: 12px;
+    margin-bottom: 18px;
   }
 
-  .pariksha-about-list {
-    gap: 20px 0;
+  .pariksha-about-list { gap: 12px 0; }
+
+  .pariksha-about-item { font-size: 12px; gap: 8px; }
+
+  .pariksha-check-icon {
+    min-width: 22px;
+    height: 22px;
+    font-size: 10px;
   }
 }
 
 /* ================================================================
-   RESPONSIVE — Very small phones (max 360px)
+   RESPONSIVE — Tiny phones (max-width: 320px)
 ================================================================ */
 
-@media (max-width: 360px) {
-  .pariksha-hero-title {
-    font-size: 20px;
-  }
+@media (max-width: 320px) {
+  .pariksha-hero-title { font-size: 16px; }
 
-  .pariksha-about-content h2 {
-    font-size: 20px;
-  }
+  .pariksha-about-content h2 { font-size: 15px; }
 
-  .pariksha-hero-left p,
-  .pariksha-about-content > p {
-    font-size: 13px;
-  }
+  .pariksha-hero-desc,
+  .pariksha-about-content > p { font-size: 11.5px; }
+
+  .demo-btn { font-size: 11.5px; padding: 7px 14px; }
+
+  .pariksha-hero-svg { max-width: 180px; }
+
+  .pariksha-about-item { font-size: 11.5px; }
 }
