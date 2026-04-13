@@ -25,3 +25,4 @@ export const FOOTER_ITEMS = [
     ],
   },
 ];
+//footer section 
