@@ -1,4 +1,14 @@
 User-agent: *
+
+# Allow main site
 Allow: /
 
+# Block unwanted dynamic URLs
+Disallow: /ap-course-details/
+Disallow: /blogs-details/
+Disallow: /after-school-services-details/
+Disallow: /top-medical-countries/
+Disallow: /course-grid/
+
+# Sitemap
 Sitemap: https://www.edutechex.com/sitemap.xml
