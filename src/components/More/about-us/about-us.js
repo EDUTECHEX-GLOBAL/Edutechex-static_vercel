@@ -1,5 +1,6 @@
 import React from "react";
 import "./about-us.css";
+import { Helmet } from "react-helmet-async";
 
 import studentImg1 from "../../../assets/About_US_21.png";
 import flagImg    from "../../../assets/falg-test.png";
@@ -25,6 +26,16 @@ const CurlyArrow = () => (
 
 const AboutUs = () => {
   return (
+  <>
+    <Helmet>
+      <title>About EduTechEx – Our Mission, Vision & Team</title>
+      <meta
+        name="description"
+        content="Learn about EduTechEx, our mission, vision, and how we guide students through courses, internships, and career programs."
+      />
+      <link rel="canonical" href="https://www.edutechex.com/about" />
+    </Helmet>
+
     <div className="about-container">
 
       {/* ════════════════════════════════════════
@@ -228,6 +239,7 @@ const AboutUs = () => {
       </section>
 
     </div>
+  </>
   );
 };
 

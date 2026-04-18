@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';  // ADD THIS IMPORT
 import { coursesData } from '../courses';
 import './k12.css';
+import { Helmet } from "react-helmet-async";
 
 // ── Image loader from assets/buycourses ───────────────────
 const k12Images = require.context('../../../assets/buycourses', false);
@@ -169,11 +170,13 @@ function CounsellingModal({ isOpen, onClose }) {
 }
 
 // ── Main K12 Component ─────────────────────────────────────
-export default function K12() {
-  const navigate = useNavigate();  // ADD THIS LINE
+
+
+  export default function K12() {
+  const navigate = useNavigate();
   const courses = coursesData.k12;
 
-  const [search, setSearch]       = useState('');
+  const [search, setSearch] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
   const filtered = search.trim()
@@ -183,15 +186,23 @@ export default function K12() {
       )
     : courses;
 
-  // UPDATE: Change to use React Router navigation
   function handleCategoryClick(e, name) {
     e.preventDefault();
-    if (name === 'Undergraduate')     navigate('/courses/undergraduate');
+    if (name === 'Undergraduate') navigate('/courses/undergraduate');
     else if (name === 'Postgraduate') navigate('/courses/postgraduate');
   }
 
   return (
     <>
+      <Helmet>
+        <title>K12 Courses for Students | EduTechEx</title>
+        <meta
+          name="description"
+          content="Explore K12 courses across CBSE, ICSE, IB, and IGCSE curricula. Find the right academic path with EduTechEx."
+        />
+        <link rel="canonical" href="https://www.edutechex.com/courses/k12" />
+      </Helmet>
+    
       {/* ===== PAGE BANNER ===== */}
       <section className="k12-banner">
         <div className="k12-container">
@@ -249,13 +260,12 @@ export default function K12() {
                 <ul id="k12-category-list" className="k12-category-list">
                   {popularCategories.map(cat => (
                     <li key={cat.name}>
-                      <a
-                        href="#"
-                        className="k12-category-link"
-                        onClick={e => handleCategoryClick(e, cat.name)}
-                      >
-                        {cat.name}
-                      </a>
+                     <button
+  className="ug-category-link"
+  onClick={(e) => handleCategoryClick(e, cat.name)}
+>
+  {cat.name}
+</button>
                       <span className="k12-category-count">({cat.count})</span>
                     </li>
                   ))}
@@ -295,4 +305,5 @@ export default function K12() {
       <CounsellingModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
+  
 }

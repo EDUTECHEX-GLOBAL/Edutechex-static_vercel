@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { coursesData } from "../courses";
 import "./undergraduate.css";
+import { Helmet } from "react-helmet-async";
 
 // ── Image loader from assets/buycourses ───────────────────
 const ugImages = require.context('../../../assets/buycourses', false);
@@ -19,12 +20,12 @@ function getUGImage(imagePath) {
 
 // ── Constants ──────────────────────────────────────────────
 const MENU_NAME = "Undergraduate";
-const MENU_ID   = "2";
+const MENU_ID = "2";
 
 const streams = ["B.Tech", "B.A", "B.Sc", "B.Com", "B.Arch"];
 
 const popularCategories = [
-  { name: "K12",          count: 8 },
+  { name: "K12", count: 8 },
   { name: "Postgraduate", count: 1 },
 ];
 
@@ -37,7 +38,7 @@ function buildCardLink(course) {
 
 // ── Course Card ────────────────────────────────────────────
 function CourseCard({ course, navigate }) {
-  const link   = buildCardLink(course);
+  const link = buildCardLink(course);
   const imgSrc = getUGImage(course.image) || course.image;
 
   return (
@@ -65,7 +66,7 @@ function CourseCard({ course, navigate }) {
 
         <p className="ug-card-desc">{course.details || ""}</p>
 
-        
+
       </div>
 
       <div className="ug-card-footer">
@@ -83,9 +84,9 @@ function CourseCard({ course, navigate }) {
             )}
           </div>
         )}
-       <span className="ug-arrow-btn" aria-label={`View ${course.title}`}>
-  &#10140;
-</span>
+        <span className="ug-arrow-btn" aria-label={`View ${course.title}`}>
+          &#10140;
+        </span>
       </div>
     </div>
   );
@@ -98,11 +99,11 @@ const INIT_FORM = {
 };
 
 function CounsellingModal({ isOpen, onClose }) {
-  const [form, setForm]       = useState(INIT_FORM);
-  const [, setErrors]         = useState({});
+  const [form, setForm] = useState(INIT_FORM);
+  const [, setErrors] = useState({});
   const [errors, setErrState] = useState({});
   const [success, setSuccess] = useState(false);
-  const timerRef              = useRef(null);
+  const timerRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -156,7 +157,7 @@ function CounsellingModal({ isOpen, onClose }) {
       aria-modal="true"
       onClick={handleOverlayClick}
     >
-      
+
     </div>
   );
 }
@@ -164,26 +165,34 @@ function CounsellingModal({ isOpen, onClose }) {
 // ── Main Undergraduate Component ───────────────────────────
 export default function Undergraduate() {
   const navigate = useNavigate();
-  const courses  = coursesData.undergraduate;
+  const courses = coursesData.undergraduate;
 
-  const [search,    setSearch]    = useState("");
+  const [search, setSearch] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
 
   const filtered = search.trim()
     ? courses.filter(c =>
-        c.title.toLowerCase().includes(search.toLowerCase()) ||
-        (c.details && c.details.toLowerCase().includes(search.toLowerCase()))
-      )
+      c.title.toLowerCase().includes(search.toLowerCase()) ||
+      (c.details && c.details.toLowerCase().includes(search.toLowerCase()))
+    )
     : courses;
 
   function handleCategoryClick(e, name) {
     e.preventDefault();
-    if (name === "K12")          navigate("/courses/k12");
+    if (name === "K12") navigate("/courses/k12");
     else if (name === "Postgraduate") navigate("/courses/postgraduate");
   }
 
   return (
     <>
+      <Helmet>
+        <title>Undergraduate Courses for Students | EduTechEx</title>
+        <meta
+          name="description"
+          content="Explore undergraduate programs including B.Tech, B.Sc, B.Com and more. Discover the right academic path with EduTechEx."
+        />
+        <link rel="canonical" href="https://www.edutechex.com/courses/undergraduate" />
+      </Helmet>
       {/* ===== PAGE BANNER ===== */}
       <section className="ug-banner">
         <div className="ug-container">
@@ -208,7 +217,7 @@ export default function Undergraduate() {
             <div>
               <div className="ug-search-wrap">
                 <div className="ug-search-box">
-                 
+
                   <input
                     type="text"
                     placeholder="Find your course"
@@ -283,6 +292,7 @@ export default function Undergraduate() {
 
       {/* ===== MODAL ===== */}
       <CounsellingModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
     </>
   );
 }

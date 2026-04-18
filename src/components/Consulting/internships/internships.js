@@ -6,6 +6,7 @@ import { BsLightbulb } from "react-icons/bs";
 import bannerImg from "../../../assets/banner-03-edit.png";
 import k12Img from "../../../assets/K12.jpg";
 import ugImg from "../../../assets/Undergraduate.jpg";
+import { Helmet } from "react-helmet-async";
 
 const Internships = () => {
   const [activeTab, setActiveTab] = useState("k12");
@@ -41,7 +42,17 @@ const Internships = () => {
 
   const currentData = data[activeTab];
 
-  return (
+return (
+  <>
+    <Helmet>
+      <title>Internship Programs for Students | EduTechEx</title>
+      <meta
+        name="description"
+        content="Explore curated internship programs for school and undergraduate students. Gain real-world experience aligned with industry needs."
+      />
+      <link rel="canonical" href="https://www.edutechex.com/consulting/internships" />
+    </Helmet>
+
     <div className="internships-container">
 
       {/* ── HERO SECTION ── */}
@@ -164,6 +175,7 @@ const Internships = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./shop.css";
 import { allCourseForBuy } from "./allCourseForBuy";
 import courseSvg from "../../assets/buycourses/course.svg";
+import { Helmet } from "react-helmet-async";
 
 /* ================================================================
    IMAGE LOADER — reads from assets/buycourses/
@@ -97,6 +98,16 @@ export default function Shop() {
      RENDER
      ================================================================ */
   return (
+  <>
+    <Helmet>
+      <title>Online Courses for Students | EduTechEx</title>
+      <meta
+        name="description"
+        content="Browse online courses for K12, undergraduate, and postgraduate students. Explore programs designed to connect passion with global education."
+      />
+      <link rel="canonical" href="https://www.edutechex.com/buy-courses" />
+    </Helmet>
+
     <div className="shop-section">
 
       {/* ══════════════════════════════════════
@@ -257,6 +268,7 @@ export default function Shop() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 

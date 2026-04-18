@@ -1,5 +1,6 @@
 import React from 'react';
 import './contact-us.css';
+import { Helmet } from "react-helmet-async";
 
 const LocationIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +39,17 @@ const WhiteEmailIcon = () => (
 );
 
 const ContactUs = () => {
-  return (
+ return (
+  <>
+    <Helmet>
+      <title>Contact EduTechEx | Support & Office Details</title>
+      <meta
+        name="description"
+        content="Contact EduTechEx for support, inquiries, and guidance. Reach us via phone, email, or visit our office in Hyderabad."
+      />
+      <link rel="canonical" href="https://www.edutechex.com/contact" />
+    </Helmet>
+
     <div className="contact-container">
       <div className="contact-wrapper">
 
@@ -129,6 +140,7 @@ const ContactUs = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

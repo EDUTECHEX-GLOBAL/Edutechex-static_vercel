@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./testimonails.css";
 import { testimonials } from "./Testimonials";
+import { Helmet } from "react-helmet-async";
 
 /* ================================================================
    IMAGE LOADER
@@ -130,7 +131,17 @@ export default function Testimonials() {
 
   /* ================= RENDER ================= */
 
-  return (
+ return (
+  <>
+    <Helmet>
+      <title>Student Testimonials | EduTechEx</title>
+      <meta
+        name="description"
+        content="Read real student success stories and testimonials from EduTechEx courses, internships, and career programs."
+      />
+      <link rel="canonical" href="https://www.edutechex.com/testimonials" />
+    </Helmet>
+
     <section className="testi-section">
       {/* Banner */}
       <div className="testi-banner">
@@ -378,5 +389,6 @@ export default function Testimonials() {
         )}
       </div>
     </section>
+    </>
   );
 }

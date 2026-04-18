@@ -1,9 +1,23 @@
 import React from "react";
 import "./information.css";
 import itEdit from "../../../assets/it-edit.png";
+import { Helmet } from "react-helmet-async";
 
 const Information = () => {
-  return (
+return (
+  <>
+    <Helmet>
+      <title>Information Technology Solutions | EduTechEx</title>
+      <meta
+        name="description"
+        content="Discover EduTechEx IT solutions and deep-tech edtech products designed to transform learning experiences using advanced technologies."
+      />
+      <link
+        rel="canonical"
+        href="https://www.edutechex.com/consulting/information-technology"
+      />
+    </Helmet>
+
     <div className="info-container">
 
       {/* ── SECTION 1: HERO ── */}
@@ -149,6 +163,7 @@ const Information = () => {
       </section>
 
     </div>
+      </>
   );
 };
 

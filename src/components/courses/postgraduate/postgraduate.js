@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';  // ADD THIS IMPORT
 import { coursesData } from '../courses';
 import './postgraduate.css';
+import { Helmet } from "react-helmet-async";
 
 // ── Image loader from assets/buycourses ───────────────────
 const pgImages = require.context('../../../assets/buycourses', false);
@@ -176,8 +177,16 @@ export default function Postgraduate() {
     else if (name === 'Undergraduate') navigate('/courses/undergraduate');
   }
 
-  return (
-    <>
+ return (
+  <>
+    <Helmet>
+      <title>Postgraduate Courses for Students | EduTechEx</title>
+      <meta
+        name="description"
+        content="Explore postgraduate programs including MBA, M.Tech, MCA and more. Advance your career with EduTechEx."
+      />
+      <link rel="canonical" href="https://www.edutechex.com/courses/postgraduate" />
+    </Helmet>
       {/* ===== PAGE BANNER ===== */}
       <section className="pg-banner">
         <div className="pg-container">
