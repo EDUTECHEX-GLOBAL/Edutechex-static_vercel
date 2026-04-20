@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './home.css';
+import { Helmet } from "react-helmet-async";
 
 // Import all section components
 import Hero from '../hero/hero';
@@ -20,6 +21,15 @@ const Home = () => {
 
   return (
     <div className="home-wrapper">
+
+      <Helmet>
+        <title>EDUTECHEX - Unlock Your Potential</title>
+        <meta
+          name="description"
+          content="Unlock your passion and get it mapped to 10K+ courses & 5K+ global universities and companies through scientific methodologies."
+        />
+        <link rel="canonical" href="https://www.edutechex.com/" />
+      </Helmet>
       <Hero onVideoModalOpen={() => setVideoModal(true)} />
       <Stats />
       <CareerCards />

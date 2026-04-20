@@ -28,10 +28,10 @@ const AboutUs = () => {
   return (
   <>
     <Helmet>
-      <title>About EduTechEx – Our Mission, Vision & Team</title>
+      <title>About Us | EDUTECHEX</title>
       <meta
         name="description"
-        content="Learn about EduTechEx, our mission, vision, and how we guide students through courses, internships, and career programs."
+       content="Learn about our mission, vision, and how we guide students through courses, internships, and career programs."
       />
       <link rel="canonical" href="https://www.edutechex.com/about" />
     </Helmet>
@@ -66,7 +66,7 @@ const AboutUs = () => {
 
       </section>
 
-      {/* ════ SECTION 2 — INTRODUCING EDUTECHEX ════ */}
+      {/* ════ SECTION 2  ════ */}
       <section className="intro-section">
         <div className="intro-inner">
 
