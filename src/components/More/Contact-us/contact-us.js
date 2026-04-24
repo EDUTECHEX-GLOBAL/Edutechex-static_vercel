@@ -92,7 +92,7 @@ const ContactUs = () => {
               <span className="card-text">office@edutechex.com</span>
             </div>
             <div className="card-row card-row--email-second">
-              <span className="card-text card-text--indented">edutechex@gmail.com</span>
+             
             </div>
           </div>
 
