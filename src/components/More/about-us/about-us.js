@@ -227,6 +227,27 @@ const AboutUs = () => {
                   creating wealth.
                 </strong>
               </p>
+              <p className="story-para" style={{ marginTop: '1.5rem', color: '#3d4fba' }}>
+  <strong>Director – EDUTECHEX Global</strong>
+  <br />
+
+  <strong>
+    <a
+      href="https://www.linkedin.com/in/aditya-cherikuri-386537377/"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: 'inherit', textDecoration: 'none' }}
+    >
+      Aditya Cherikuri
+    </a>
+  </strong>
+  <br />
+
+  Director of Academics &amp; Admissions
+  <br />
+
+  Undergraduate (UG), Postgraduate (PG) &amp; Medical Programmes
+</p>
             </div>
 
             {/* RIGHT — single image (already contains 4-grid layout) */}
