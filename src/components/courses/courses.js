@@ -72,7 +72,12 @@ export const coursesData = {
      
       image: 'assets/buycourses/K12.jpg',
       details: 'Gain real-world experience through curated internship programs designed for K12 students to explore career paths early.',
-      
+    },
+    {
+      id: '12',
+      title: 'UK Admission',
+      image: 'assets/buycourses/uk.png',
+      details: 'Explore world-class education opportunities at leading UK universities.',
     },
   ],
 
