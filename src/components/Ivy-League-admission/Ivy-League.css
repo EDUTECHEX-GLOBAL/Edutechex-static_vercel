@@ -1,0 +1,829 @@
+@import url('https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap');
+
+/* =========================================================
+   EDUTECHEX
+   IVY LEAGUE ADMISSIONS - PREMIUM REDESIGN
+   ========================================================= */
+
+:root {
+  --ivy-primary: #062477;
+  --ivy-primary-deep: #03185C;
+  --ivy-primary-dark: #02134A;
+  --ivy-blue: #0B3AA8;
+  
+  --ivy-teal: #11C5C8;
+  --ivy-cyan: #19D0D0;
+  --ivy-cyan-light: #E5FAFA;
+  --ivy-blue-light: #F2F9FC;
+  
+  --ivy-white: #FFFFFF;
+  
+  --ivy-text: #0B246B;
+  --ivy-text-soft: #4D5E82;
+  --ivy-muted: #71809D;
+  --ivy-border: #DCE7F0;
+
+  --ivy-serif: Georgia, "Times New Roman", serif;
+  --ivy-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --ivy-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   RESET & WRAPPER
+   ========================================================= */
+
+.ivy-page {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--ivy-white);
+  color: var(--ivy-text);
+  font-family: var(--ivy-sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ivy-page *,
+.ivy-page *::before,
+.ivy-page *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.ivy-page h1,
+.ivy-page h2,
+.ivy-page h3,
+.ivy-page p {
+  margin-bottom: 0;
+}
+
+.ivy-page a,
+.ivy-page button {
+  font-family: inherit;
+}
+
+.ivy-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ivy-page img {
+  max-width: 100%;
+  display: block;
+}
+
+.ivy-container {
+  width: min(100% - 80px, 1400px);
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+.ivy-eyebrow {
+  display: inline-block;
+  font-family: var(--ivy-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ivy-teal);
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.ivy-btn {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 25px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.ivy-btn:hover {
+  transform: translateY(-2px);
+}
+
+.ivy-btn-primary {
+  background: #16C6C8;
+  color: #062477;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.ivy-btn-primary:hover {
+  background: #0ebabf;
+  box-shadow: 0 6px 20px rgba(17, 197, 200, 0.35);
+}
+
+.ivy-btn-outline {
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.75);
+}
+
+.ivy-btn-outline:hover {
+  background: #FFFFFF;
+  color: #0A2A78;
+}
+
+.ivy-btn-white {
+  background: var(--ivy-white);
+  color: var(--ivy-primary);
+}
+
+.ivy-btn-white:hover {
+  background: var(--ivy-cyan-light);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.ivy-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  background: var(--ivy-white);
+  border-bottom: 1px solid var(--ivy-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.ivy-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 30px;
+}
+
+.ivy-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.ivy-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.ivy-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.ivy-nav-links a {
+  font-family: var(--ivy-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ivy-primary-dark);
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.ivy-nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ivy-teal);
+  transition: width 0.2s ease;
+}
+
+.ivy-nav-links a:hover,
+.ivy-nav-links a.active {
+  color: var(--ivy-teal);
+}
+
+.ivy-nav-links a:hover::after,
+.ivy-nav-links a.active::after {
+  width: 100%;
+}
+
+.ivy-nav-cta {
+  background: var(--ivy-primary);
+  color: var(--ivy-white);
+  font-family: var(--ivy-sans);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(6, 36, 119, 0.15);
+}
+
+.ivy-nav-cta:hover {
+  background: var(--ivy-primary-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(6, 36, 119, 0.2);
+}
+
+.ivy-mobile-menu {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.ivy-mobile-menu span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: var(--ivy-primary-dark);
+  margin: 5px 0;
+}
+
+.ivy-mobile-links {
+  display: none;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.ivy-hero {
+  width: 100%;
+  background: 
+    linear-gradient(90deg, rgba(5,25,85,0.12), rgba(5,25,85,0)),
+    linear-gradient(115deg, #0A2A78 0%, #123C96 48%, #12689B 78%, #159FB0 100%);
+  color: var(--ivy-white);
+  padding: 90px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ivy-hero .ivy-eyebrow {
+  color: #19C7C8;
+}
+
+.ivy-hero-grid {
+  display: grid;
+  grid-template-columns: 48% 52%;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  min-height: 520px;
+}
+
+.ivy-hero h1 {
+  font-family: var(--ivy-serif);
+  font-size: clamp(46px, 5vw, 72px);
+  line-height: 1.0;
+  margin: 16px 0 24px;
+  color: var(--ivy-white);
+  font-weight: 700;
+}
+
+.ivy-hero h1 .highlight-text {
+  color: #ffffff !important;
+}
+
+.ivy-hero-description {
+  font-family: var(--ivy-sans);
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.88);
+  max-width: 520px;
+  margin-bottom: 40px;
+}
+
+.ivy-hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.ivy-hero-stat {
+  display: none; /* Hide if not needed or style accordingly */
+}
+
+/* Hero Image & Information Card */
+.ivy-hero-card {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Using CSS to inject the hero image since JSX isn't modified */
+.ivy-hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 16px;
+  background-image: url('../../assets/buycourses/Ivy-League.png');
+  background-color: #0b3aa8; /* Fallback color */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.ivy-hero-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ivy-hero-card .ivy-eyebrow {
+  color: var(--ivy-primary);
+  background: var(--ivy-cyan-light);
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+
+.ivy-hero-card ul {
+  list-style: none;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid rgba(8,37,110,0.08);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.14);
+  padding: 18px 22px;
+  margin: 0;
+  width: 100%;
+}
+
+.ivy-hero-card li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ivy-border);
+  font-family: var(--ivy-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: #08256E;
+}
+
+.ivy-hero-card li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ivy-hero-card li span:last-child {
+  font-family: var(--ivy-mono);
+  font-size: 13px;
+  color: var(--ivy-teal);
+  font-weight: 700;
+}
+
+/* =========================================================
+   WHY EDUTECHEX
+   ========================================================= */
+
+.ivy-why {
+  width: 100%;
+  background: var(--ivy-cyan-light);
+  padding: 90px 0;
+}
+
+.ivy-why .ivy-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.ivy-light-heading h2 {
+  font-family: var(--ivy-serif);
+  font-size: clamp(32px, 4vw, 42px);
+  color: var(--ivy-primary-dark);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.ivy-light-heading p {
+  font-size: 17px;
+  color: var(--ivy-text-soft);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.ivy-university-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ivy-university-chip {
+  background: var(--ivy-white);
+  border: 1px solid var(--ivy-border);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--ivy-primary);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(8, 35, 90, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ivy-university-chip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(8, 35, 90, 0.08);
+  border-color: var(--ivy-teal);
+}
+
+/* =========================================================
+   PROGRAM COMPONENTS
+   ========================================================= */
+
+.ivy-section {
+  width: 100%;
+  padding: 100px 0;
+  background: var(--ivy-white);
+}
+
+.ivy-section-heading {
+  max-width: 760px;
+  margin-bottom: 60px;
+}
+
+.ivy-section-heading h2 {
+  font-family: var(--ivy-serif);
+  font-size: clamp(34px, 4.5vw, 46px);
+  color: var(--ivy-primary-dark);
+  margin-bottom: 18px;
+  line-height: 1.15;
+}
+
+.ivy-section-heading p {
+  font-size: 17px;
+  color: var(--ivy-muted);
+  line-height: 1.65;
+}
+
+.ivy-components {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ivy-component {
+  background: var(--ivy-white);
+  border: 1px solid var(--ivy-border);
+  border-radius: 14px;
+  padding: 26px;
+  min-height: 400px;
+  box-shadow: 0 6px 20px rgba(8, 40, 100, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.ivy-component:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(8, 35, 90, 0.08);
+  border-color: rgba(17, 197, 200, 0.5);
+}
+
+.ivy-component-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--ivy-teal);
+  color: var(--ivy-white);
+  border-radius: 50%;
+  font-family: var(--ivy-sans);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.ivy-component-content h3 {
+  font-family: var(--ivy-serif);
+  font-size: 21px;
+  color: var(--ivy-primary);
+  margin-bottom: 14px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.ivy-component-content > p {
+  font-size: 14.5px;
+  color: var(--ivy-text-soft);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.ivy-component-content ul {
+  list-style: none;
+  margin-top: auto;
+}
+
+.ivy-component-content li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14px;
+  color: var(--ivy-text-soft);
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+
+.ivy-component-content li::before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: var(--ivy-teal);
+  font-size: 12px;
+}
+
+/* =========================================================
+   OBJECTIVE & ENROLMENT
+   ========================================================= */
+
+.ivy-objective {
+  width: 100%;
+  padding: 90px 0;
+  background: var(--ivy-blue-light);
+  text-align: center;
+}
+
+.ivy-objective-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.ivy-objective blockquote {
+  font-family: var(--ivy-serif);
+  font-size: clamp(28px, 4vw, 36px);
+  color: var(--ivy-primary);
+  line-height: 1.3;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+.ivy-objective p {
+  font-size: 17px;
+  color: var(--ivy-text-soft);
+  line-height: 1.7;
+}
+
+.ivy-enrolment {
+  width: 100%;
+  padding: 100px 0;
+  background: var(--ivy-white);
+}
+
+.ivy-enrolment-box {
+  background: var(--ivy-white);
+  border: 1px solid var(--ivy-border);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 12px 35px rgba(8, 35, 90, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.ivy-enrolment-label {
+  display: block;
+  font-family: var(--ivy-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ivy-teal);
+  margin-bottom: 12px;
+}
+
+.ivy-enrolment-box h3 {
+  font-family: var(--ivy-serif);
+  font-size: 32px;
+  color: var(--ivy-primary-dark);
+  margin-bottom: 16px;
+}
+
+.ivy-enrolment-box p {
+  font-size: 16px;
+  color: var(--ivy-text-soft);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.ivy-cta {
+  width: 100%;
+  background: linear-gradient(110deg, var(--ivy-primary-deep), var(--ivy-primary), #0B5D9A);
+  padding: 90px 20px;
+  text-align: center;
+  color: var(--ivy-white);
+}
+
+.ivy-cta .ivy-eyebrow {
+  color: var(--ivy-cyan);
+}
+
+.ivy-cta h2 {
+  font-family: var(--ivy-serif);
+  font-size: clamp(36px, 4.5vw, 48px);
+  margin: 16px auto 24px;
+  line-height: 1.15;
+  max-width: 760px;
+}
+
+.ivy-cta p {
+  font-size: 18px;
+  color: var(--ivy-blue-light);
+  max-width: 640px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.ivy-contact {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  font-family: var(--ivy-mono);
+  font-size: 14px;
+  color: var(--ivy-cyan-light);
+}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.ivy-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.ivy-page [data-reveal].in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  /* Default rules */
+}
+
+@media (max-width: 1199px) {
+  .ivy-hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .ivy-components {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ivy-why .ivy-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .ivy-container {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .ivy-nav .ivy-nav-links,
+  .ivy-nav .ivy-nav-cta {
+    display: none;
+  }
+  
+  .ivy-mobile-menu {
+    display: block;
+  }
+  
+  .ivy-mobile-links {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--ivy-white);
+    padding: 20px;
+    border-bottom: 1px solid var(--ivy-border);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .ivy-mobile-links.show {
+    display: flex;
+  }
+
+  .ivy-mobile-links a {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ivy-primary-dark);
+    text-decoration: none;
+    padding: 8px 0;
+  }
+
+  .ivy-mobile-links button {
+    background: var(--ivy-primary);
+    color: var(--ivy-white);
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+  
+  .ivy-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .ivy-hero h1 {
+    font-size: 40px;
+  }
+  
+  .ivy-hero-card {
+    height: 330px;
+    max-width: 100%;
+  }
+  
+  .ivy-components {
+    grid-template-columns: 1fr;
+  }
+  
+  .ivy-enrolment-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+  }
+  
+  .ivy-hero-actions {
+    flex-direction: column;
+  }
+  
+  .ivy-hero-actions .ivy-btn {
+    width: 100%;
+  }
+
+  .ivy-why,
+  .ivy-section,
+  .ivy-objective,
+  .ivy-enrolment,
+  .ivy-cta {
+    padding: 60px 0;
+  }
+  
+  .ivy-contact {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ivy-page [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .ivy-btn,
+  .ivy-component,
+  .ivy-university-chip {
+    transition: none;
+  }
+}

@@ -1,0 +1,1053 @@
+/* =========================================================
+   MEDICAL ADMISSIONS REDESIGN - EDUTECHEX
+   ========================================================= */
+
+:root {
+  --medical-blue: #293d91;
+  --medical-blue-dark: #17265f;
+  --medical-blue-deep: #101a46;
+  --medical-teal: #42b9aa;
+  --medical-teal-dark: #24978c;
+  --medical-teal-light: #dff5f1;
+  
+  --medical-text: #334155;
+  --medical-text-muted: #64748b;
+  --medical-bg-light: #f8fafc;
+  --medical-border: #e2e8f0;
+  
+  --medical-font-serif: Georgia, "Times New Roman", serif;
+  --medical-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.medical-page {
+  font-family: var(--medical-font-sans);
+  color: var(--medical-text);
+  line-height: 1.6;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+.medical-page *, .medical-page *::before, .medical-page *::after {
+  box-sizing: border-box;
+}
+
+.medical-page h1, .medical-page h2, .medical-page h3, .medical-page p, .medical-page ul {
+  margin-top: 0;
+}
+
+.medical-page a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.medical-container {
+  width: min(100% - 80px, 1400px);
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+/* ================= HEADER ================= */
+
+.medical-header {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid var(--medical-border);
+  box-shadow: 0 4px 20px rgba(16, 26, 70, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.medical-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.medical-logo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.medical-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.medical-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.medical-nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--medical-blue-dark);
+  transition: color 0.2s ease;
+}
+
+.medical-nav-links a:hover {
+  color: var(--medical-teal);
+}
+
+.medical-nav-cta {
+  background: var(--medical-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(41, 61, 145, 0.2);
+}
+
+.medical-nav-cta:hover {
+  background: var(--medical-blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(41, 61, 145, 0.3);
+}
+
+.medical-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.medical-menu-button span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--medical-blue-dark);
+}
+
+.medical-mobile-menu {
+  display: none;
+}
+
+.medical-mobile-menu.medical-mobile-open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 76px;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 20px 40px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  gap: 16px;
+}
+
+.medical-mobile-menu a {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--medical-blue-dark);
+  border-bottom: 1px solid var(--medical-border);
+  padding-bottom: 12px;
+}
+
+.medical-mobile-menu button {
+  background: var(--medical-blue);
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* ================= BUTTONS ================= */
+
+.medical-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--medical-font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0 28px;
+  height: 52px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.medical-btn-primary {
+  background: var(--medical-teal);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(66, 185, 170, 0.3);
+}
+
+.medical-btn-primary:hover {
+  background: var(--medical-teal-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(66, 185, 170, 0.4);
+}
+
+.medical-btn-primary span {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.medical-btn-primary:hover span {
+  transform: translateX(4px);
+}
+
+.medical-btn-outline {
+  background: transparent;
+  color: var(--medical-blue-dark);
+  border: 2px solid var(--medical-blue-dark);
+}
+
+.medical-btn-outline:hover {
+  background: var(--medical-blue-dark);
+  color: #ffffff;
+}
+
+.medical-btn-dark {
+  background: var(--medical-blue-deep);
+  color: #ffffff;
+  border: none;
+}
+
+.medical-btn-dark:hover {
+  background: var(--medical-blue-dark);
+  transform: translateY(-2px);
+}
+.medical-btn-dark span {
+  margin-left: 8px;
+}
+
+.medical-btn-white {
+  background: #ffffff;
+  color: var(--medical-blue-dark);
+  border: none;
+  font-weight: 700;
+}
+
+.medical-btn-white:hover {
+  background: var(--medical-teal-light);
+  transform: translateY(-2px);
+}
+.medical-btn-white span {
+  margin-left: 8px;
+}
+
+/* ================= HERO ================= */
+
+.medical-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f5faff 50%, #eaf8f8 100%);
+  min-height: 680px;
+  padding: 60px 0 70px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--medical-border);
+}
+
+.medical-hero .medical-container {
+  max-width: 1280px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.medical-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+  align-items: center;
+  gap: 60px;
+}
+
+.medical-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--medical-teal);
+  margin-bottom: 16px;
+}
+
+.medical-hero h1 {
+  font-family: var(--medical-font-serif);
+  font-size: 64px;
+  line-height: 1.05;
+  color: var(--medical-blue-deep);
+  margin-bottom: 24px;
+  max-width: 620px;
+}
+
+.medical-hero h1 em {
+  font-style: normal;
+  color: var(--medical-teal);
+}
+
+.medical-hero-description {
+  font-size: 18px;
+  color: var(--medical-text);
+  line-height: 1.65;
+  max-width: 600px;
+  margin-bottom: 38px;
+}
+
+.medical-hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.medical-hero-actions .medical-btn {
+  height: 54px;
+  border-radius: 8px;
+}
+
+.medical-hero-stat {
+  border-left: 3px solid var(--medical-teal);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 18px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 40px;
+  max-width: 540px;
+}
+
+.medical-hero-stat strong {
+  display: block;
+  font-size: 16px;
+  color: var(--medical-blue-dark);
+  margin-bottom: 6px;
+}
+
+.medical-hero-stat span {
+  font-size: 14px;
+  color: var(--medical-text-muted);
+}
+
+/* Hide the old journey list in hero */
+.medical-hero-side ul,
+.medical-hero-side .medical-eyebrow {
+  display: none !important;
+}
+
+.medical-hero-image {
+  width: 100%;
+  max-width: 515px;
+  height: 510px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(16, 26, 70, 0.12);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================= SECTION HEADINGS ================= */
+
+.medical-section-heading {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.medical-section-heading h2 {
+  font-family: var(--medical-font-serif);
+  font-size: 40px;
+  color: var(--medical-blue-deep);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.medical-section-heading p {
+  font-size: 17px;
+  color: var(--medical-text-muted);
+}
+
+.medical-dark-heading h2 {
+  color: #ffffff;
+}
+.medical-dark-heading p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ================= JOURNEY ================= */
+
+.medical-journey {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.medical-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  position: relative;
+}
+
+.medical-stage {
+  background: #ffffff;
+  border: 1px solid var(--medical-border);
+  border-radius: 12px;
+  padding: 24px;
+  min-height: 220px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.medical-stage:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-color: var(--medical-teal-light);
+}
+
+.medical-stage-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: var(--medical-teal);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.medical-stage h3 {
+  font-size: 18px;
+  color: var(--medical-blue-dark);
+  margin-bottom: 12px;
+}
+
+.medical-stage p {
+  font-size: 14px;
+  color: var(--medical-text-muted);
+  margin: 0;
+}
+
+/* ================= SERVICES ================= */
+
+.medical-section {
+  padding: 100px 0;
+  background: var(--medical-bg-light);
+}
+
+.medical-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.medical-service-card {
+  background: #ffffff;
+  border: 1px solid var(--medical-border);
+  border-radius: 16px;
+  padding: 28px;
+  min-height: 360px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
+}
+
+.medical-service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(16, 26, 70, 0.08);
+  border-color: var(--medical-teal);
+}
+
+.medical-service-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.medical-service-number {
+  width: 44px;
+  height: 44px;
+  background: var(--medical-teal-light);
+  color: var(--medical-teal-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.medical-service-arrow {
+  color: var(--medical-border);
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.medical-service-card:hover .medical-service-arrow {
+  color: var(--medical-teal);
+}
+
+.medical-service-card h3 {
+  font-family: var(--medical-font-serif);
+  font-size: 22px;
+  color: var(--medical-blue-deep);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.medical-service-card p {
+  font-size: 15px;
+  color: var(--medical-text-muted);
+  margin-bottom: 20px;
+}
+
+.medical-service-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--medical-border);
+  padding-top: 16px;
+}
+
+.medical-service-card li {
+  font-size: 14px;
+  color: var(--medical-text);
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.medical-service-card li::before {
+  content: "•";
+  color: var(--medical-teal);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* ================= PROGRAMS ================= */
+
+.medical-programs {
+  padding: 100px 0;
+  background: var(--medical-blue-deep);
+  color: #ffffff;
+}
+
+.medical-program-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.medical-program-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 18px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.medical-program-card:hover {
+  background: var(--medical-teal);
+  border-color: var(--medical-teal);
+  transform: translateY(-3px);
+}
+
+.medical-program-card span:first-child {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  margin-right: 14px;
+  transition: color 0.3s ease;
+}
+
+.medical-program-card:hover span:first-child {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.medical-program-card h3 {
+  font-size: 16px;
+  margin: 0;
+  flex-grow: 1;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.medical-program-card strong {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.medical-program-card:hover strong {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ================= DESTINATIONS ================= */
+
+.medical-destinations {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.medical-destination-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.medical-destination-card {
+  background: #ffffff;
+  border: 1px solid var(--medical-border);
+  border-radius: 16px;
+  padding: 32px;
+  min-height: 360px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+
+.medical-destination-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(16, 26, 70, 0.08);
+  border-color: var(--medical-blue);
+}
+
+.medical-destination-code {
+  width: 64px;
+  height: 64px;
+  background: var(--medical-bg-light);
+  color: var(--medical-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 auto 24px;
+  border: 2px solid var(--medical-border);
+  transition: all 0.3s ease;
+}
+
+.medical-destination-card:hover .medical-destination-code {
+  background: var(--medical-blue);
+  color: #ffffff;
+  border-color: var(--medical-blue);
+}
+
+.medical-destination-card h3 {
+  font-family: var(--medical-font-serif);
+  font-size: 26px;
+  color: var(--medical-blue-deep);
+  margin-bottom: 16px;
+}
+
+.medical-destination-card p {
+  font-size: 15px;
+  color: var(--medical-text-muted);
+  margin-bottom: 24px;
+}
+
+.medical-destination-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.medical-destination-card li {
+  font-size: 14px;
+  color: var(--medical-text);
+  padding: 8px 0 8px 24px;
+  position: relative;
+  border-bottom: 1px solid var(--medical-bg-light);
+}
+
+.medical-destination-card li:last-child {
+  border-bottom: none;
+}
+
+.medical-destination-card li::before {
+  content: "✓";
+  color: var(--medical-teal);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+/* ================= SUPPORT ================= */
+
+.medical-support {
+  padding: 100px 0;
+  background: var(--medical-bg-light);
+}
+
+/* Matches the JSX .medical-support-grid outer wrapper */
+.medical-support-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left side */
+.medical-support-content .medical-eyebrow {
+  margin-bottom: 16px;
+}
+
+.medical-support-content h2 {
+  font-family: var(--medical-font-serif);
+  font-size: 40px;
+  color: var(--medical-blue-deep);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.medical-support-content p {
+  font-size: 17px;
+  color: var(--medical-text-muted);
+  margin-bottom: 32px;
+}
+
+/* Right side grid */
+.medical-support-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.medical-support-item {
+  background: #ffffff;
+  border: 1px solid var(--medical-border);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.medical-check {
+  width: 28px;
+  height: 28px;
+  background: var(--medical-teal-light);
+  color: var(--medical-teal-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.medical-support-item h3 {
+  font-size: 16px;
+  color: var(--medical-blue-dark);
+  margin-bottom: 6px;
+}
+
+.medical-support-item p {
+  font-size: 14px;
+  color: var(--medical-text-muted);
+  margin: 0;
+}
+
+/* ================= CTA ================= */
+
+.medical-cta {
+  padding: 100px 0;
+  background: var(--medical-blue-dark);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Subtle background decoration */
+.medical-cta::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: radial-gradient(circle at top right, rgba(66, 185, 170, 0.15), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(21, 94, 239, 0.1), transparent 40%);
+  z-index: 1;
+}
+
+.medical-cta .medical-container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.medical-cta h2 {
+  font-family: var(--medical-font-serif);
+  font-size: clamp(34px, 4vw, 48px);
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.medical-cta p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+}
+
+.medical-cta .medical-btn-white {
+  margin-bottom: 40px;
+}
+
+.medical-contact-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.medical-contact-row a,
+.medical-contact-row span {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.medical-contact-row a:hover {
+  color: var(--medical-teal);
+}
+
+/* ================= SCROLL REVEAL ================= */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal].medical-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+  .medical-journey-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .medical-support-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .medical-support-content {
+    text-align: center;
+  }
+  .medical-support-content p {
+    margin: 0 auto 32px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .medical-hero-grid {
+    gap: 40px;
+  }
+  .medical-hero h1 {
+    font-size: 54px;
+  }
+  .medical-hero-image {
+    height: 450px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .medical-services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .medical-program-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .medical-destination-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .medical-support-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .medical-nav-links {
+    display: none;
+  }
+  .medical-menu-button {
+    display: flex;
+  }
+  
+  .medical-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .medical-hero h1 {
+    font-size: 48px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .medical-hero-description {
+    margin: 0 auto 32px;
+  }
+  .medical-hero-actions {
+    justify-content: center;
+  }
+  .medical-hero-stat {
+    margin: 40px auto 0;
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid var(--medical-teal);
+    border-radius: 0 0 8px 8px;
+  }
+  .medical-hero-image {
+    max-width: 520px;
+    height: 400px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .medical-hero, .medical-journey, .medical-section, .medical-programs, .medical-destinations, .medical-support, .medical-cta {
+    padding: 50px 0;
+  }
+  
+  .medical-section-heading {
+    margin-bottom: 30px;
+  }
+  .medical-section-heading h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .medical-support-content h2, .medical-cta h2 {
+    font-size: 28px;
+  }
+  
+  .medical-services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .medical-program-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .medical-destination-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .medical-support-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .medical-container {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .medical-hero {
+    padding: 40px 0 50px;
+  }
+  .medical-hero h1 {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+  .medical-hero-description {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .medical-hero-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .medical-btn {
+    width: 100%;
+    height: 48px;
+  }
+  .medical-hero-stat {
+    width: 100%;
+    padding: 14px;
+  }
+  .medical-hero-image {
+    height: 280px;
+  }
+
+  .medical-hero, .medical-journey, .medical-section, .medical-programs, .medical-destinations, .medical-support, .medical-cta {
+    padding: 40px 0;
+  }
+
+  .medical-section-heading h2 {
+    font-size: 24px;
+  }
+  .medical-support-content h2, .medical-cta h2 {
+    font-size: 24px;
+  }
+
+  .medical-journey-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .medical-program-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  /* Compact cards */
+  .medical-stage, .medical-service-card, .medical-destination-card {
+    padding: 16px;
+    min-height: auto;
+  }
+  .medical-service-card h3 {
+    font-size: 18px;
+  }
+  .medical-destination-card h3 {
+    font-size: 22px;
+  }
+
+  .medical-contact-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .medical-btn, .medical-stage, .medical-service-card, .medical-program-card, .medical-destination-card {
+    transition: none;
+  }
+}

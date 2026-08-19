@@ -30,6 +30,11 @@ const popularCategories = [
 
 // ── Helpers ────────────────────────────────────────────────
 function buildCardLink(course) {
+  // Courses with their own standalone route (e.g. Ivy League page)
+  // should navigate straight there instead of the generic query-built link.
+  if (course.directLink) {
+    return course.link;
+  }
   return `${course.link}${MENU_ID}/${MENU_NAME}/${course.id}/${encodeURIComponent(course.title)}`;
 }
 
@@ -77,7 +82,14 @@ function CourseCard({ course, navigate }) {  // ADD navigate prop
             )}
           </div>
         )}
-        <span className="k12-arrow-btn" aria-label={`View ${course.title}`}>&#10140;</span>
+        <button
+  type="button"
+  className="k12-arrow-btn"
+  aria-label={`View ${course.title}`}
+  onClick={() => navigate(link)}
+>
+  &#10140;
+</button>
       </div>
     </div>
   );
