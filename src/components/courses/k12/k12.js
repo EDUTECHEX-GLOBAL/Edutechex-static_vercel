@@ -272,12 +272,13 @@ function CounsellingModal({ isOpen, onClose }) {
                 <ul id="k12-category-list" className="k12-category-list">
                   {popularCategories.map(cat => (
                     <li key={cat.name}>
-                     <button
-  className="ug-category-link"
-  onClick={(e) => handleCategoryClick(e, cat.name)}
->
-  {cat.name}
-</button>
+                      <button
+                        type="button"
+                        className="k12-category-link"
+                        onClick={(e) => handleCategoryClick(e, cat.name)}
+                      >
+                        {cat.name}
+                      </button>
                       <span className="k12-category-count">({cat.count})</span>
                     </li>
                   ))}

@@ -354,15 +354,29 @@
   border-bottom: none;
 }
 
-.k12-category-list a {
+.k12-category-link {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
   text-decoration: none;
   color: var(--text-dark);
   font-size: 0.93rem;
   transition: color var(--transition);
 }
 
-.k12-category-list a:hover {
+.k12-category-link:hover,
+.k12-category-link:focus-visible {
   color: var(--brand-blue);
+}
+
+.k12-category-link:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .k12-category-count {
