@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./UK-Undergraduate.css";
-import logo from "../../assets/Edutech-logo.svg";
 
 const UKUndergraduate = () => {
-  const navigate = useNavigate();
-
   useEffect(() => {
     // scroll reveal
     const els = document.querySelectorAll('[data-reveal]');
@@ -34,33 +30,8 @@ const UKUndergraduate = () => {
     window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${message}`, "_blank", "noopener,noreferrer");
   };
 
-  const toggleMenu = () => {
-    const links = document.querySelector('nav.links');
-    if (links) {
-      const open = links.style.display === 'flex';
-      links.style.display = open ? 'none' : 'flex';
-      links.style.cssText = open ? '' : 'display:flex; flex-direction:column; position:absolute; top:68px; left:0; right:0; background:#FFFFFF; padding:20px 28px; gap:16px; border-bottom:1px solid #E8F0FE;';
-    }
-  };
-
   return (
     <div className="uk-undergraduate-page">
-      <header className="site">
-        <div className="wrap nav">
-          <a href="#top" className="logo" onClick={(e) => { e.preventDefault(); navigate("/"); }} aria-label="EduTechEX Home">
-            <img src={logo} alt="EduTechEX" style={{ height: "32px", width: "auto" }} />
-          </a>
-          <nav className="links">
-           
-            <a href="#services" className="active">UK Undergraduate</a>
-            <a href="#subjects">Study Areas</a>
-            <a href="#international">International Students</a>
-            <button onClick={openWhatsApp} className="nav-cta">Book a Counselling Call</button>
-          </nav>
-          <button className="burger" aria-label="Menu" onClick={toggleMenu}><span></span><span></span><span></span></button>
-        </div>
-      </header>
-
       <main id="top">
         {/* HERO */}
         <section className="hero">
@@ -82,7 +53,7 @@ const UKUndergraduate = () => {
               </div>
             </div>
             <div className="hero-side">
-              <span className="eyebrow">On this page</span>
+             
               
             </div>
           </div>

@@ -952,3 +952,65 @@
     transition: none;
   }
 }
+.aunz-page * {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+@media (max-width: 768px) {
+  .aunz-page {
+    overflow-x: clip;
+  }
+
+  .aunz-wrap {
+    width: 100%;
+    padding-inline: 20px;
+  }
+
+  .aunz-hero {
+    padding: 42px 0;
+  }
+
+  .aunz-hero-grid {
+    gap: 24px;
+  }
+
+  .aunz-hero h1 {
+    font-size: clamp(32px, 8vw, 40px);
+    line-height: 1.12;
+  }
+
+  .aunz-lede {
+    font-size: 16px;
+    margin-bottom: 22px;
+  }
+
+  .aunz-hero-ctas {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .aunz-hero-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+  }
+
+  .aunz-journey-new,
+  .aunz-section,
+  .aunz-subjects,
+  .aunz-international,
+  .aunz-cta-band {
+    padding-block: 42px;
+  }
+}
+
+@media (max-width: 420px) {
+  .aunz-wrap {
+    padding-inline: 16px;
+  }
+
+  .aunz-hero h1 {
+    font-size: 30px;
+  }
+}

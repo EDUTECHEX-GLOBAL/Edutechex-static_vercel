@@ -339,7 +339,7 @@
   position: relative;
   border-radius: 24px;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   background: linear-gradient(160deg, var(--light-blue), var(--very-light-blue));
   box-shadow: var(--shadow-hover);
   display: flex;
@@ -805,4 +805,73 @@
   .career-page .hero-card { position: relative; left: 0; right: 0; bottom: 0; margin-top: -20px; }
   .career-page .trust-row span { font-size: 12px; }
   .career-page .intl h2, .career-page .journey h2, .career-page .section-head h2 { font-size: 28px !important; }
+}
+.career-page * {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+@media (max-width: 768px) {
+  .career-page {
+    overflow-x: clip;
+  }
+
+  .career-page .wrap {
+    width: 100%;
+    padding-inline: 20px;
+  }
+
+  .career-page .hero {
+    padding: 42px 0 56px !important;
+  }
+
+  .career-page .hero-grid {
+    gap: 24px;
+  }
+
+  .career-page .hero h1 {
+    font-size: clamp(32px, 8vw, 42px);
+    line-height: 1.12;
+  }
+
+  .career-page .hero p.lede {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .career-page .hero-ctas {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .career-page .hero-photo {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .career-page .trust-row {
+    gap: 14px 20px;
+  }
+
+  .career-page .section,
+  .career-page .journey,
+  .career-page .riasec,
+  .career-page .intl,
+  .career-page .cta-band {
+    padding-block: 42px;
+  }
+}
+
+@media (max-width: 420px) {
+  .career-page .wrap {
+    padding-inline: 16px;
+  }
+
+  .career-page .hero h1 {
+    font-size: 30px;
+  }
+
+  .career-page .trust-row {
+    justify-content: flex-start;
+  }
 }

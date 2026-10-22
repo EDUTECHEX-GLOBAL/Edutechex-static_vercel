@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./medical.css";
 import logo from "../../assets/Edutech-logo.svg";
-import medicalHeroImage from "../../assets/buycourses/Medical.png";
+import medicalHeroImage from "../../assets/buycourses/medical-hero.png";
 
 const Medical = () => {
   const navigate = useNavigate();

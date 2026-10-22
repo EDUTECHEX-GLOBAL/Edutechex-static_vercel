@@ -587,9 +587,7 @@ const USUndergraduate = () => {
                             </div>
                         </div>
 
-                        <span className="usa-eyebrow usa-visually-hidden">
-                            On this page
-                        </span>
+                       
 
                         <ul className="usa-visually-hidden">
                             {journey.map((stage) => (

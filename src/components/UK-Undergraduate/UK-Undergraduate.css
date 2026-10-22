@@ -975,6 +975,29 @@ body {
   }
 }
 
+/* Keep the UK hero card from being squeezed beside the text on iPad widths. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .uk-undergraduate-page .hero {
+    padding-block: 56px;
+  }
+
+  .uk-undergraduate-page .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    min-height: 0;
+  }
+
+  .uk-undergraduate-page .hero h1 {
+    font-size: clamp(44px, 6vw, 60px);
+  }
+
+  .uk-undergraduate-page .hero-side {
+    width: 100%;
+    max-width: none;
+    height: clamp(320px, 55vw, 460px);
+  }
+}
+
 @media (max-width: 767px) {
   .uk-undergraduate-page .nav .links,
   .uk-undergraduate-page .nav .nav-cta {
@@ -1042,5 +1065,72 @@ body {
   .uk-undergraduate-page .chip,
   .uk-undergraduate-page .stamp {
     transition: none;
+  }
+}
+.uk-undergraduate-page * {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+@media (max-width: 767px) {
+  .uk-undergraduate-page {
+    overflow-x: clip;
+  }
+
+  .uk-undergraduate-page .wrap {
+    width: 100%;
+    padding-inline: 20px;
+  }
+
+  .uk-undergraduate-page .hero {
+    padding: 44px 0 48px;
+  }
+
+  .uk-undergraduate-page .hero-grid {
+    min-height: 0;
+    gap: 24px;
+  }
+
+  .uk-undergraduate-page .hero h1 {
+    font-size: clamp(32px, 8vw, 40px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .uk-undergraduate-page .lede {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .uk-undergraduate-page .hero-ctas {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .uk-undergraduate-page .hero-side {
+    height: clamp(240px, 65vw, 360px);
+    margin-top: 0;
+  }
+
+  .uk-undergraduate-page .journey,
+  .uk-undergraduate-page .section,
+  .uk-undergraduate-page .subjects,
+  .uk-undergraduate-page .intl,
+  .uk-undergraduate-page .cta-band {
+    padding-block: 42px;
+  }
+}
+
+@media (max-width: 420px) {
+  .uk-undergraduate-page .wrap {
+    padding-inline: 16px;
+  }
+
+  .uk-undergraduate-page .hero h1 {
+    font-size: 32px;
+  }
+
+  .uk-undergraduate-page .hero-side {
+    height: 240px;
   }
 }

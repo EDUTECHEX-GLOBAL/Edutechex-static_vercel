@@ -1,9 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 
 import Header from "./components/header/header";
@@ -26,20 +27,30 @@ import Undergraduate from "./components/courses/undergraduate/undergraduate";
 import Postgraduate from "./components/courses/postgraduate/postgraduate";
 
 // Ivy League
-import IvyLeague from "./components/Ivy-League-admission/Ivy-League";
+const IvyLeague = lazy(() => import("./components/Ivy-League-admission/Ivy-League"));
+const CanadaAdmission = lazy(() => import("./components/canada-admission/canada"));
+const AustraliaNzAdmission = lazy(() => import("./components/australia-nz-admission/australia-nz"));
+const MedicalAdmission = lazy(() => import("./components/Medical-admission/medical"));
+const UKUndergraduate = lazy(() => import("./components/UK-Undergraduate/UK-Undergraduate"));
+const USAAdmission = lazy(() => import("./components/USA-admission/usa"));
+const Career = lazy(() => import("./components/Career-admission/Career"));
 
-// Other Admissions
-import CanadaAdmission from "./components/canada-admission/canada";
-import AustraliaNzAdmission from "./components/australia-nz-admission/australia-nz";
-import MedicalAdmission from "./components/Medical-admission/medical";
-import UKUndergraduate from "./components/UK-Undergraduate/UK-Undergraduate";
-import USAAdmission from "./components/USA-admission/usa";
-import Career from "./components/Career-admission/Career";
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname]);
+
+  return null;
+}
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Header />
 
+      <Suspense fallback={<main className="route-loading" aria-label="Loading page" />}>
       <Routes>
         {/* ================= HOME ================= */}
         <Route path="/" element={<Home />} />
@@ -110,6 +121,7 @@ function App() {
           element={<Navigate to="/" replace />}
         />
       </Routes>
+      </Suspense>
 
       <Footer />
     </Router>
