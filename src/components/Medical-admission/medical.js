@@ -461,7 +461,7 @@ const Medical = () => {
 
 
           <div className="medical-hero-side">
-            <img src={medicalHeroImage} alt="Medical Admissions" className="medical-hero-image" />
+            <img src={medicalHeroImage} alt="Medical Admissions" className="medical-hero-image" loading="eager" fetchPriority="high" decoding="async" />
 
             <span className="medical-eyebrow">
               Medical Application Journey

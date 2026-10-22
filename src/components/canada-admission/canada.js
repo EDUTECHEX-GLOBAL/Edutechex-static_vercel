@@ -429,7 +429,7 @@ const Canada = () => {
             </div>
           </div>
           <div className="canada-hero-image-wrapper" data-reveal>
-            <img src={heroImg} alt="Study in Canada" className="canada-hero-img" />
+            <img src={heroImg} alt="Study in Canada" className="canada-hero-img" loading="eager" fetchPriority="high" decoding="async" />
           </div>
         </div>
       </section>

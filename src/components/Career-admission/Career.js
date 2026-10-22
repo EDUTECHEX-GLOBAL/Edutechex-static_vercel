@@ -180,7 +180,7 @@ const Career = () => {
 
                         <div className="hero-photo">
                             <div className="hero-photo-frame">
-                                <img src={careerImg} alt="Career Counseling" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                <img src={careerImg} alt="Career Counseling" loading="eager" fetchPriority="high" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                             </div>
 
                         </div>
@@ -278,7 +278,7 @@ const Career = () => {
                         </div>
 
                         <div className="mapping-art" data-reveal>
-                            <img src={career1Img} alt="Career Mapping" className="mapping-svg" style={{ borderRadius: '12px' }} />
+                            <img src={career1Img} alt="Career Mapping" className="mapping-svg" loading="lazy" decoding="async" style={{ borderRadius: '12px' }} />
                         </div>
                     </div>
                 </section>

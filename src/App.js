@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { Component, lazy, Suspense, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -26,14 +26,61 @@ import K12 from "./components/courses/k12/k12";
 import Undergraduate from "./components/courses/undergraduate/undergraduate";
 import Postgraduate from "./components/courses/postgraduate/postgraduate";
 
-// Ivy League
-const IvyLeague = lazy(() => import("./components/Ivy-League-admission/Ivy-League"));
-const CanadaAdmission = lazy(() => import("./components/canada-admission/canada"));
-const AustraliaNzAdmission = lazy(() => import("./components/australia-nz-admission/australia-nz"));
-const MedicalAdmission = lazy(() => import("./components/Medical-admission/medical"));
-const UKUndergraduate = lazy(() => import("./components/UK-Undergraduate/UK-Undergraduate"));
-const USAAdmission = lazy(() => import("./components/USA-admission/usa"));
-const Career = lazy(() => import("./components/Career-admission/Career"));
+function lazyWithChunkRecovery(importer) {
+  return lazy(async () => {
+    const recoveryKey = `chunk-reload:${window.location.pathname}`;
+
+    try {
+      const module = await importer();
+      window.sessionStorage.removeItem(recoveryKey);
+      return module;
+    } catch (error) {
+      try {
+        if (!window.sessionStorage.getItem(recoveryKey)) {
+          window.sessionStorage.setItem(recoveryKey, "1");
+          window.location.reload();
+        }
+      } catch {
+        // Storage can be unavailable in privacy-restricted browsing modes.
+      }
+
+      throw error;
+    }
+  });
+}
+
+class RouteErrorBoundary extends Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <main className="route-error" role="alert">
+          <h1>This page couldn’t load</h1>
+          <p>Please check your connection and try again.</p>
+          <button type="button" onClick={() => window.location.reload()}>
+            Reload page
+          </button>
+        </main>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+// Keep admission routes split into small, on-demand bundles.
+const IvyLeague = lazyWithChunkRecovery(() => import("./components/Ivy-League-admission/Ivy-League"));
+const CanadaAdmission = lazyWithChunkRecovery(() => import("./components/canada-admission/canada"));
+const AustraliaNzAdmission = lazyWithChunkRecovery(() => import("./components/australia-nz-admission/australia-nz"));
+const MedicalAdmission = lazyWithChunkRecovery(() => import("./components/Medical-admission/medical"));
+const UKUndergraduate = lazyWithChunkRecovery(() => import("./components/UK-Undergraduate/UK-Undergraduate"));
+const USAAdmission = lazyWithChunkRecovery(() => import("./components/USA-admission/usa"));
+const Career = lazyWithChunkRecovery(() => import("./components/Career-admission/Career"));
 
 function ScrollToTop() {
   const location = useLocation();
@@ -50,7 +97,8 @@ function App() {
       <ScrollToTop />
       <Header />
 
-      <Suspense fallback={<main className="route-loading" aria-label="Loading page" />}>
+      <RouteErrorBoundary>
+      <Suspense fallback={<main className="route-loading" role="status">Loading page…</main>}>
       <Routes>
         {/* ================= HOME ================= */}
         <Route path="/" element={<Home />} />
@@ -122,6 +170,7 @@ function App() {
         />
       </Routes>
       </Suspense>
+      </RouteErrorBoundary>
 
       <Footer />
     </Router>

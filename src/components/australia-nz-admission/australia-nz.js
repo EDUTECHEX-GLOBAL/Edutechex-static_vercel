@@ -412,7 +412,7 @@ const AustraliaNZ = () => {
 
 
             <div className="aunz-hero-image">
-              <img src={heroImg} alt="Study in Australia and New Zealand" />
+              <img src={heroImg} alt="Study in Australia and New Zealand" loading="eager" fetchPriority="high" decoding="async" />
             </div>
 
           </div>
