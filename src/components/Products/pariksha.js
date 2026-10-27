@@ -9,6 +9,7 @@ import counsellingSVG from "../../assets/Counselling.svg";
 import growthSVG from "../../assets/Growth.svg";
 import pariImg from "../../assets/pari.JPG";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 
 const aboutItems = [
   "K12 Curriculum",
@@ -31,6 +32,7 @@ const carouselImages = [
 const AUTO_SLIDE_INTERVAL = 3000; // 3 seconds
 
 const Pariksha = () => {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -85,7 +87,7 @@ const Pariksha = () => {
               true passionate academic and non-academic goals.
             </p>
 
-            <button className="demo-btn">Get Demo</button>
+            <button className="demo-btn" onClick={() => navigate("/sat/register")}>Start Your SAT Journey</button>
           </div>
 
           <div className="pariksha-hero-right">

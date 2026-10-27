@@ -25,6 +25,7 @@ import Shop from "./components/buycourses/shop";
 import K12 from "./components/courses/k12/k12";
 import Undergraduate from "./components/courses/undergraduate/undergraduate";
 import Postgraduate from "./components/courses/postgraduate/postgraduate";
+import { Registration, VerifyOtp, MockTests, TestInstructions, MockTest, Results, SatNotFound } from "./components/SAT/SatExperience";
 
 function lazyWithChunkRecovery(importer) {
   return lazy(async () => {
@@ -91,6 +92,7 @@ function ScrollToTop() {
 
   return null;
 }
+
 function App() {
   return (
     <Router>
@@ -106,6 +108,17 @@ function App() {
 
         {/* ================= PRODUCTS ================= */}
         <Route path="/pariksha" element={<Pariksha />} />
+
+        {/* ================= SAT MOCK TEST PROTOTYPE ================= */}
+        <Route path="/sat/register" element={<Registration />} />
+        <Route path="/sat/verify-otp" element={<VerifyOtp />} />
+        <Route path="/sat/mock-tests" element={<MockTests />} />
+        <Route path="/sat/mock-tests/:testId/instructions" element={<TestInstructions />} />
+        <Route path="/sat/mock-tests/:testId/start" element={<TestInstructions />} />
+        <Route path="/sat/mock-tests/:testId/attempt" element={<MockTest />} />
+        <Route path="/sat/mock-tests/:testId" element={<TestInstructions />} />
+        <Route path="/sat/results/:attemptId" element={<Results />} />
+        <Route path="/sat/*" element={<SatNotFound />} />
 
         {/* ================= CONSULTING ================= */}
         <Route

@@ -1,0 +1,14 @@
+{
+  "name": "edutechex-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local API for the EduTechEx SAT practice app",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "mongoose": "^9.11.4",
+    "nodemailer": "^10.2.1"
+  }
+}
