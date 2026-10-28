@@ -1,0 +1,584 @@
+/* ==================== SAT LOGIN UI ==================== */
+.sat-login-page {
+  --l-input-h: clamp(42px, 5.8vh, 52px);
+  --l-gap: clamp(12px, 2vh, 18px);
+  --l-label: clamp(13px, 1.95vh, 15px);
+  --l-text: clamp(13px, 1.95vh, 14px);
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 clamp(20px, 4vw, 48px) clamp(16px, 2.5vh, 28px);
+  background: linear-gradient(135deg, #f1f7ff 0%, #f8fbff 50%, #f0f6fe 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: Inter, Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #0b2a6b;
+}
+
+/* Ambient glow accents */
+.sat-login-page::before {
+  content: "";
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  left: -250px;
+  top: -260px;
+  border-radius: 50%;
+  background: rgba(212, 230, 253, 0.75);
+  pointer-events: none;
+}
+
+.sat-login-page::after {
+  content: "";
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  left: 34vw;
+  bottom: -330px;
+  border-radius: 50%;
+  background: rgba(214, 232, 255, 0.5);
+  pointer-events: none;
+}
+
+/* Top Navigation Bar */
+.sat-login-navbar {
+  position: relative;
+  z-index: 10;
+  width: min(100%, 1240px);
+  margin: 0 auto;
+  padding: clamp(14px, 2.4vh, 24px) 0 clamp(6px, 1.2vh, 14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sat-login-nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sat-login-nav-brand:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.sat-login-nav-logo {
+  width: clamp(130px, 18vh, 175px);
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.sat-login-nav-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.5vw, 16px);
+}
+
+.sat-login-nav-prompt {
+  font-size: clamp(13px, 1.8vh, 14.5px);
+  font-weight: 500;
+  color: #51698d;
+}
+
+.sat-login-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(8px, 1.2vh, 10px) clamp(16px, 1.8vw, 22px);
+  border-radius: 999px;
+  border: 1.5px solid #1264e8;
+  background: #ffffff;
+  color: #1264e8;
+  font-family: inherit;
+  font-size: clamp(13px, 1.85vh, 14.5px);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(18, 100, 232, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sat-login-nav-btn svg {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sat-login-nav-btn:hover {
+  background: #1264e8;
+  color: #ffffff;
+  border-color: #1264e8;
+  box-shadow: 0 6px 20px rgba(18, 100, 232, 0.28);
+  transform: translateY(-1.5px);
+}
+
+.sat-login-nav-btn:hover svg {
+  transform: translateX(2px);
+}
+
+.sat-login-nav-btn:active {
+  transform: translateY(0);
+}
+
+/* Two-column container */
+.sat-login-container {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1240px);
+  flex: 1;
+  min-height: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 56px;
+}
+
+/* Left Hero Column */
+.sat-login-hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: center;
+  max-width: 540px;
+  padding: clamp(14px, 2vh, 28px) 0;
+}
+
+.sat-login-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(8px, 1.6vh, 14px);
+  padding: clamp(6px, 1.1vh, 8px) 18px clamp(6px, 1.1vh, 8px) 14px;
+  border-radius: 999px;
+  background: #e2eefd;
+  color: #1264e8;
+  font-size: clamp(12.5px, 1.9vh, 14px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.sat-login-title {
+  margin: 0 0 clamp(6px, 1.2vh, 12px);
+  font-family: inherit;
+  font-size: clamp(32px, 5.6vh, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #0a2a66;
+}
+
+.sat-login-title span {
+  color: #1264e8;
+}
+
+.sat-login-subtitle {
+  margin: 0 0 clamp(12px, 2vh, 20px);
+  max-width: 450px;
+  font-size: clamp(13.5px, 2.1vh, 16px);
+  line-height: 1.5;
+  color: #51698d;
+}
+
+.sat-login-features {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vh, 14px);
+}
+
+.sat-login-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sat-login-feature-icon {
+  width: clamp(38px, 6vh, 52px);
+  height: clamp(38px, 6vh, 52px);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e1ecfb;
+  color: #1264e8;
+}
+
+.sat-login-feature-icon svg {
+  width: 46%;
+  height: 46%;
+}
+
+.sat-login-feature-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sat-login-feature-title {
+  font-size: clamp(14px, 2.1vh, 16px);
+  font-weight: 700;
+  color: #0b2a6b;
+  line-height: 1.25;
+}
+
+.sat-login-feature-text {
+  font-size: clamp(12px, 1.8vh, 13.5px);
+  color: #5d7391;
+  line-height: 1.35;
+}
+
+/* Right Column: Card */
+.sat-login-card-wrap {
+  position: relative;
+  z-index: 3;
+  align-self: center;
+  padding: clamp(12px, 3vh, 32px) 0;
+}
+
+.sat-login-card {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: clamp(20px, 3.2vh, 34px) clamp(28px, 3.2vw, 44px) clamp(18px, 2.8vh, 30px);
+  background: #ffffff;
+  border: 1px solid #e3edf9;
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(13, 37, 82, 0.07), 0 2px 8px rgba(13, 37, 82, 0.03);
+  box-sizing: border-box;
+}
+
+.sat-login-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(10px, 1.8vh, 16px);
+}
+
+.sat-login-step-dot {
+  width: clamp(34px, 4.8vh, 42px);
+  height: clamp(34px, 4.8vh, 42px);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #1264e8;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(18, 100, 232, 0.28);
+}
+
+.sat-login-card-intro {
+  text-align: left;
+  margin-bottom: clamp(14px, 2.4vh, 22px);
+}
+
+.sat-login-card-intro h1 {
+  margin: 0 0 6px;
+  font-size: clamp(24px, 4.2vh, 34px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.6px;
+  color: #0a2a66;
+}
+
+.sat-login-card-intro p {
+  max-width: 440px;
+  margin: 0;
+  font-size: clamp(13px, 1.95vh, 15px);
+  line-height: 1.5;
+  color: #4d648d;
+}
+
+/* Form */
+.sat-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--l-gap);
+  margin-top: 0;
+}
+
+.sat-login-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.sat-login-label {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  font-size: var(--l-label);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0b2a6b;
+}
+
+.sat-login-required {
+  margin-left: 4px;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.sat-login-input-wrap {
+  display: flex;
+  align-items: center;
+  height: var(--l-input-h);
+  padding: 0 14px;
+  border: 1px solid #d3e2f5;
+  border-radius: 6px;
+  background: #ffffff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+}
+
+.sat-login-input-wrap:focus-within {
+  border-color: #1264e8;
+  box-shadow: 0 0 0 3px rgba(18, 100, 232, 0.12);
+}
+
+.sat-login-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 12px;
+  color: #1b3a78;
+}
+
+.sat-login-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #1e293b;
+  font: 400 var(--l-text) Inter, -apple-system, sans-serif;
+}
+
+.sat-login-input-wrap input::placeholder {
+  color: #8aa0c0;
+}
+
+.sat-login-eye-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 8px;
+  padding: 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #1b3a78;
+  cursor: pointer;
+}
+
+.sat-login-eye-btn:focus-visible {
+  outline: 2px solid #1264e8;
+  outline-offset: 1px;
+}
+
+/* Remember me & Forgot password */
+.sat-login-extra-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -2px 0 2px;
+}
+
+.sat-login-remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #4b6287;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sat-login-remember input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border-radius: 4px;
+  accent-color: #1264e8;
+  cursor: pointer;
+}
+
+.sat-login-forgot-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #1264e8;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.sat-login-forgot-btn:hover {
+  color: #0b4ab3;
+  text-decoration: underline;
+}
+
+/* Error message */
+.sat-login-message {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sat-login-error {
+  background: #fff0ef;
+  color: #a63e37;
+  border: 1px solid #fecaca;
+}
+
+/* Submit button */
+.sat-login-submit-btn {
+  width: 100%;
+  height: clamp(44px, 6vh, 52px);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #1264e8;
+  color: #ffffff;
+  font-size: clamp(14.5px, 2.1vh, 16px);
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(18, 100, 232, 0.25);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.sat-login-submit-btn:hover:not(:disabled) {
+  background: #0d54c7;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(18, 100, 232, 0.35);
+}
+
+.sat-login-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Secure note */
+.sat-login-secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 16px;
+  color: #4d648d;
+  font-size: 12px;
+}
+
+.sat-login-secure-note::before,
+.sat-login-secure-note::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #dbe6f3;
+}
+
+.sat-login-secure-note svg {
+  color: #0b2a6b;
+  flex-shrink: 0;
+}
+
+/* Switch link */
+.sat-login-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: clamp(13px, 1.8vh, 14px);
+  color: #51698d;
+}
+
+.sat-login-switch-link {
+  color: #1264e8;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+
+.sat-login-switch-link:hover {
+  color: #0b4ab3;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .sat-login-page {
+    padding: 0 20px 36px;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  .sat-login-navbar {
+    padding: 16px 0 10px;
+  }
+  .sat-login-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    min-height: auto;
+    padding-bottom: 24px;
+  }
+  .sat-login-hero {
+    max-width: none;
+    padding-top: 14px;
+    padding-bottom: 0;
+  }
+  .sat-login-card-wrap {
+    padding: 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .sat-login-page {
+    padding: 0 14px 28px;
+  }
+  .sat-login-nav-prompt {
+    display: none;
+  }
+  .sat-login-nav-btn {
+    padding: 7px 14px;
+    font-size: 12.5px;
+  }
+  .sat-login-card {
+    padding: 22px 16px;
+  }
+  .sat-login-card-intro h1 {
+    font-size: 26px;
+  }
+  .sat-login-title {
+    font-size: 32px;
+  }
+  .sat-login-extra-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

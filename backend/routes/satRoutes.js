@@ -1,4 +1,4 @@
-const { createRegistration, verifyRegistration } = require("../controllers/satRegistrationController");
+const { createRegistration, verifyRegistration, loginRegistration } = require("../controllers/satRegistrationController");
 
 async function handleSatRequest(request, response, url, readJson, send) {
   if (request.method === "POST" && url.pathname === "/api/sat/registrations") {
@@ -9,6 +9,11 @@ async function handleSatRequest(request, response, url, readJson, send) {
   const verificationMatch = url.pathname.match(/^\/api\/sat\/registrations\/([\w-]+)\/verify$/);
   if (request.method === "POST" && verificationMatch) {
     await verifyRegistration(request, response, verificationMatch[1], readJson, send);
+    return true;
+  }
+
+  if (request.method === "POST" && url.pathname === "/api/sat/login") {
+    await loginRegistration(request, response, readJson, send);
     return true;
   }
 

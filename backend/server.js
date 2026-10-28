@@ -6,6 +6,7 @@ require("dotenv").config({
 const http = require("node:http");
 const mongoose = require("mongoose");
 const { handleSatRequest } = require("./routes/satRoutes");
+const { handleMockRequest } = require("./routes/mockroutes");
 
 const PORT = Number(process.env.PORT || 5000);
 const allowedOrigins = new Set((process.env.ALLOWED_ORIGINS || "http://localhost:3000,http://localhost:3001")
@@ -61,7 +62,10 @@ const server = http.createServer(async (request, response) => {
   }
 
   try {
-    const handled = await handleSatRequest(request, response, url, readJson, send);
+    let handled = await handleSatRequest(request, response, url, readJson, send);
+    if (!handled) {
+      handled = await handleMockRequest(request, response, url, readJson, send);
+    }
     if (!handled) send(response, 404, { error: "Route not found." });
   } catch (error) {
     send(response, error.status || 500, { error: error.message || "Unexpected server error." });

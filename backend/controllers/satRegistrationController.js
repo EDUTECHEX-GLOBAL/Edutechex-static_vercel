@@ -48,22 +48,28 @@ async function createRegistration(request, response, readJson, send) {
     return;
   }
 
-  const { name, email, phone, curriculum } = body;
-  if (![name, email, phone, curriculum].every(requiredText)) {
-    send(response, 400, { error: "Name, email, phone, and curriculum are required." });
+  const { name, email, phone, curriculum, gender, password } = body;
+  if (![name, email, phone].every(requiredText)) {
+    send(response, 400, { error: "Name, email, and phone number are required." });
     return;
   }
 
   const code = randomInt(0, 1_000_000).toString().padStart(6, "0");
   let registration;
   try {
-    registration = new Registration({
+    const regPayload = {
       name,
       email,
       phone,
-      curriculum,
+      curriculum: curriculum || "General",
+      gender: gender || "",
       otpExpiresAt: new Date(Date.now() + OTP_LIFETIME_MS),
-    });
+    };
+    if (password && typeof password === "string") {
+      const secret = process.env.OTP_SECRET || process.env.JWT_SECRET || "sat-secret-key";
+      regPayload.passwordHash = createHmac("sha256", secret).update(password).digest("hex");
+    }
+    registration = new Registration(regPayload);
     registration.otpHash = hashCode(registration.id, code);
     await registration.save();
     await sendVerificationCode(registration.email, code);
@@ -128,4 +134,52 @@ async function verifyRegistration(request, response, registrationId, readJson, s
   send(response, 200, { id: registrationId, status: "verified" });
 }
 
-module.exports = { createRegistration, verifyRegistration };
+async function loginRegistration(request, response, readJson, send) {
+  let body;
+  try {
+    body = await readJson(request);
+  } catch (error) {
+    send(response, error.message === "Request body must be valid JSON." ? 400 : 413, { error: error.message });
+    return;
+  }
+
+  const { email, password } = body;
+  if (!email || typeof email !== "string" || !password || typeof password !== "string") {
+    send(response, 400, { error: "Email and password are required." });
+    return;
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+  const registration = await Registration.findOne({ email: normalizedEmail }).select("+passwordHash");
+  if (!registration) {
+    send(response, 401, { error: "No account found with this email. Please register first." });
+    return;
+  }
+
+  if (!registration.passwordHash) {
+    send(response, 401, { error: "This account has no password set. Please create a new registration." });
+    return;
+  }
+
+  const secret = process.env.OTP_SECRET || process.env.JWT_SECRET || "sat-secret-key";
+  const submittedHash = createHmac("sha256", secret).update(password).digest("hex");
+  const submittedBuf = Buffer.from(submittedHash, "hex");
+  const storedBuf = Buffer.from(registration.passwordHash || "", "hex");
+
+  if (submittedBuf.length !== storedBuf.length || !timingSafeEqual(submittedBuf, storedBuf)) {
+    send(response, 401, { error: "Incorrect password. Please try again." });
+    return;
+  }
+
+  send(response, 200, {
+    id: registration.id,
+    name: registration.name,
+    email: registration.email,
+    phone: registration.phone,
+    gender: registration.gender,
+    curriculum: registration.curriculum,
+    verified: Boolean(registration.verified),
+  });
+}
+
+module.exports = { createRegistration, verifyRegistration, loginRegistration };
