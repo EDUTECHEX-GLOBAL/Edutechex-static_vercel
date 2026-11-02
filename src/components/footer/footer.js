@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './footer.css';
 import edutechLogo from '../../assets/Edutech-logo.svg';
 import { FOOTER_ITEMS } from '../../data/footerItems';
@@ -16,7 +17,7 @@ const Footer = () => {
       <div className="footer-inner">
         <div className="footer-grid">
           <div className="footer-widget footer-widget--brand">
-            <a href="/" className="footer-logo-link"><img src={edutechLogo} alt="EDUTECHEX" className="footer-logo" /></a>
+            <Link to="/" className="footer-logo-link"><img src={edutechLogo} alt="EDUTECHEX" className="footer-logo" /></Link>
             <p className="footer-brand-desc">We are a young team of diversified people who have education close to our hearts and are extremely passionate about global and domestic education.</p>
             <ul className="footer-socials">
               <li><a href="https://www.facebook.com/edutechexlearning/" target="_blank" rel="noopener noreferrer" className="footer-social-btn footer-social-btn--fb" aria-label="Facebook"><FacebookIcon /></a></li>
@@ -29,7 +30,17 @@ const Footer = () => {
           {FOOTER_ITEMS.map(section => (
             <div key={section.heading} className="footer-widget footer-widget--nav">
               <h5 className="footer-nav-heading">{section.heading}</h5>
-              <ul className="footer-nav-list">{section.items.map(item => (<li key={item.name}><a href={item.link} className="footer-nav-link">{item.name}</a></li>))}</ul>
+              <ul className="footer-nav-list">
+                {section.items.map(item => (
+                  <li key={item.name}>
+                    {item.link.startsWith('/') ? (
+                      <Link to={item.link} className="footer-nav-link">{item.name}</Link>
+                    ) : (
+                      <a href={item.link} className="footer-nav-link">{item.name}</a>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
           <div className="footer-widget footer-widget--contact">
@@ -40,10 +51,10 @@ const Footer = () => {
         </div>
         <hr className="footer-divider" />
         <div className="footer-bottom">
-          <span className="footer-copyright"><a href="/" className="footer-copyright-link">©2026 EDUTECHEX</a>. All rights reserved.</span>
+          <span className="footer-copyright"><Link to="/" className="footer-copyright-link">©2026 EDUTECHEX</Link>. All rights reserved.</span>
           <ul className="footer-legal-links">
             <li><a href="/cancellation-policy" className="footer-legal-link">Cancellation Policy</a></li>
-            <li><a href="/privacy-policy" className="footer-legal-link">Privacy policy</a></li>
+            <li><Link to="/privacy-policy" className="footer-legal-link">Privacy policy</Link></li>
             <li><a href="/terms-and-conditions" className="footer-legal-link">Terms and Conditions</a></li>
           </ul>
         </div>

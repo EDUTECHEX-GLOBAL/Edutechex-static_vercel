@@ -4,6 +4,7 @@ export const FOOTER_ITEMS = [
     items: [
       { name: 'About Us', link: '/about' },
       { name: 'Contact Us', link: '/contact' },
+      { name: 'Privacy Policy', link: '/privacy-policy' },
     ],
   },
   {

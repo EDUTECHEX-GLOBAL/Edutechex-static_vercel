@@ -43,16 +43,123 @@ function Login() {
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", rememberMe: true });
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const update = (event) => setForm({ ...form, [event.target.name]: event.target.value });
+
+  const sanitizeEmail = (val) => {
+    if (!val) return "";
+    let cleaned = val.replace(/\s/g, "");
+
+    // Disallow multiple @ symbols (keep only the first @)
+    const firstAt = cleaned.indexOf("@");
+    if (firstAt !== -1) {
+      cleaned = cleaned.slice(0, firstAt + 1) + cleaned.slice(firstAt + 1).replace(/@/g, "");
+    }
+
+    // Disallow appending characters/numbers after completed major domains:
+    // e.g. @gmail.com123 or @gmail.comxyz -> @gmail.com
+    cleaned = cleaned.replace(
+      /(@(?:gmail|yahoo|outlook|hotmail|icloud|edutechex|zoho|proton|live)\.(?:com|in|org|net|edu|co\.in|me)).*/i,
+      (match, domain) => domain
+    );
+
+    // Disallow numbers or invalid characters in the domain's top-level extension (after the last dot)
+    const atIdx = cleaned.indexOf("@");
+    if (atIdx !== -1) {
+      const local = cleaned.slice(0, atIdx);
+      const domain = cleaned.slice(atIdx + 1);
+      const lastDot = domain.lastIndexOf(".");
+      if (lastDot !== -1) {
+        const preTld = domain.slice(0, lastDot + 1);
+        const tld = domain.slice(lastDot + 1);
+        // TLD can only be letters
+        const lettersOnlyTld = tld.replace(/[^a-zA-Z]/g, "");
+        cleaned = `${local}@${preTld}${lettersOnlyTld}`;
+      }
+    }
+
+    return cleaned;
+  };
+
+  const validateEmail = (val) => {
+    const trimmed = (val || "").trim();
+    if (!trimmed) return "Enter your email address.";
+    if (trimmed.length > 254) return "Email address is too long.";
+    if (trimmed.includes("..")) return "Email cannot contain consecutive dots.";
+
+    // If typing a major domain like @gmail, ensure it ends with @gmail.com
+    if (/@gmail\.[a-zA-Z]+/i.test(trimmed) && !/@gmail\.com$/i.test(trimmed)) {
+      return "Gmail addresses must end with @gmail.com.";
+    }
+
+    // Strictly validate email: local@domain.tld where TLD is 2 to 10 letters only (no numbers allowed in/after TLD)
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,10}$/;
+    if (!emailRegex.test(trimmed)) {
+      const lastDotIndex = trimmed.lastIndexOf(".");
+      if (lastDotIndex > trimmed.indexOf("@") && lastDotIndex !== -1) {
+        const ext = trimmed.slice(lastDotIndex + 1);
+        if (/\d/.test(ext)) {
+          return "Domain extension cannot contain numbers (e.g. use .com instead of .com123).";
+        }
+      }
+      return "Enter a valid email address (e.g. you@example.com).";
+    }
+    return "";
+  };
+
+  const validatePassword = (val) => {
+    if (!val) return "Enter your password.";
+    return "";
+  };
+
+  const handleEmailChange = (event) => {
+    const cleaned = sanitizeEmail(event.target.value);
+    setForm((prev) => ({ ...prev, email: cleaned }));
+
+    const hasDomainDot = cleaned.includes("@") && cleaned.split("@")[1]?.includes(".");
+    if (touched.email || hasDomainDot) {
+      setFieldErrors((prev) => ({ ...prev, email: validateEmail(cleaned) }));
+    } else {
+      setFieldErrors((prev) => ({ ...prev, email: "" }));
+    }
+  };
+
+  const handlePasswordChange = (event) => {
+    const { value } = event.target;
+    setForm((prev) => ({ ...prev, password: value }));
+    if (touched.password) {
+      setFieldErrors((prev) => ({ ...prev, password: validatePassword(value) }));
+    }
+  };
+
+  const handleBlur = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    let err = "";
+    if (field === "email") err = validateEmail(form.email);
+    else if (field === "password") err = validatePassword(form.password);
+    setFieldErrors((prev) => ({ ...prev, [field]: err }));
+  };
 
   const submit = async (event) => {
     event.preventDefault();
-    const email = form.email.trim();
-    if (!email) { setMessage("Enter your email address."); return; }
-    if (!form.password) { setMessage("Enter your password."); return; }
+    const emailErr = validateEmail(form.email);
+    const passwordErr = validatePassword(form.password);
+
+    setTouched({ email: true, password: true });
+    setFieldErrors({ email: emailErr, password: passwordErr });
+
+    const firstError = emailErr || passwordErr;
+    if (firstError) {
+      setMessage(firstError);
+      if (emailErr) document.getElementById("sat-login-email")?.focus();
+      else if (passwordErr) document.getElementById("sat-login-password")?.focus();
+      return;
+    }
+
     setSubmitting(true);
     setMessage("");
+    const email = form.email.trim();
     try {
       const response = await fetch(`${SAT_API_URL}/sat/login`, {
         method: "POST",
@@ -142,7 +249,7 @@ function Login() {
                 <label className="sat-login-label" htmlFor="sat-login-email">
                   Email Address <span className="sat-login-required">*</span>
                 </label>
-                <div className="sat-login-input-wrap">
+                <div className={`sat-login-input-wrap ${(touched.email || (form.email.includes("@") && form.email.split("@")[1]?.includes("."))) && fieldErrors.email ? "is-invalid" : ""}`}>
                   <span className="sat-login-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <rect width="20" height="16" x="2" y="4" rx="2" />
@@ -156,17 +263,24 @@ function Login() {
                     autoComplete="email"
                     placeholder="you@example.com"
                     value={form.email}
-                    onChange={update}
+                    onChange={handleEmailChange}
+                    onBlur={() => handleBlur("email")}
                     required
                   />
                 </div>
+                {(touched.email || (form.email.includes("@") && form.email.split("@")[1]?.includes("."))) && fieldErrors.email && (
+                  <span className="sat-login-field-error" role="alert">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>{fieldErrors.email}</span>
+                  </span>
+                )}
               </div>
 
               <div className="sat-login-field-group">
                 <label className="sat-login-label" htmlFor="sat-login-password">
                   Password <span className="sat-login-required">*</span>
                 </label>
-                <div className="sat-login-input-wrap">
+                <div className={`sat-login-input-wrap ${touched.password && fieldErrors.password ? "is-invalid" : ""}`}>
                   <span className="sat-login-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
@@ -180,7 +294,8 @@ function Login() {
                     autoComplete="current-password"
                     placeholder="Enter your password"
                     value={form.password}
-                    onChange={update}
+                    onChange={handlePasswordChange}
+                    onBlur={() => handleBlur("password")}
                     required
                   />
                   <button
@@ -203,6 +318,12 @@ function Login() {
                     )}
                   </button>
                 </div>
+                {touched.password && fieldErrors.password && (
+                  <span className="sat-login-field-error" role="alert">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>{fieldErrors.password}</span>
+                  </span>
+                )}
               </div>
 
               <div className="sat-login-extra-row">

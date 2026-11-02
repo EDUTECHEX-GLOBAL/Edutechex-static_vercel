@@ -21,6 +21,7 @@ import ContactUs from "./components/More/Contact-us/contact-us";
 import Testimonails from "./components/More/Testimonails/testimonails";
 
 import Shop from "./components/buycourses/shop";
+import Policy from "./components/policy/policy";
 
 import K12 from "./components/courses/k12/k12";
 import Undergraduate from "./components/courses/undergraduate/undergraduate";
@@ -179,6 +180,11 @@ function AppContent() {
         <Route path="/uk-undergraduate" element={<UKUndergraduate />} />
         <Route path="/usa-admission" element={<USAAdmission />} />
         <Route path="/career-admission" element={<Career />} />
+
+        {/* ================= LEGAL / POLICIES ================= */}
+        <Route path="/privacy-policy" element={<Policy />} />
+        <Route path="/policy" element={<Policy />} />
+        <Route path="/privacy" element={<Policy />} />
 
         {/* ================= UNKNOWN ROUTES ================= */}
         <Route

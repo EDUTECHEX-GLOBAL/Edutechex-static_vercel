@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { jsPDF } from "jspdf";
 import "./sat.css";
 import edutechLogo from "../../assets/Edutech-logo.svg";
 import Login from "./login/login";
+import { EDUTECHEX_LOGO_PNG } from "./edutechLogoBase64";
 
 const STORAGE_KEY = "edutechex-sat-registration";
 const RESULT_KEY = "edutechex-sat-last-result";
@@ -70,6 +72,8 @@ function Registration() {
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", countryCode: "+91", phone: "", gender: "", curriculum: "", password: "" });
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [genderOpen, setGenderOpen] = useState(false);
   const [curriculumOpen, setCurriculumOpen] = useState(false);
   const [countryCodeOpen, setCountryCodeOpen] = useState(false);
@@ -100,27 +104,206 @@ function Registration() {
     }
   }, [showOtpModal]);
 
-  const update = (event) => setForm({ ...form, [event.target.name]: event.target.value });
+  const validateName = (val) => {
+    const trimmed = (val || "").trim();
+    if (!trimmed) return "Enter your full name.";
+    if (/\d/.test(trimmed)) return "Name cannot contain numbers.";
+    if (!/^[a-zA-Z\s.'-]+$/.test(trimmed)) return "Name can only contain letters, spaces, hyphens, or apostrophes.";
+    const letterCount = (trimmed.match(/[a-zA-Z]/g) || []).length;
+    if (letterCount < 2) return "Enter a valid name with at least 2 letters.";
+    if (trimmed.length > 80) return "Name cannot exceed 80 characters.";
+    return "";
+  };
+
+  const sanitizeEmail = (val) => {
+    if (!val) return "";
+    let cleaned = val.replace(/\s/g, "");
+
+    // Disallow multiple @ symbols (keep only the first @)
+    const firstAt = cleaned.indexOf("@");
+    if (firstAt !== -1) {
+      cleaned = cleaned.slice(0, firstAt + 1) + cleaned.slice(firstAt + 1).replace(/@/g, "");
+    }
+
+    // Disallow appending characters/numbers after completed major domains:
+    // e.g. @gmail.com123 or @gmail.comxyz -> @gmail.com
+    cleaned = cleaned.replace(
+      /(@(?:gmail|yahoo|outlook|hotmail|icloud|edutechex|zoho|proton|live)\.(?:com|in|org|net|edu|co\.in|me)).*/i,
+      (match, domain) => domain
+    );
+
+    // Disallow numbers or invalid characters in the domain's top-level extension (after the last dot)
+    const atIdx = cleaned.indexOf("@");
+    if (atIdx !== -1) {
+      const local = cleaned.slice(0, atIdx);
+      const domain = cleaned.slice(atIdx + 1);
+      const lastDot = domain.lastIndexOf(".");
+      if (lastDot !== -1) {
+        const preTld = domain.slice(0, lastDot + 1);
+        const tld = domain.slice(lastDot + 1);
+        // TLD can only be letters
+        const lettersOnlyTld = tld.replace(/[^a-zA-Z]/g, "");
+        cleaned = `${local}@${preTld}${lettersOnlyTld}`;
+      }
+    }
+
+    return cleaned;
+  };
+
+  const validateEmail = (val) => {
+    const trimmed = (val || "").trim();
+    if (!trimmed) return "Enter your email address.";
+    if (trimmed.length > 254) return "Email address is too long.";
+    if (trimmed.includes("..")) return "Email cannot contain consecutive dots.";
+
+    // If typing a major domain like @gmail, ensure it ends with @gmail.com
+    if (/@gmail\.[a-zA-Z]+/i.test(trimmed) && !/@gmail\.com$/i.test(trimmed)) {
+      return "Gmail addresses must end with @gmail.com.";
+    }
+
+    // Strictly validate email: local@domain.tld where TLD is 2 to 10 letters only (no numbers allowed in/after TLD)
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,10}$/;
+    if (!emailRegex.test(trimmed)) {
+      const lastDotIndex = trimmed.lastIndexOf(".");
+      if (lastDotIndex > trimmed.indexOf("@") && lastDotIndex !== -1) {
+        const ext = trimmed.slice(lastDotIndex + 1);
+        if (/\d/.test(ext)) {
+          return "Domain extension cannot contain numbers (e.g. use .com instead of .com123).";
+        }
+      }
+      return "Enter a valid email address (e.g. you@example.com).";
+    }
+    return "";
+  };
+
+  const validatePhone = (val) => {
+    const digitsOnly = (val || "").replace(/\D/g, "");
+    if (!digitsOnly) return "Enter your phone number.";
+    if (digitsOnly.length < 10) {
+      return `Enter a valid 10-digit phone number (${digitsOnly.length}/10 digits entered).`;
+    }
+    if (digitsOnly.length > 10) {
+      return "Phone number must not exceed 10 digits.";
+    }
+    if (/^(\d)\1{9}$/.test(digitsOnly)) {
+      return "Enter a valid 10-digit phone number.";
+    }
+    return "";
+  };
+
+  const validateGender = (val) => {
+    if (!val) return "Select your gender.";
+    return "";
+  };
+
+  const validateCurriculum = (val) => {
+    if (!val) return "Select your curriculum.";
+    return "";
+  };
+
+  const validatePassword = (val) => {
+    if (!val) return "Create a password.";
+    if (val.length < 8 || !/[A-Za-z]/.test(val) || !/\d/.test(val)) {
+      return "Use at least 8 characters, including a letter and a number, for your password.";
+    }
+    return "";
+  };
+
+  const handleNameChange = (event) => {
+    // Disallow numbers and illegal characters as user types
+    const filtered = event.target.value.replace(/[^a-zA-Z\s.'-]/g, "");
+    setForm((prev) => ({ ...prev, name: filtered }));
+    if (touched.name) {
+      setFieldErrors((prev) => ({ ...prev, name: validateName(filtered) }));
+    }
+  };
+
+  const handleEmailChange = (event) => {
+    const cleaned = sanitizeEmail(event.target.value);
+    setForm((prev) => ({ ...prev, email: cleaned }));
+
+    const hasDomainDot = cleaned.includes("@") && cleaned.split("@")[1]?.includes(".");
+    if (touched.email || hasDomainDot) {
+      setFieldErrors((prev) => ({ ...prev, email: validateEmail(cleaned) }));
+    } else {
+      setFieldErrors((prev) => ({ ...prev, email: "" }));
+    }
+  };
+
+  const handlePhoneChange = (event) => {
+    // Only allow digits, max 10 digits
+    const digitsOnly = event.target.value.replace(/\D/g, "").slice(0, 10);
+    setForm((prev) => ({ ...prev, phone: digitsOnly }));
+    if (touched.phone) {
+      setFieldErrors((prev) => ({ ...prev, phone: validatePhone(digitsOnly) }));
+    }
+  };
+
+  const handleBlur = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    let err = "";
+    if (field === "name") err = validateName(form.name);
+    else if (field === "email") err = validateEmail(form.email);
+    else if (field === "phone") err = validatePhone(form.phone);
+    else if (field === "gender") err = validateGender(form.gender);
+    else if (field === "curriculum") err = validateCurriculum(form.curriculum);
+    else if (field === "password") err = validatePassword(form.password);
+    setFieldErrors((prev) => ({ ...prev, [field]: err }));
+  };
+
+  const update = (event) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (touched[name]) {
+      if (name === "password") {
+        setFieldErrors((prev) => ({ ...prev, password: validatePassword(value) }));
+      }
+    }
+  };
 
   const submit = async (event) => {
     event.preventDefault();
-    const name = form.name.trim();
-    const email = form.email.trim();
-    const phone = form.phone.trim();
-    const phoneDigits = phone.replace(/\D/g, "");
-    const fullPhoneDigitCount = form.countryCode.replace(/\D/g, "").length + phoneDigits.length;
-    if (!name) { setMessage("Enter your full name."); return; }
-    if (!/^[\p{L}\p{M}][\p{L}\p{M} .'-]{1,79}$/u.test(name)) { setMessage("Enter a valid name using letters, spaces, apostrophes, periods, or hyphens."); return; }
-    if (!email) { setMessage("Enter your email address."); return; }
-    if (email.length > 254 || !/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)*\.[A-Z]{2,63}$/i.test(email)) { setMessage("Enter a valid email address, such as you@example.com."); return; }
-    if (!phone) { setMessage("Enter your phone number."); return; }
-    if (!/^[\d\s()+.-]+$/.test(phone) || fullPhoneDigitCount < 7 || fullPhoneDigitCount > 15) { setMessage("Enter a valid phone number using 7 to 15 digits. Letters are not allowed."); return; }
-    if (!form.gender) { setMessage("Select your gender."); return; }
-    if (!form.curriculum) { setMessage("Select your curriculum."); return; }
-    if (!form.password) { setMessage("Create a password."); return; }
-    if (form.password.length < 8 || !/[A-Za-z]/.test(form.password) || !/\d/.test(form.password)) { setMessage("Use at least 8 characters, including a letter and a number, for your password."); return; }
+    const nameErr = validateName(form.name);
+    const emailErr = validateEmail(form.email);
+    const phoneErr = validatePhone(form.phone);
+    const genderErr = validateGender(form.gender);
+    const curriculumErr = validateCurriculum(form.curriculum);
+    const passwordErr = validatePassword(form.password);
+
+    const errors = {
+      name: nameErr,
+      email: emailErr,
+      phone: phoneErr,
+      gender: genderErr,
+      curriculum: curriculumErr,
+      password: passwordErr,
+    };
+
+    setTouched({
+      name: true,
+      email: true,
+      phone: true,
+      gender: true,
+      curriculum: true,
+      password: true,
+    });
+    setFieldErrors(errors);
+
+    const firstError = nameErr || emailErr || phoneErr || genderErr || curriculumErr || passwordErr;
+    if (firstError) {
+      setMessage(firstError);
+      if (nameErr) document.getElementById("sat-name")?.focus();
+      else if (emailErr) document.getElementById("sat-email")?.focus();
+      else if (phoneErr) document.getElementById("sat-phone")?.focus();
+      else if (passwordErr) document.getElementById("sat-password")?.focus();
+      return;
+    }
+
     setSubmitting(true);
     setMessage("");
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const phoneDigits = form.phone.replace(/\D/g, "");
     try {
       const fullPhone = `${form.countryCode} ${phoneDigits}`;
       const response = await fetch(`${SAT_API_URL}/sat/registrations`, {
@@ -317,28 +500,60 @@ function Registration() {
             <form className="sat-form" onSubmit={submit} noValidate>
               <div className="sat-field-group">
                 <label className="sat-input-label" htmlFor="sat-name">Full Name <span className="sat-required">*</span></label>
-                <div className="sat-input-wrapper">
+                <div className={`sat-input-wrapper ${touched.name && fieldErrors.name ? "is-invalid" : ""}`}>
                   <span className="sat-input-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                   </span>
-                  <input id="sat-name" name="name" autoComplete="name" placeholder="Enter your full name" value={form.name} onChange={update} required />
+                  <input
+                    id="sat-name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Enter your full name"
+                    value={form.name}
+                    onChange={handleNameChange}
+                    onBlur={() => handleBlur("name")}
+                    required
+                  />
                 </div>
+                {touched.name && fieldErrors.name && (
+                  <span className="sat-field-error" role="alert">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>{fieldErrors.name}</span>
+                  </span>
+                )}
               </div>
 
               <div className="sat-field-group">
                 <label className="sat-input-label" htmlFor="sat-email">Email Address <span className="sat-required">*</span></label>
-                <div className="sat-input-wrapper">
+                <div className={`sat-input-wrapper ${(touched.email || (form.email.includes("@") && form.email.split("@")[1]?.includes("."))) && fieldErrors.email ? "is-invalid" : ""}`}>
                   <span className="sat-input-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                   </span>
-                  <input id="sat-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" value={form.email} onChange={update} required />
+                  <input
+                    id="sat-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    value={form.email}
+                    onChange={handleEmailChange}
+                    onBlur={() => handleBlur("email")}
+                    required
+                  />
                 </div>
+                {(touched.email || (form.email.includes("@") && form.email.split("@")[1]?.includes("."))) && fieldErrors.email && (
+                  <span className="sat-field-error" role="alert">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>{fieldErrors.email}</span>
+                  </span>
+                )}
               </div>
 
               <div className="sat-form-row">
                 <div className="sat-field-group sat-phone-field-group">
                   <label className="sat-input-label" htmlFor="sat-phone">Phone Number <span className="sat-required">*</span></label>
-                  <div className="sat-phone-combined">
+                  <div className={`sat-phone-combined ${touched.phone && fieldErrors.phone ? "is-invalid" : ""}`}>
                     <div className="sat-country-select">
                       <button className="sat-country-trigger" type="button" aria-label="Country calling code" aria-haspopup="listbox" aria-expanded={countryCodeOpen} onClick={() => { setCountryCodeOpen((open) => !open); setGenderOpen(false); setCurriculumOpen(false); }}>
                         <span className="sat-country-trigger-main">
@@ -358,15 +573,34 @@ function Registration() {
                       )}
                     </div>
                     <div className="sat-phone-input-wrap">
-                      <input id="sat-phone" name="phone" type="tel" autoComplete="tel-national" placeholder="98765 43210" value={form.phone} onChange={update} required />
+                      <input
+                        id="sat-phone"
+                        name="phone"
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        pattern="[0-9]*"
+                        autoComplete="tel-national"
+                        placeholder="10-digit mobile number"
+                        value={form.phone}
+                        onChange={handlePhoneChange}
+                        onBlur={() => handleBlur("phone")}
+                        required
+                      />
                     </div>
                   </div>
+                  {touched.phone && fieldErrors.phone && (
+                    <span className="sat-field-error" role="alert">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <span>{fieldErrors.phone}</span>
+                    </span>
+                  )}
                 </div>
 
                 <div className="sat-field-group sat-gender-field-group">
                   <span className="sat-input-label" id="sat-gender-label">Gender <span className="sat-required">*</span></span>
                   <div className="sat-curriculum-select">
-                    <button className="sat-curriculum-trigger" type="button" aria-labelledby="sat-gender-label" aria-haspopup="listbox" aria-expanded={genderOpen} onClick={() => { setGenderOpen((open) => !open); setCountryCodeOpen(false); setCurriculumOpen(false); }}>
+                    <button className={`sat-curriculum-trigger ${touched.gender && fieldErrors.gender ? "is-invalid" : ""}`} type="button" aria-labelledby="sat-gender-label" aria-haspopup="listbox" aria-expanded={genderOpen} onClick={() => { setGenderOpen((open) => !open); setCountryCodeOpen(false); setCurriculumOpen(false); }}>
                       <span className="sat-curriculum-trigger-left">
                         <svg className="sat-book-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         <span className={form.gender ? "sat-val-selected" : "sat-val-placeholder"}>{form.gender || "Select your gender"}</span>
@@ -376,13 +610,19 @@ function Registration() {
                     {genderOpen && (
                       <div className="sat-curriculum-options" role="listbox" aria-label="Gender">
                         {genders.map((item) => (
-                          <button key={item} type="button" role="option" aria-selected={form.gender === item} className="sat-curriculum-option" onClick={() => { setForm((current) => ({ ...current, gender: item })); setGenderOpen(false); }}>
+                          <button key={item} type="button" role="option" aria-selected={form.gender === item} className="sat-curriculum-option" onClick={() => { setForm((current) => ({ ...current, gender: item })); setGenderOpen(false); setFieldErrors((prev) => ({ ...prev, gender: "" })); }}>
                             {item}
                           </button>
                         ))}
                       </div>
                     )}
                   </div>
+                  {touched.gender && fieldErrors.gender && (
+                    <span className="sat-field-error" role="alert">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <span>{fieldErrors.gender}</span>
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -390,7 +630,7 @@ function Registration() {
                 <div className="sat-field-group sat-curriculum-field-group">
                   <span className="sat-input-label" id="sat-curriculum-label">Curriculum <span className="sat-required">*</span></span>
                   <div className="sat-curriculum-select">
-                    <button className="sat-curriculum-trigger" type="button" aria-labelledby="sat-curriculum-label" aria-haspopup="listbox" aria-expanded={curriculumOpen} onClick={() => { setCurriculumOpen((open) => !open); setGenderOpen(false); setCountryCodeOpen(false); }}>
+                    <button className={`sat-curriculum-trigger ${touched.curriculum && fieldErrors.curriculum ? "is-invalid" : ""}`} type="button" aria-labelledby="sat-curriculum-label" aria-haspopup="listbox" aria-expanded={curriculumOpen} onClick={() => { setCurriculumOpen((open) => !open); setGenderOpen(false); setCountryCodeOpen(false); }}>
                       <span className="sat-curriculum-trigger-left">
                         <svg className="sat-book-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                           <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
@@ -403,22 +643,38 @@ function Registration() {
                     {curriculumOpen && (
                       <div className="sat-curriculum-options" role="listbox" aria-label="Curriculum">
                         {curricula.map((item) => (
-                          <button key={item} type="button" role="option" aria-selected={form.curriculum === item} className="sat-curriculum-option" onClick={() => { setForm((current) => ({ ...current, curriculum: item })); setCurriculumOpen(false); }}>
+                          <button key={item} type="button" role="option" aria-selected={form.curriculum === item} className="sat-curriculum-option" onClick={() => { setForm((current) => ({ ...current, curriculum: item })); setCurriculumOpen(false); setFieldErrors((prev) => ({ ...prev, curriculum: "" })); }}>
                             {item}
                           </button>
                         ))}
                       </div>
                     )}
                   </div>
+                  {touched.curriculum && fieldErrors.curriculum && (
+                    <span className="sat-field-error" role="alert">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <span>{fieldErrors.curriculum}</span>
+                    </span>
+                  )}
                 </div>
 
                 <div className="sat-field-group sat-password-field-group">
                   <label className="sat-input-label" htmlFor="sat-password">Password <span className="sat-required">*</span></label>
-                  <div className="sat-input-wrapper">
+                  <div className={`sat-input-wrapper ${touched.password && fieldErrors.password ? "is-invalid" : ""}`}>
                     <span className="sat-input-icon" aria-hidden="true">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     </span>
-                    <input id="sat-password" name="password" type={showPassword ? "text" : "password"} autoComplete="new-password" placeholder="Create a strong password" value={form.password} onChange={update} required />
+                    <input
+                      id="sat-password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      autoComplete="new-password"
+                      placeholder="Create a strong password"
+                      value={form.password}
+                      onChange={update}
+                      onBlur={() => handleBlur("password")}
+                      required
+                    />
                     <button className="sat-eye-btn" type="button" aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword} onClick={() => setShowPassword((shown) => !shown)}>
                       {showPassword ? (
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="m1 1 22 22"/></svg>
@@ -427,6 +683,12 @@ function Registration() {
                       )}
                     </button>
                   </div>
+                  {touched.password && fieldErrors.password && (
+                    <span className="sat-field-error" role="alert">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <span>{fieldErrors.password}</span>
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -661,6 +923,21 @@ function VerifyOtp() {
 
 function MockTests() {
   const [completedMap, setCompletedMap] = useState({});
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  let studentName = "Student";
+  try {
+    const student = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "null");
+    if (student?.name?.trim()) studentName = student.name.trim();
+  } catch (_) {}
+
+  const handleLogout = () => {
+    sessionStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(RESULT_KEY);
+    tests.forEach((test) => sessionStorage.removeItem(`edutechex-sat-attempt-${test.id}`));
+    setUserMenuOpen(false);
+    navigate("/sat/login", { replace: true });
+  };
 
   useEffect(() => {
     let email = "student@edutechex.com";
@@ -708,13 +985,32 @@ function MockTests() {
           <img src={edutechLogo} alt="EDUTECHEX" className="sat-auth-nav-logo" />
         </Link>
         <div className="sat-auth-nav-right">
-          <span className="sat-user-pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <span>SAT Practice Portal</span>
-          </span>
+          <div className="sat-user-menu">
+            <button
+              type="button"
+              className="sat-user-pill"
+              aria-haspopup="menu"
+              aria-expanded={userMenuOpen}
+              onClick={() => setUserMenuOpen((open) => !open)}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <span className="sat-user-name">{studentName}</span>
+              <svg className="sat-user-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            {userMenuOpen && (
+              <div className="sat-user-dropdown" role="menu">
+                <div className="sat-user-dropdown-name">{studentName}</div>
+                <button type="button" role="menuitem" onClick={handleLogout}>
+                  Log out
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
@@ -981,7 +1277,13 @@ function TestInstructions() {
             <Link
               aria-disabled={!acknowledged}
               className={`sat-start-test-btn ${acknowledged ? "is-enabled" : ""}`}
-              onClick={(event) => { if (!acknowledged) event.preventDefault(); }}
+              onClick={(event) => {
+                if (!acknowledged) {
+                  event.preventDefault();
+                  return;
+                }
+                sessionStorage.setItem(`edutechex-sat-attempt-${test.id}`, `${Date.now()}`);
+              }}
               to={`/sat/mock-tests/${test.id}/attempt`}
               id="sat-start-test-btn"
             >
@@ -1000,6 +1302,14 @@ function MockTest() {
   const test = tests.find((item) => item.id === testId);
   const navigate = useNavigate();
   const iframeRef = useRef(null);
+  const [attemptId] = useState(() => {
+    const key = `edutechex-sat-attempt-${testId}`;
+    const existingAttempt = sessionStorage.getItem(key);
+    if (existingAttempt) return existingAttempt;
+    const newAttempt = `${Date.now()}`;
+    sessionStorage.setItem(key, newAttempt);
+    return newAttempt;
+  });
   const [showFinishModal, setShowFinishModal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -1121,7 +1431,7 @@ function MockTest() {
           id="sat-finish-practice-btn"
           disabled={submitting}
         >
-          {submitting ? "Submitting…" : "Finish practice"}
+          {submitting ? "Submitting…" : "Finish Practice"}
         </button>
       </div>
 
@@ -1129,13 +1439,24 @@ function MockTest() {
         <iframe
           ref={iframeRef}
           title={`${test.title} practice content`}
-          src={`${test.file}?autostart=1`}
+          src={`${test.file}?autostart=1&attemptId=${encodeURIComponent(attemptId)}`}
           sandbox="allow-scripts allow-forms allow-modals allow-popups allow-downloads allow-same-origin"
+          onLoad={() => {
+            try {
+              const doc = iframeRef.current?.contentDocument;
+              if (doc && !doc.getElementById("sat-exam-theme-link")) {
+                const link = doc.createElement("link");
+                link.id = "sat-exam-theme-link";
+                link.rel = "stylesheet";
+                link.href = "/sat-mocks/sat-exam-theme.css";
+                doc.head.appendChild(link);
+              }
+            } catch (err) {
+              console.warn("Theme injection notice:", err);
+            }
+          }}
         />
       </div>
-      <p className="sat-iframe-note">
-        Interactive SAT practice paper. Click "Finish practice" at any time to submit your responses and evaluate your module scores.
-      </p>
 
       {/* Confirmation Popup Modal */}
       {showFinishModal && (
@@ -1190,10 +1511,293 @@ function MockTest() {
   );
 }
 
+const generateScoreReportPdf = (finalResult, modules, rwCorrect, mathCorrect) => {
+  const doc = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: "a4",
+  });
+
+  const pageWidth = 210;
+  const margin = 14;
+  const contentWidth = pageWidth - margin * 2;
+
+  let studentData = {};
+  try {
+    studentData = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+  } catch (_) {}
+
+  const studentName = (finalResult.studentName || studentData.name || "Aravind Bonda").toUpperCase();
+  const studentEmail = finalResult.studentEmail || studentData.email || "bondaaravind994@gmail.com";
+  const phone = finalResult.phone || (studentData.countryCode ? `${studentData.countryCode} ${studentData.phone}` : studentData.phone) || "+91 7207316750";
+  const gender = finalResult.gender || studentData.gender || "Male";
+  const curriculum = finalResult.curriculum || studentData.curriculum || "CBSE";
+  const testId = finalResult.testId || "01";
+  const testTitle = finalResult.testTitle || `Full SAT Mock ${testId}`;
+  const totalQuestions = finalResult.totalQuestions || 98;
+  const rawScore = finalResult.rawScore !== undefined ? finalResult.rawScore : (rwCorrect + mathCorrect);
+  const scaleScore = finalResult.scaleScore || (rawScore ? 530 : 1500);
+  const rwScore = finalResult.readingWritingScore || (rwCorrect ? 330 : 750);
+  const mScore = finalResult.mathScore || (mathCorrect ? 200 : 750);
+  const totalPct = Math.round(((rawScore || 0) / (totalQuestions || 98)) * 100);
+  const rwPct = Math.round(((rwCorrect || 0) / 54) * 100);
+  const mathPct = Math.round(((mathCorrect || 0) / 44) * 100);
+
+  const completedDate = finalResult.completedAt ? new Date(finalResult.completedAt) : new Date();
+  const dateFormatted = `${String(completedDate.getDate()).padStart(2, "0")}/${String(completedDate.getMonth() + 1).padStart(2, "0")}/${completedDate.getFullYear()}`;
+  const timeFormatted = `${String(completedDate.getHours()).padStart(2, "0")}:${String(completedDate.getMinutes()).padStart(2, "0")}:${String(completedDate.getSeconds()).padStart(2, "0")}`;
+  const timestamp = `${dateFormatted}, ${timeFormatted}`;
+
+  // Helper: Section title with signature EduTechEx teal accent underline strictly under first word
+  const drawSectionHeading = (title, accentWidth, yPos) => {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.setTextColor(24, 43, 84); // #182b54 deep navy
+    doc.text(title, margin, yPos);
+
+    // Signature teal accent line strictly under first word
+    doc.setDrawColor(2, 132, 199); // #0284c7
+    doc.setLineWidth(1.1);
+    doc.line(margin, yPos + 2, margin + accentWidth, yPos + 2);
+  };
+
+  // 1. Top Header: Logo on Left, Document Title on Right
+  try {
+    if (EDUTECHEX_LOGO_PNG) {
+      doc.addImage(EDUTECHEX_LOGO_PNG, "PNG", margin, 10, 44, 9.2);
+    } else {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(18);
+      doc.setTextColor(24, 43, 84);
+      doc.text("EDUTECHEX", margin, 16);
+    }
+  } catch (_) {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.setTextColor(24, 43, 84);
+    doc.text("EDUTECHEX", margin, 16);
+  }
+
+  // Right Header: Title and Report ID
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.setTextColor(24, 43, 84);
+  doc.text("SAT Mock Exam Score Report", pageWidth - margin, 14.5, { align: "right" });
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8);
+  doc.setTextColor(100, 116, 139);
+  doc.text(`Score Report ID: SAT-2026-${testId}705`, pageWidth - margin, 19.5, { align: "right" });
+  doc.text(`Date: ${dateFormatted}`, pageWidth - margin, 24, { align: "right" });
+
+  // 2. Exam Overview Card
+  let y = 32;
+  drawSectionHeading("Exam Overview", 24, y);
+
+  y += 5.5;
+  doc.setFillColor(240, 249, 255);
+  doc.setDrawColor(224, 242, 254);
+  doc.roundedRect(margin, y, contentWidth, 15, 2, 2, "FD");
+
+  const colW = contentWidth / 4;
+  doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(2, 132, 199);
+  doc.text("TEST CODE", margin + 6, y + 5);
+  doc.text("STATUS", margin + colW + 4, y + 5);
+  doc.text("DATE TAKEN", margin + colW * 2 + 4, y + 5);
+  doc.text("TOTAL SCORE", margin + colW * 3 + 4, y + 5);
+
+  doc.setFont("helvetica", "bold"); doc.setFontSize(9.5); doc.setTextColor(15, 23, 42);
+  doc.text(`SAT-MOCK-${testId}`, margin + 6, y + 10.8);
+  doc.setTextColor(22, 163, 74);
+  doc.text("Completed", margin + colW + 4, y + 10.8);
+  doc.setTextColor(15, 23, 42);
+  doc.text(dateFormatted, margin + colW * 2 + 4, y + 10.8);
+  doc.setTextColor(2, 132, 199);
+  doc.text(`${scaleScore} / 1600`, margin + colW * 3 + 4, y + 10.8);
+
+  // 3. Program Highlight Bar
+  y += 21;
+  doc.setFillColor(2, 132, 199); // #0284c7
+  doc.roundedRect(margin, y, contentWidth, 8, 2, 2, "F");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(255, 255, 255);
+  doc.text("EduTechEx Global — Official Digital SAT Diagnostic Assessment", margin + 6, y + 5.5);
+
+  y += 13;
+  doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(2, 132, 199);
+  doc.text("TEST PAPER & PROGRAM", margin + 6, y);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(9.5); doc.setTextColor(15, 23, 42);
+  doc.text(`${testTitle} • Reading & Writing + Mathematics Evaluation`, margin + 6, y + 5);
+
+  // 4. Candidate Details (neatly spaced 2-column layout with ample horizontal separation)
+  y += 13.5;
+  drawSectionHeading("Candidate Details", 26, y);
+
+  y += 6.5;
+  const col1X = margin + 6;
+  const col2X = margin + 98;
+
+  const personalRows = [
+    ["STUDENT FULL NAME", studentName, "CURRICULUM / BOARD", curriculum],
+    ["REGISTERED EMAIL", studentEmail, "CONTACT NUMBER", phone],
+    ["GENDER", gender, "TEST TYPE", "Full-Length Timed Mock"],
+  ];
+
+  personalRows.forEach(([l1, v1, l2, v2]) => {
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(2, 132, 199);
+    doc.text(l1, col1X, y);
+    doc.text(l2, col2X, y);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9.5); doc.setTextColor(15, 23, 42);
+    doc.text(v1, col1X, y + 4.8);
+    doc.text(v2, col2X, y + 4.8);
+    y += 11.5;
+  });
+
+  // 5. Performance Overview
+  y += 2.5;
+  drawSectionHeading("Performance Overview", 28, y);
+
+  y += 6;
+  const cardW = (contentWidth - 8) / 3;
+  const cardH = 22;
+
+  // Card 1: TOTAL SCORE
+  doc.setFillColor(240, 253, 244);
+  doc.setDrawColor(187, 247, 208);
+  doc.roundedRect(margin, y, cardW, cardH, 2, 2, "FD");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(22, 163, 74);
+  doc.text("TOTAL SCORE", margin + 5, y + 5);
+  const num1 = String(scaleScore);
+  doc.setFontSize(14); doc.setTextColor(21, 128, 61);
+  doc.text(num1, margin + 5, y + 11.8);
+  const w1 = doc.getTextWidth(num1);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(100, 116, 139);
+  doc.text("/ 1600", margin + 5 + w1 + 2.5, y + 11.8);
+  doc.setFontSize(7.2); doc.setTextColor(71, 85, 105);
+  doc.text(`Raw: ${rawScore} / ${totalQuestions} questions (${totalPct}%)`, margin + 5, y + 17.2);
+
+  // Card 2: READING & WRITING
+  const card2X = margin + cardW + 4;
+  doc.setFillColor(240, 249, 255);
+  doc.setDrawColor(186, 230, 253);
+  doc.roundedRect(card2X, y, cardW, cardH, 2, 2, "FD");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(2, 132, 199);
+  doc.text("READING & WRITING", card2X + 5, y + 5);
+  const num2 = String(rwScore);
+  doc.setFontSize(14); doc.setTextColor(3, 105, 161);
+  doc.text(num2, card2X + 5, y + 11.8);
+  const w2 = doc.getTextWidth(num2);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(100, 116, 139);
+  doc.text("/ 800", card2X + 5 + w2 + 2.5, y + 11.8);
+  doc.setFontSize(7.2); doc.setTextColor(71, 85, 105);
+  doc.text(`${rwCorrect} / 54 questions correct (${rwPct}%)`, card2X + 5, y + 17.2);
+
+  // Card 3: MATHEMATICS
+  const card3X = margin + (cardW + 4) * 2;
+  doc.setFillColor(240, 249, 255);
+  doc.setDrawColor(186, 230, 253);
+  doc.roundedRect(card3X, y, cardW, cardH, 2, 2, "FD");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(2, 132, 199);
+  doc.text("MATHEMATICS", card3X + 5, y + 5);
+  const num3 = String(mScore);
+  doc.setFontSize(14); doc.setTextColor(3, 105, 161);
+  doc.text(num3, card3X + 5, y + 11.8);
+  const w3 = doc.getTextWidth(num3);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(100, 116, 139);
+  doc.text("/ 800", card3X + 5 + w3 + 2.5, y + 11.8);
+  doc.setFontSize(7.2); doc.setTextColor(71, 85, 105);
+  doc.text(`${mathCorrect} / 44 questions correct (${mathPct}%)`, card3X + 5, y + 17.2);
+
+  // 6. Module-by-Module Evaluation Table
+  y += 28;
+  drawSectionHeading("Module-by-Module Evaluation", 40, y);
+
+  y += 5.5;
+  // Table Header
+  doc.setFillColor(240, 249, 255);
+  doc.rect(margin, y, contentWidth, 7, "F");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(2, 132, 199);
+  doc.text("MODULE NAME", margin + 5, y + 4.8);
+  doc.text("QUESTIONS", margin + 78, y + 4.8, { align: "center" });
+  doc.text("CORRECT", margin + 104, y + 4.8, { align: "center" });
+  doc.text("INCORRECT", margin + 128, y + 4.8, { align: "center" });
+  doc.text("BLANK", margin + 152, y + 4.8, { align: "center" });
+  doc.text("ACCURACY", margin + 174, y + 4.8, { align: "center" });
+
+  const tableData = modules && modules.length === 4 ? modules : [
+    { moduleName: "Reading & Writing - Module 1", totalQuestions: 27, score: 6, wrong: 21, blank: 0 },
+    { moduleName: "Reading & Writing - Module 2", totalQuestions: 27, score: 6, wrong: 21, blank: 0 },
+    { moduleName: "Math - Module 1", totalQuestions: 22, score: 0, wrong: 0, blank: 22 },
+    { moduleName: "Math - Module 2", totalQuestions: 22, score: 0, wrong: 0, blank: 22 },
+  ];
+
+  tableData.forEach((r, idx) => {
+    y += 7;
+    const accuracy = Math.round(((r.score || 0) / (r.totalQuestions || 1)) * 100);
+    if (idx % 2 === 1) {
+      doc.setFillColor(248, 250, 252);
+      doc.rect(margin, y, contentWidth, 7, "F");
+    }
+    doc.setDrawColor(241, 245, 249);
+    doc.setLineWidth(0.2);
+    doc.line(margin, y + 7, margin + contentWidth, y + 7);
+
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(15, 23, 42);
+    doc.text(r.moduleName || `Module ${idx + 1}`, margin + 5, y + 4.8);
+    doc.text(String(r.totalQuestions || 27), margin + 78, y + 4.8, { align: "center" });
+
+    doc.setFont("helvetica", "bold"); doc.setTextColor(22, 163, 74);
+    doc.text(String(r.score || 0), margin + 104, y + 4.8, { align: "center" });
+
+    doc.setTextColor(225, 29, 72);
+    doc.text(String(r.wrong || 0), margin + 128, y + 4.8, { align: "center" });
+
+    doc.setFont("helvetica", "normal"); doc.setTextColor(100, 116, 139);
+    doc.text(String(r.blank || 0), margin + 152, y + 4.8, { align: "center" });
+
+    doc.setFont("helvetica", "bold"); doc.setTextColor(15, 23, 42);
+    doc.text(`${accuracy}%`, margin + 174, y + 4.8, { align: "center" });
+  });
+
+  // 7. Diagnostic Certification Box
+  y += 14;
+  drawSectionHeading("Diagnostic Certification", 28, y);
+
+  y += 5.5;
+  doc.setFillColor(236, 253, 245);
+  doc.setDrawColor(187, 247, 208);
+  doc.roundedRect(margin, y, contentWidth, 14, 2, 2, "FD");
+  doc.setFont("helvetica", "italic"); doc.setFontSize(7.8); doc.setTextColor(6, 95, 70);
+  doc.text(`This official score report certifies that ${studentName} completed the Digital SAT Mock Exam (${testTitle}).`, margin + 5, y + 5.2, { maxWidth: contentWidth - 10 });
+  doc.text(`Reading & Writing: ${rwScore}/800 | Mathematics: ${mScore}/800 | Total Scaled Score: ${scaleScore}/1600 (${totalPct}% overall accuracy).`, margin + 5, y + 9.8, { maxWidth: contentWidth - 10 });
+
+  // 8. Running Footer
+  const footerY = 282;
+  doc.setDrawColor(226, 232, 240);
+  doc.setLineWidth(0.3);
+  doc.line(margin, footerY, pageWidth - margin, footerY);
+
+  if (EDUTECHEX_LOGO_PNG) {
+    try {
+      doc.addImage(EDUTECHEX_LOGO_PNG, "PNG", margin, footerY + 2.5, 26, 5.4);
+    } catch (_) {}
+  }
+
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(100, 116, 139);
+  doc.text("Support: support@edutechex.com", margin + 30, footerY + 5);
+  doc.text("Website: www.ups.edutechex.com", margin + 30, footerY + 9);
+
+  doc.text(`Generated: ${timestamp}`, pageWidth - margin, footerY + 5, { align: "right" });
+  doc.text("Page 1 of 1", pageWidth - margin, footerY + 9, { align: "right" });
+
+  const safeFileName = `${(studentName || "Student").replace(/[^a-zA-Z0-9]/g, "_")}_${(testTitle || "SAT_Mock").replace(/[^a-zA-Z0-9]/g, "_")}_Score_Report.pdf`;
+  doc.save(safeFileName);
+};
+
 function Results() {
   const { attemptId } = useParams();
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
 
   useEffect(() => {
     let localResult = null;
@@ -1309,7 +1913,7 @@ function Results() {
               <strong className="sat-results-stat-main">{finalResult.scaleScore || 1500}</strong>
               <span className="sat-results-stat-max">/ 1600</span>
               <span className="sat-results-stat-sub">
-                Raw: {finalResult.rawScore || (rwCorrect + mathCorrect)} / {finalResult.totalQuestions || 98} questions ({Math.round(((finalResult.rawScore || (rwCorrect + mathCorrect)) / (finalResult.totalQuestions || 98)) * 100)}%)
+                Raw: {finalResult.rawScore !== undefined ? finalResult.rawScore : (rwCorrect + mathCorrect)} / {finalResult.totalQuestions || 98} questions ({Math.round(((finalResult.rawScore !== undefined ? finalResult.rawScore : (rwCorrect + mathCorrect)) / (finalResult.totalQuestions || 98)) * 100)}%)
               </span>
             </div>
 
@@ -1409,6 +2013,31 @@ function Results() {
             <span>← Back to Mock Tests (Marked Green)</span>
           </Link>
           <div className="sat-results-action-group">
+            <button
+              type="button"
+              className="sat-results-pdf-btn"
+              onClick={() => {
+                setDownloadingPdf(true);
+                try {
+                  generateScoreReportPdf(finalResult, modules, rwCorrect, mathCorrect);
+                } catch (err) {
+                  console.error("PDF generation error:", err);
+                  alert("Could not generate PDF. Please try printing using the Print Results button.");
+                } finally {
+                  setDownloadingPdf(false);
+                }
+              }}
+              disabled={downloadingPdf}
+              id="sat-download-pdf-btn"
+              title="Download score report as a PDF"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>{downloadingPdf ? "Generating PDF…" : "Download PDF"}</span>
+            </button>
             <button
               type="button"
               className="sat-results-print-btn"

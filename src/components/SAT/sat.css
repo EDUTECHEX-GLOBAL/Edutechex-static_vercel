@@ -404,6 +404,43 @@
   box-shadow: 0 0 0 3px rgba(18, 100, 232, 0.12);
 }
 
+.sat-input-wrapper.is-invalid,
+.sat-phone-combined.is-invalid,
+.sat-curriculum-trigger.is-invalid {
+  border-color: #ef4444 !important;
+  background: #fffaf9 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12) !important;
+}
+
+.sat-input-wrapper.is-invalid:focus-within,
+.sat-phone-combined.is-invalid:focus-within,
+.sat-curriculum-trigger.is-invalid:focus-visible {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2) !important;
+}
+
+.sat-field-error {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  font-size: clamp(11.5px, 1.65vh, 12.5px);
+  font-weight: 500;
+  color: #dc2626;
+  line-height: 1.35;
+  animation: satFieldErrFade 0.18s ease;
+}
+
+.sat-field-error svg {
+  flex-shrink: 0;
+  color: #ef4444;
+}
+
+@keyframes satFieldErrFade {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .sat-input-icon {
   display: flex;
   align-items: center;
@@ -453,6 +490,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
+  align-items: flex-start;
 }
 
 /* Country code + number = ONE combined box with a divider */
@@ -702,41 +740,145 @@
   margin-bottom: clamp(10px, 1.8vh, 16px);
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive Registration ---------- */
 @media (max-width: 980px) {
   .sat-register-page {
     flex-direction: column;
-    padding: 0 20px 36px;
+    padding: 0 clamp(12px, 3.5vw, 24px) 36px;
     height: auto;
     min-height: 100vh;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
   }
   .sat-auth-navbar {
-    padding: 16px 0 10px;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 14px 0 8px;
   }
   .sat-register-container {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    gap: 0;
     min-height: auto;
     padding-bottom: 24px;
   }
+  /* Hide the large desktop-only hero block on mobile/compact screens */
   .sat-register-hero {
-    max-width: none;
-    padding-top: 14px;
-    padding-bottom: 0;
+    display: none !important;
   }
-  .sat-register-card-wrap { padding: 0; }
+  .sat-register-card-wrap {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .sat-register-card {
+    width: 100% !important;
+    max-width: 540px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+    padding: clamp(20px, 4.5vw, 28px) clamp(16px, 4vw, 24px) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 6px 20px rgba(10, 37, 85, 0.08) !important;
+  }
+  .sat-form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
 }
 
 @media (max-width: 580px) {
-  .sat-register-page { padding: 0 14px 28px; }
-  .sat-auth-nav-prompt { display: none; }
-  .sat-nav-login-btn { padding: 7px 14px; font-size: 12.5px; }
-  .sat-register-card { padding: 22px 16px !important; }
-  .sat-register-card .sat-card-intro h1 { font-size: 26px !important; }
-  .sat-hero-title { font-size: 32px; }
-  .sat-form-row { grid-template-columns: 1fr; gap: 14px; }
-  .sat-login-extra-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .sat-register-page {
+    padding: 0 12px 28px;
+  }
+  .sat-auth-nav-prompt {
+    display: none !important;
+  }
+  .sat-auth-nav-logo {
+    width: 125px;
+  }
+  .sat-nav-login-btn {
+    padding: 6px 14px;
+    font-size: 12.5px;
+  }
+  .sat-register-card {
+    padding: 18px 14px !important;
+    border-radius: 12px !important;
+  }
+  .sat-stepper {
+    margin-bottom: 10px !important;
+  }
+  .sat-step-dot {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 11.5px !important;
+  }
+  .sat-step-line {
+    width: 18px !important;
+    margin: 0 3px !important;
+  }
+  .sat-register-card .sat-card-intro {
+    margin-bottom: 12px !important;
+  }
+  .sat-register-card .sat-card-intro h1 {
+    font-size: 21px !important;
+    margin-bottom: 4px !important;
+  }
+  .sat-register-card .sat-card-intro p {
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
+  }
+  .sat-register-card .sat-form {
+    --r-input-h: 44px;
+    --r-gap: 10px;
+    --r-label: 12px;
+    --r-text: 13px;
+    gap: 10px !important;
+  }
+  .sat-phone-combined {
+    height: 44px !important;
+  }
+  .sat-phone-field-group .sat-country-select {
+    flex: 0 0 92px !important;
+  }
+  .sat-phone-field-group .sat-country-trigger {
+    font-size: 12px !important;
+    padding: 0 4px 0 8px !important;
+  }
+  .sat-phone-input-wrap {
+    padding: 0 8px !important;
+  }
+  .sat-phone-input-wrap input {
+    font-size: 13px !important;
+  }
+  .sat-gender-field-group .sat-curriculum-trigger,
+  .sat-curriculum-field-group .sat-curriculum-trigger {
+    height: 44px !important;
+    padding: 0 10px !important;
+    font-size: 12.5px !important;
+  }
+  .sat-val-selected,
+  .sat-val-placeholder {
+    font-size: 12.5px !important;
+  }
+  .sat-submit-btn {
+    height: 44px !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
+  }
+  .sat-secure-note {
+    font-size: 11px !important;
+    margin: 0 !important;
+  }
+  .sat-card-switch {
+    font-size: 12.5px !important;
+    margin-top: 4px !important;
+  }
 }
 
 /* ==================== OTP VERIFICATION POPUP MODAL ==================== */
@@ -1011,6 +1153,69 @@
   color: #1d4ed8;
   font-size: 13px;
   font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.sat-user-menu {
+  position: relative;
+}
+
+.sat-user-name {
+  max-width: min(32vw, 220px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sat-user-chevron {
+  flex: 0 0 auto;
+  transition: transform .15s ease;
+}
+
+.sat-user-pill[aria-expanded="true"] .sat-user-chevron {
+  transform: rotate(180deg);
+}
+
+.sat-user-dropdown {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 210px;
+  padding: 8px;
+  border: 1px solid #dbe5f2;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(26, 56, 104, .16);
+}
+
+.sat-user-dropdown-name {
+  overflow: hidden;
+  padding: 8px 10px;
+  color: #64748b;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sat-user-dropdown button {
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #b42318;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sat-user-dropdown button:hover,
+.sat-user-dropdown button:focus-visible {
+  background: #fff1f0;
 }
 
 .sat-dashboard-wrap {
@@ -1064,10 +1269,12 @@
 .sat-mock-dashboard-page .sat-test-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-auto-rows: 360px;
   gap: 16px;
 }
 
 .sat-mock-dashboard-page .sat-test-card {
+  height: 100%;
   background: #ffffff;
   border: 1px solid #e1e9f4;
   border-radius: 12px;
@@ -1231,7 +1438,7 @@
 
 @media (max-width: 820px) {
   .sat-dashboard-wrap {
-    padding: 20px 18px 40px;
+    padding: 20px 16px 40px;
   }
   .sat-mock-dashboard-page .sat-test-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1242,22 +1449,81 @@
   }
   .sat-dashboard-header {
     gap: 14px;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
   .sat-dashboard-icon-wrap {
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
   }
 }
 
-@media (max-width: 520px) {
-  .sat-mock-dashboard-page .sat-test-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .sat-mock-dashboard-page {
+    padding: 0 0 36px 0 !important;
+  }
+  .sat-mock-dashboard-page .sat-auth-navbar {
+    padding: 12px 14px 10px !important;
+  }
+  .sat-user-pill {
+    padding: 5px 12px;
+    font-size: 11.5px;
+  }
+  .sat-dashboard-wrap {
+    padding: 14px 12px 30px !important;
   }
   .sat-dashboard-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+  .sat-dashboard-icon-wrap {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+  }
+  .sat-dashboard-icon-wrap svg {
+    width: 20px;
+    height: 20px;
+  }
+  .sat-dashboard-heading h1 {
+    font-size: 18px !important;
+    margin: 0 0 2px 0 !important;
+  }
+  .sat-dashboard-heading p {
+    font-size: 12.5px !important;
+  }
+  .sat-mock-dashboard-page .sat-test-grid {
+    grid-template-columns: 1fr !important;
+    gap: 11px !important;
+  }
+  .sat-mock-dashboard-page .sat-test-card {
+    padding: 15px 13px !important;
+    min-height: auto !important;
+    border-radius: 10px !important;
+  }
+  .sat-card-top-row {
+    margin-bottom: 8px !important;
+  }
+  .sat-test-label {
+    font-size: 14.5px !important;
+    margin: 0 0 6px 0 !important;
+  }
+  .sat-test-pill {
+    font-size: 11px !important;
+    padding: 2px 7px !important;
+    margin-bottom: 8px !important;
+  }
+  .sat-test-meta {
+    font-size: 11px !important;
+    gap: 6px !important;
+    flex-wrap: wrap;
+    margin-bottom: 12px !important;
+  }
+  .sat-test-action {
+    min-height: 38px !important;
+    font-size: 13px !important;
+    border-radius: 7px !important;
   }
 }
 
@@ -1522,67 +1788,193 @@
   }
   .sat-instruction-stat-cards {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
   .sat-instructions-footer {
     flex-direction: column;
     align-items: stretch;
-    gap: 18px;
+    gap: 16px;
   }
   .sat-start-test-btn {
     width: 100%;
   }
 }
 
+@media (max-width: 580px) {
+  .sat-instructions-back-btn {
+    padding: 6px 14px !important;
+    font-size: 12px !important;
+  }
+  .sat-instructions-container {
+    padding: 0 12px !important;
+    margin: 8px auto 24px !important;
+  }
+  .sat-instructions-card {
+    padding: 18px 14px !important;
+    border-radius: 12px !important;
+  }
+  .sat-instructions-title {
+    font-size: 18px !important;
+    margin-bottom: 10px !important;
+  }
+  .sat-instruction-banner {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+  }
+  .sat-instruction-banner-text {
+    font-size: 12px !important;
+  }
+  .sat-instruction-stat-cards {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    margin-bottom: 18px !important;
+  }
+  .sat-stat-box {
+    padding: 10px 12px !important;
+    background: #f8fbff;
+    border: 1px solid #e2edfc;
+    border-radius: 8px;
+    gap: 10px;
+  }
+  .sat-stat-icon-wrap {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .sat-stat-label {
+    font-size: 11.5px !important;
+    margin-bottom: 2px !important;
+  }
+  .sat-stat-value {
+    font-size: 15px !important;
+  }
+  .sat-stat-sub {
+    font-size: 10.5px !important;
+  }
+  .sat-instructions-heading {
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+  }
+  .sat-instructions-points {
+    gap: 9px !important;
+    margin-bottom: 20px !important;
+  }
+  .sat-point-badge {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 11px !important;
+  }
+  .sat-point-text {
+    font-size: 12.5px !important;
+  }
+  .sat-instructions-footer {
+    gap: 12px !important;
+    padding-top: 6px !important;
+  }
+  .sat-instructions-checkbox-label {
+    font-size: 12px !important;
+    gap: 8px !important;
+  }
+  .sat-start-test-btn {
+    min-height: 42px !important;
+    font-size: 13.5px !important;
+    padding: 10px 20px !important;
+  }
+}
+
 /* ==================== MOCK TEST ATTEMPT TOOLBAR & CONFIRM POPUP ==================== */
+.sat-page.sat-test-page {
+  min-height: 100vh;
+  padding: 16px 20px 20px !important;
+  background: #f4f8fe !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+  overflow-y: auto !important;
+}
+
+.sat-page.sat-test-page::before,
+.sat-page.sat-test-page::after {
+  display: none !important;
+}
+
 .sat-test-page .sat-test-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 28px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(15, 35, 75, 0.04);
-  box-sizing: border-box;
+  position: relative !important;
+  top: auto !important;
+  z-index: 10 !important;
+  max-width: 1260px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
 }
 
 .sat-toolbar-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #475569;
-  font-size: 13.5px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.15s ease;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #2563eb !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
 }
 
 .sat-toolbar-back-link:hover {
-  color: #1d4ed8;
+  color: #1d4ed8 !important;
 }
 
 .sat-finish-practice-btn {
-  padding: 8px 18px;
-  border-radius: 8px;
-  border: none;
-  background: #1d68f2;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: Inter, system-ui, sans-serif;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(29, 104, 242, 0.22);
-  transition: all 0.16s ease;
+  padding: 8px 22px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: #1a73e8 !important;
+  color: #ffffff !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.25) !important;
+  transition: all 0.15s ease !important;
 }
 
 .sat-finish-practice-btn:hover {
-  background: #1456cb;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(29, 104, 242, 0.32);
+  background: #1557b0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.32) !important;
+}
+
+.sat-test-page .sat-iframe-wrap {
+  max-width: 1260px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  flex: 1 1 auto !important;
+  min-height: calc(100vh - 90px) !important;
+  height: calc(100vh - 90px) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+.sat-test-page .sat-iframe-wrap iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  display: block !important;
+}
+
+.sat-iframe-note {
+  display: none !important;
 }
 
 .sat-confirm-modal-backdrop {
@@ -1685,6 +2077,65 @@
 .sat-confirm-btn-primary:hover {
   background: #1456cb;
   transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .sat-test-page .sat-test-toolbar {
+    padding: 8px 12px !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+  }
+  .sat-test-toolbar > div:first-child {
+    flex: 1 1 180px !important;
+    min-width: 0 !important;
+    gap: 7px !important;
+  }
+  .sat-toolbar-back-link {
+    font-size: 12px !important;
+    gap: 4px !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+  }
+  .sat-test-page .sat-test-toolbar strong {
+    font-size: 12px !important;
+    display: block !important;
+    min-width: 0 !important;
+    max-width: 112px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .sat-finish-practice-btn {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    padding: 6px 12px !important;
+    font-size: 11.5px !important;
+  }
+  .sat-iframe-note {
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+  }
+  .sat-confirm-modal-card {
+    padding: 22px 16px 18px !important;
+    border-radius: 14px !important;
+  }
+  .sat-confirm-modal-title {
+    font-size: 18px !important;
+  }
+  .sat-confirm-modal-desc {
+    font-size: 12.5px !important;
+    margin-bottom: 18px !important;
+  }
+  .sat-confirm-modal-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  .sat-confirm-btn-secondary,
+  .sat-confirm-btn-primary {
+    width: 100% !important;
+    min-height: 40px !important;
+    font-size: 13px !important;
+  }
 }
 
 /* ==================== COMPLETED MOCK TEST CARD (GREEN HIGHLIGHT) ==================== */
@@ -1816,6 +2267,41 @@
 
 .sat-card-retake-btn:hover {
   color: #16a34a;
+}
+
+/* Keep each desktop row the same height, even when a test has a score summary. */
+.sat-mock-dashboard-page .sat-test-card .sat-card-top-row .sat-test-number {
+  margin-bottom: 0;
+}
+
+.sat-mock-dashboard-page .sat-card-modules-pill-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.sat-mock-dashboard-page .sat-module-pill-tag.is-green {
+  padding-right: 2px;
+  padding-left: 2px;
+  font-size: 9px;
+}
+
+@media (max-width: 640px) {
+  .sat-mock-dashboard-page .sat-test-grid {
+    grid-auto-rows: auto;
+  }
+
+  .sat-mock-dashboard-page .sat-test-card {
+    height: auto;
+  }
+
+  .sat-mock-dashboard-page .sat-card-modules-pill-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sat-mock-dashboard-page .sat-module-pill-tag.is-green {
+    padding-right: 6px;
+    padding-left: 6px;
+    font-size: 10.5px;
+  }
 }
 
 /* ==================== COMPREHENSIVE SAT RESULTS PAGE ==================== */
@@ -2235,6 +2721,36 @@
   gap: 12px;
 }
 
+.sat-results-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: 1.5px solid #2563eb;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: Inter, system-ui, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+  transition: all 0.16s ease;
+}
+
+.sat-results-pdf-btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.sat-results-pdf-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .sat-results-print-btn {
   display: inline-flex;
   align-items: center;
@@ -2297,11 +2813,310 @@
   }
   .sat-results-portal-btn,
   .sat-results-retake-btn,
-  .sat-results-print-btn {
+  .sat-results-print-btn,
+  .sat-results-pdf-btn {
     width: 100%;
     justify-content: center;
   }
   .sat-results-action-group {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 580px) {
+  .sat-results-container {
+    padding: 0 12px 30px !important;
+  }
+  .sat-results-hero-card,
+  .sat-modules-section {
+    padding: 18px 14px !important;
+    border-radius: 12px !important;
+  }
+  .sat-overall-score-number {
+    font-size: clamp(34px, 10vw, 44px) !important;
+  }
+  .sat-overall-score-badge {
+    padding: 14px !important;
+  }
+  .sat-score-pill-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  .sat-score-sub-pill {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+  .sat-module-card {
+    padding: 14px 12px !important;
+    border-radius: 10px !important;
+  }
+  .sat-module-score-big {
+    font-size: 22px !important;
+  }
+  .sat-results-footer-actions {
+    margin-top: 18px !important;
+    gap: 10px !important;
+  }
+  .sat-results-portal-btn,
+  .sat-results-retake-btn,
+  .sat-results-print-btn,
+  .sat-results-pdf-btn {
+    min-height: 42px !important;
+    font-size: 13px !important;
+    padding: 10px 16px !important;
+  }
+}
+
+/* ==========================================================================
+   EDUTECHEX APPLICATION SUMMARY / SCORE REPORT DOCUMENT FORMAT
+   ========================================================================== */
+
+.sat-doc-sheet,
+.sat-doc-header-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 34px 40px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05);
+  box-sizing: border-box;
+}
+
+.sat-doc-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sat-doc-brand-block {
+  display: flex;
+  align-items: center;
+}
+
+.sat-doc-brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.sat-doc-header-meta {
+  text-align: right;
+}
+
+.sat-doc-header-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: #182b54;
+  letter-spacing: -0.02em;
+}
+
+.sat-doc-header-sub {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sat-doc-section {
+  margin-bottom: 26px;
+}
+
+.sat-doc-section-heading {
+  font-size: 17.5px;
+  font-weight: 800;
+  color: #182b54;
+  margin: 0 0 14px 0;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.sat-doc-section-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 3.5px;
+  background: #0284c7;
+  border-radius: 2px;
+}
+
+.sat-doc-overview-card {
+  background: #f0f9ff;
+  border: 1px solid #e0f2fe;
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.sat-doc-overview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sat-doc-field-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0284c7;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sat-doc-field-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sat-doc-field-val.green {
+  color: #16a34a;
+}
+
+.sat-doc-field-val.highlight {
+  color: #0284c7;
+  font-size: 16px;
+}
+
+.sat-doc-highlight-bar {
+  background: #0284c7;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+}
+
+.sat-doc-course-block {
+  padding: 4px 6px 16px 6px;
+}
+
+.sat-doc-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 36px;
+  padding: 8px 6px;
+}
+
+.sat-doc-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sat-doc-declaration-box {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13.5px;
+  font-style: italic;
+  color: #065f46;
+  line-height: 1.55;
+  margin-top: 6px;
+}
+
+.sat-doc-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  margin-top: 26px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 12px;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.sat-doc-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sat-doc-footer-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+.sat-doc-footer-left p,
+.sat-doc-footer-right p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.sat-doc-footer-right {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .sat-doc-sheet,
+  .sat-doc-header-card {
+    padding: 22px 18px;
+  }
+  .sat-doc-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sat-doc-header-meta {
+    text-align: left;
+  }
+  .sat-doc-overview-card {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sat-doc-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .sat-doc-footer-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sat-doc-footer-right {
+    text-align: left;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+  .sat-auth-navbar,
+  .sat-results-footer-actions,
+  .sat-instructions-back-btn,
+  #sat-back-from-results-btn,
+  #sat-download-pdf-btn,
+  .sat-results-print-btn,
+  .sat-results-retake-btn {
+    display: none !important;
+  }
+  .sat-results-page {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+  .sat-results-container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .sat-doc-sheet,
+  .sat-doc-header-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }
