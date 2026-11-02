@@ -55,7 +55,7 @@ const Footer = () => {
           <ul className="footer-legal-links">
             <li><a href="/cancellation-policy" className="footer-legal-link">Cancellation Policy</a></li>
             <li><Link to="/privacy-policy" className="footer-legal-link">Privacy policy</Link></li>
-            <li><a href="/terms-and-conditions" className="footer-legal-link">Terms and Conditions</a></li>
+            <li><Link to="/terms-and-conditions" className="footer-legal-link">Terms and Conditions</Link></li>
           </ul>
         </div>
       </div>

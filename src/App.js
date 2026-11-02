@@ -22,6 +22,7 @@ import Testimonails from "./components/More/Testimonails/testimonails";
 
 import Shop from "./components/buycourses/shop";
 import Policy from "./components/policy/policy";
+import Terms from "./components/terms/terms";
 
 import K12 from "./components/courses/k12/k12";
 import Undergraduate from "./components/courses/undergraduate/undergraduate";
@@ -185,6 +186,9 @@ function AppContent() {
         <Route path="/privacy-policy" element={<Policy />} />
         <Route path="/policy" element={<Policy />} />
         <Route path="/privacy" element={<Policy />} />
+        <Route path="/terms-and-conditions" element={<Terms />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/terms-conditions" element={<Terms />} />
 
         {/* ================= UNKNOWN ROUTES ================= */}
         <Route

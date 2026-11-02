@@ -151,7 +151,7 @@ const Header = () => {
         <div className="left-section">
           <img
             src={logo}
-            alt="EDUTECH"
+            alt="EDUTECHEX"
             className="logo-img"
             onClick={() => {
               navigate("/");
